@@ -31,6 +31,7 @@
         scripts: JavaScript resources to be loaded in the page
         favicon: Page favicon
         permitted_users: Types of users who are allowed on the page
+        copyright: The copyright statement for the page footer
 
     */
 
@@ -44,7 +45,8 @@
         "stylesheets" => array("css/styles.css", "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"),
         "scripts" => array("js/main.js"),
         "favicon" => "img/favicon.png",
-        "permitted_users" => array("Admin", "Staff", "Standard", "")
+        "permitted_users" => array("Admin", "Staff", "Standard", ""),
+        "copyright" => "&copy; Jordan Hay 2020"
     );
 
     $page_attr = array_merge($def_page_attr, $page_attr); // Fill page_attr with default values if they have not been set in page_attr
