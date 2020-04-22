@@ -24,7 +24,6 @@
         title: Page title
         site_name: Name of the site
         author: Who wrote the code in the page (used in meta data as well)
-        path: Path to the page as shown in url
         desc: Page description (for meta data)
         keywords: Keywords for meta data (SEO)
         stylesheeets: Stylesheets used in the page
@@ -39,7 +38,6 @@
         "title" => "Unknown Page",
         "site_name" => "TrailAdvisor",
         "author" => "Unknown",
-        "path" => "Unknown",
         "desc" => "No Description",
         "keywords" => "Trails, Find, Create, Edit, Make, Like, Tracks, Walks, Hiking",
         "stylesheets" => array("css/styles.css", "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"),
