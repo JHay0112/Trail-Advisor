@@ -104,9 +104,8 @@
 
                 // Checking if user has the correct authority level to view this page
                 if(!in_array($user_info["authority"], $page_attr["permitted_users"])) {
-                    // If user does not have required permissions, display explanation text, grab the page footer just to end all the code cleanly, and then stop all code execution.
-                    print("User is not permitted to view this page!");
-                    require_once("res/foot.php");
+                    // If user does not have required permissions, alert the user to the issue and redirect to login page. In case that script fails stop all code execution with the exit statement
+                    print("<script>alert('You must be logged in to use this page!'); location = 'login.php';</script>");
                     exit();
                 }
             
