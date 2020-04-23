@@ -2,14 +2,14 @@
 
     /*
 
-        trail.php
+        management/searchusers.php
         
         Author: Jordan Hay
         Version: 1.0
 
         Description:
 
-            Trail information.
+            Search through users for staff.
 
         Other Notes:
 
@@ -19,8 +19,9 @@
 
     // Page Attributes
     $page_attr = array(
-        "title" => "Trail Name",
-        "author" => "Jordan Hay"
+        "title" => "Search Users",
+        "author" => "Jordan Hay",
+        "permitted_users" => array("Admin", "Staff")
     );
 
     require_once("res/head.php");
