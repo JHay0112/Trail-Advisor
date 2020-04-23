@@ -49,6 +49,22 @@
 
     $page_attr = array_merge($def_page_attr, $page_attr); // Fill page_attr with default values if they have not been set in page_attr
 
+    // Check that admin is a permitted user, if not add it before something goes wrong
+    if(!in_array("Admin", $page_attr["permitted_users"])) {
+        array_push($page_attr, "Admin");
+    }
+
+    // Checking if users are logged in
+    if(isset($_SESSION["user_info"])) {
+        $user_info = $_SESSION["user_info"];
+        $logged_in = "true";
+    } else {
+        $user_info = array(
+            "authority" => ""
+        );
+        $logged_in = "false";
+    }
+
 ?>
 
 <!DOCTYPE html>
@@ -83,3 +99,15 @@
     <body>
 
         <main>
+
+            <?php 
+
+                // Checking if user has the correct authority level to view this page
+                if(!in_array($user_info["authority"], $page_attr["permitted_users"])) {
+                    // If user does not have required permissions, display explanation text, grab the page footer just to end all the code cleanly, and then stop all code execution.
+                    print("User is not permitted to view this page!");
+                    require_once("res/foot.php");
+                    exit();
+                }
+            
+            ?>

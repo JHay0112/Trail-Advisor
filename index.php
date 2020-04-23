@@ -23,8 +23,8 @@
         "author" => "Jordan Hay"
     );
 
-    include_once("res/head.php");
+    require_once("res/head.php");
 
-    include_once("res/foot.php");
+    require_once("res/foot.php");
 
 ?>
