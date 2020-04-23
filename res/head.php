@@ -81,3 +81,5 @@
         <title><?php print($page_attr["title"]." - ".$page_attr["site_name"]); ?></title>
     </head>
     <body>
+
+        <main>
