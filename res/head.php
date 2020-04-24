@@ -31,6 +31,7 @@
         favicon: Page favicon
         permitted_users: Types of users who are allowed on the page
         copyright: The copyright statement for the page footer
+        nav: array with page name as key and sub array with file path and classes if applicable
 
     */
 
@@ -47,7 +48,24 @@
         "copyright" => "&copy; Jordan Hay 2020"
     );
 
+    // Default options for the navigation system
+    $def_nav = array(
+        "Home" => array(
+            "href" => "index.php",
+            "classes" => ""
+        ),
+        "Search Trails" => array(
+            "href" => "search.php",
+            "classes" => ""
+        ),
+        "Login/Signup" => array(
+            "href" => "login.php",
+            "classes" => "right-align"
+        )
+    );
+
     $page_attr = array_merge($def_page_attr, $page_attr); // Fill page_attr with default values if they have not been set in page_attr
+    $nav = array_merge($def_nav, $nav); // Fill nav with default values if they have not been set in nav
 
     // Check that admin is a permitted user, if not add it before something goes wrong
     if(!in_array("Admin", $page_attr["permitted_users"])) {
@@ -57,12 +75,34 @@
     // Checking if users are logged in
     if(isset($_SESSION["user_info"])) {
         $user_info = $_SESSION["user_info"];
-        $logged_in = "true";
+        $logged_in = true;
     } else {
         $user_info = array(
             "authority" => ""
         );
-        $logged_in = "false";
+        $logged_in = false;
+    }
+
+    // Actions to be taken if user is logged in
+    if($logged_in) {
+
+        // User is logged in, do not display the option to login
+        unset($nav["Login/Signup"]);
+        // Add the option for the user to view their own profile
+        $nav += array("Profile" => array("href" => "profile.php?user_id=".$user_info["id"], "classes" => "right-align"));
+
+        // Actions for staff higher users
+        if(($user_info["authority"] == "Staff") || ($user_info["authority"] == "Admin")) {
+            // Add the option for the user to navigate to the management page
+            $nav += array("Management" => array("href" => "management/panel.php", "classes" => "right-align"));
+        }
+    }
+
+    // Checking if user has the correct authority level to view this page
+    if(!in_array($user_info["authority"], $page_attr["permitted_users"])) {
+        // If user does not have required permissions, alert the user to the issue and redirect to login page. In case that script fails stop all code execution with the exit statement
+        print("<script>alert('You must be logged in to use this page!'); location = 'login.php';</script>");
+        exit();
     }
 
 ?>
@@ -98,15 +138,14 @@
     </head>
     <body>
 
-        <main>
-
+        <nav>
             <?php 
-
-                // Checking if user has the correct authority level to view this page
-                if(!in_array($user_info["authority"], $page_attr["permitted_users"])) {
-                    // If user does not have required permissions, alert the user to the issue and redirect to login page. In case that script fails stop all code execution with the exit statement
-                    print("<script>alert('You must be logged in to use this page!'); location = 'login.php';</script>");
-                    exit();
-                }
             
+                foreach($nav as $name => $item) {
+                    print("<a href='".$item["href"]."' class='".$item["classes"]."'>".$name."</a>");
+                }
+
             ?>
+        </nav>
+
+        <main>
