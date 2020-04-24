@@ -106,13 +106,20 @@ nav {
     height: 50px;
 }
 
-a {
+nav a {
     color: white;
     text-decoration: none;
     text-align: center;
     position: relative;
     padding: 25px;
     top: 15px;
+    display: inline;
+}
+
+nav a.right-align {
+    float: right;
+    position: relative;
+    top: -10px;
 }
 
 /* /Nav */
