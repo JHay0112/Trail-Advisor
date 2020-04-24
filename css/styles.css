@@ -97,3 +97,36 @@ hr {
 }
 
 /* /Responsive */
+
+/* Nav */
+
+nav {
+    width: 100%;
+    background-color: #2f8233;
+    height: 50px;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    position: relative;
+    padding: 25px;
+    top: 15px;
+}
+
+/* /Nav */
+
+/* Footer */
+
+footer {
+    width: 100%;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background-color: black;
+    color: white;
+}
+
+/* /Footer */
