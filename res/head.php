@@ -77,9 +77,7 @@
         $user_info = $_SESSION["user_info"];
         $logged_in = true;
     } else {
-        $user_info = array(
-            "authority" => ""
-        );
+        $user_info = array("authority" => "");
         $logged_in = false;
     }
 
@@ -100,7 +98,7 @@
 
     // Checking if user has the correct authority level to view this page
     if(!in_array($user_info["authority"], $page_attr["permitted_users"])) {
-        // If user does not have required permissions, alert the user to the issue and redirect to login page. In case that script fails stop all code execution with the exit statement
+        // If user does not have required permissions, alert the user to the issue and redirect to login page. In case that script fails, although I don't think it could, stop all code execution with the exit statement
         print("<script>alert('You must be logged in to use this page!'); location = 'login.php';</script>");
         exit();
     }
@@ -138,14 +136,21 @@
     </head>
     <body>
 
-        <nav>
-            <?php 
-            
-                foreach($nav as $name => $item) {
-                    print("<a href='".$item["href"]."' class='".$item["classes"]."'>".$name."</a>");
-                }
+        <header></header>
 
-            ?>
-        </nav>
+        <div class="nav-wrapper">
+            <!-- Spacer div -->
+            <div class="col-2"></div>
+            <nav class="col-8">
+                <?php 
+                    foreach($nav as $name => $item) {
+                        print("<a href='".$item["href"]."' class='".$item["classes"]."'>".$name."</a>");
+                    }
+                ?>
+            </nav>
+        </div>
 
-        <main>
+        <!-- Spacer div -->
+        <div class="col-2"></div>
+
+        <main class="col-8">
