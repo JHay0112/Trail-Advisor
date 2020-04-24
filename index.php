@@ -23,14 +23,6 @@
         "author" => "Jordan Hay"
     );
 
-    // Navigation
-    $nav = array(
-        "Home" => array(
-            "href" => "index.php", 
-            "classes" => "active"
-        )
-    );
-
     require_once("res/head.php");
 
 ?>

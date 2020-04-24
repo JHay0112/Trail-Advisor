@@ -64,12 +64,25 @@
         )
     );
 
-    $page_attr = array_merge($def_page_attr, $page_attr); // Fill page_attr with default values if they have not been set in page_attr
-    $nav = array_merge($def_nav, $nav); // Fill nav with default values if they have not been set in nav
+    // Only attempt array merge if page_attr exists
+    if(isset($page_attr)) {
+        $page_attr = array_merge($def_page_attr, $page_attr); // Fill page_attr with default values if they have not been set in page_attr
+    } else {
+        // If not set just set these as equal
+        $page_attr = $def_page_attr;
+    }
+
+    // Only attempt array merge if nav exists
+    if(isset($nav)) {
+        $nav = array_merge($def_nav, $nav); // Fill nav with default values if they have not been set in nav
+    } else {
+        // If not set just set these as equal
+        $nav = $def_nav;
+    }
 
     // Check that admin is a permitted user, if not add it before something goes wrong
     if(!in_array("Admin", $page_attr["permitted_users"])) {
-        array_push($page_attr, "Admin");
+        array_push($page_attr["permitted_users"], "Admin");
     }
 
     // Checking if users are logged in
@@ -143,7 +156,16 @@
             <div class="col-2"></div>
             <nav class="col-8">
                 <?php 
+
+                    // Iterate through printing nav items
                     foreach($nav as $name => $item) {
+
+                        // If the nav item hyperreference matched the URI of the page mark it as the active page.
+                        // This if statement compares if the end of the request URI matches the href of the item to determine whether or not this page is active.
+                        if(!substr_compare($_SERVER["REQUEST_URI"], $item["href"], -strlen($item["href"]))) {
+                            $item["classes"] .= " active";
+                        }
+
                         print("<a href='".$item["href"]."' class='".$item["classes"]."'>".$name."</a>");
                     }
                 ?>
