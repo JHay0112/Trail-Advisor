@@ -114,12 +114,18 @@ nav a {
     padding: 25px 15px;
     top: 15px;
     display: inline;
+    opacity: 0.8;
+    transition: 0.3s ease all;
 }
 
 nav a.right-align {
     float: right;
     position: relative;
     top: -10px;
+}
+
+nav a:hover, nav a.active {
+    opacity: 1;
 }
 
 /* /Nav */
