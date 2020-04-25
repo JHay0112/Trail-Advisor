@@ -21,7 +21,7 @@
         "localhost", 
         "root", 
         "", 
-        "trailadvisor") 
-    or  die("Couldn't connect to DB server.");
+        "trailadvisor"
+    ) or die("Couldn't connect to DB server.");
 
 ?>
