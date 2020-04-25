@@ -161,8 +161,8 @@
                     foreach($nav as $name => $item) {
 
                         // If the nav item hyperreference matched the URI of the page mark it as the active page.
-                        // This if statement compares if the end of the request URI matches the href of the item to determine whether or not this page is active.
-                        if(!substr_compare($_SERVER["REQUEST_URI"], $item["href"], -strlen($item["href"]))) {
+                        // This if statement compares if the end of the request URI matches the href of the item to determine whether or not this page is active. It does have an additional edge case programmed in for when index.php is accessed from "/"
+                        if((!substr_compare($_SERVER["REQUEST_URI"], $item["href"], -strlen($item["href"]))) || (($item["href"] == "index.php") &&  (!substr_compare($_SERVER["REQUEST_URI"], "/", -strlen("/"))))) {
                             $item["classes"] .= " active";
                         }
 
