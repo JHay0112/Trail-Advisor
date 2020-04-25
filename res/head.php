@@ -58,7 +58,11 @@
             "href" => "search.php",
             "classes" => ""
         ),
-        "Login/Signup" => array(
+        "Sign Up" => array(
+            "href" => "signup.php",
+            "classes" => "right-align"
+        ),
+        "Login" => array(
             "href" => "login.php",
             "classes" => "right-align"
         )
@@ -98,7 +102,9 @@
     if($logged_in) {
 
         // User is logged in, do not display the option to login
-        unset($nav["Login/Signup"]);
+        unset($nav["Login"]);
+        // Nor the option to sign up
+        unset($nav["Sign up"]);
         // Add the option for the user to view their own profile
         $nav += array("Profile" => array("href" => "profile.php?user_id=".$user_info["id"], "classes" => "right-align"));
 
