@@ -2,14 +2,14 @@
 
     /*
 
-        management/searchusers.php
+        management/panel.php
         
         Author: Jordan Hay
         Version: 1.0
 
         Description:
 
-            Search through users for staff.
+            Management panel for staff users.
 
         Other Notes:
 
@@ -19,13 +19,13 @@
 
     // Page Attributes
     $page_attr = array(
-        "title" => "Search Users",
+        "title" => "Panel",
         "author" => "Jordan Hay",
         "permitted_users" => array("Admin", "Staff")
     );
 
-    require_once("../res/head.php");
+    require_once("res/head.php");
 
-    require_once("../res/foot.php");
+    require_once("res/foot.php");
 
 ?>
