@@ -112,7 +112,7 @@
     // Checking if user has the correct authority level to view this page
     if(!in_array($user_info["authority"], $page_attr["permitted_users"])) {
         // If user does not have required permissions, alert the user to the issue and redirect to login page. In case that script fails, although I don't think it could, stop all code execution with the exit statement
-        print("<script>alert('You must be logged in to use this page!'); location = 'login.php';</script>");
+        print("<script>alert('You must be logged in to use this page!'); location = '/login.php';</script>");
         exit();
     }
 
