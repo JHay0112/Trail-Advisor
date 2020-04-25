@@ -42,7 +42,7 @@
         "desc" => "No Description",
         "keywords" => "Trails, Find, Create, Edit, Make, Like, Tracks, Walks, Hiking",
         "stylesheets" => array("css/styles.css", "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"),
-        "scripts" => array("js/main.js"),
+        "scripts" => array("js/lib/jquery.slim.min.js", "js/lib/parsley.min.js", "js/main.js"),
         "favicon" => "img/favicon.png",
         "permitted_users" => array("Admin", "Staff", "Standard", ""),
         "copyright" => "&copy; Jordan Hay 2020"
