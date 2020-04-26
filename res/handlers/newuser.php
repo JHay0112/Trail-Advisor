@@ -31,7 +31,7 @@
     // Adding information into the database
 
     // Prepare statment
-    $stmt = mysqli_prepare($link, "INSERT INTO users (username, hash, salt) VALUES (?, ?, ?);");
+    $stmt = mysqli_prepare($link, "INSERT INTO users (`username`, `hash`, `salt`) VALUES (?, ?, ?);");
 
     // Binding parameters and executing statement, checking if $stmt has formed first
     if($stmt) {
@@ -48,7 +48,12 @@
             </script>        
         ");
     } else {
-        print("fuck");
+        print("
+            <script>
+                alert('Sign up failed, please try again.');
+                location = '../../signup.php';
+            </script>        
+        ");
     }
 
 ?>
