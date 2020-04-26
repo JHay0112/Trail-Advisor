@@ -2,14 +2,14 @@
 
     /*
 
-        res/handlers/newuser.php
+        res/handlers/loginuser.php
         
         Author: Jordan Hay
         Version: 1.0
 
         Description:
 
-            Creates a new site user.
+            Logs the user out.
 
         Other Notes:
 
