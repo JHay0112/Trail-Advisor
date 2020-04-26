@@ -35,6 +35,8 @@
 
     */
 
+    session_start();
+
     $def_page_attr = array(
         "title" => "Unknown Page",
         "site_name" => "TrailAdvisor",
@@ -94,7 +96,7 @@
         $user_info = $_SESSION["user_info"];
         $logged_in = true;
     } else {
-        $user_info = array("authority" => "");
+        $user_info = array("user_type" => "");
         $logged_in = false;
     }
 
@@ -104,19 +106,21 @@
         // User is logged in, do not display the option to login
         unset($nav["Login"]);
         // Nor the option to sign up
-        unset($nav["Sign up"]);
+        unset($nav["Sign Up"]);
+        // Add the option for the user to sign out
+        $nav += array("Sign Out" => array("href" => "res/handlers/signout.php", "classes" => "right-align"));
         // Add the option for the user to view their own profile
-        $nav += array("Profile" => array("href" => "profile.php?user_id=".$user_info["id"], "classes" => "right-align"));
+        $nav += array("Profile" => array("href" => "profile.php?user_id=".$user_info["user_id"], "classes" => "right-align"));
 
         // Actions for staff higher users
-        if(($user_info["authority"] == "Staff") || ($user_info["authority"] == "Admin")) {
+        if(($user_info["user_type"] == "Staff") || ($user_info["user_type"] == "Admin")) {
             // Add the option for the user to navigate to the management page
             $nav += array("Management" => array("href" => "management/panel.php", "classes" => "right-align"));
         }
     }
 
     // Checking if user has the correct authority level to view this page
-    if(!in_array($user_info["authority"], $page_attr["permitted_users"])) {
+    if(!in_array($user_info["user_type"], $page_attr["permitted_users"])) {
         // If user does not have required permissions, alert the user to the issue and redirect to login page. In case that script fails, although I don't think it could, stop all code execution with the exit statement
         print("<script>alert('You must be logged in to use this page!'); location = '/login.php';</script>");
         exit();

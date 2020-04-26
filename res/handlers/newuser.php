@@ -22,7 +22,7 @@
     $username = strip_tags($_POST["username"]); // Stripping HTML from user name so that it does not cause issues when placed in page.
     $password = $_POST["password"];
 
-    // Generate salte for user password
+    // Generate salt for user password
     $salt = md5(microtime(true)*1000000);
 
     // Hash password and salt together
