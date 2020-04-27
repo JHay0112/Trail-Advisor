@@ -27,6 +27,20 @@
 
 ?>
 
+<h1>Login</h1>
+
+<?php
+
+    require_once("res/referralcase.php");
+
+    $states = array(
+        "newuser" => "New user created! Please sign in with the credentials you created."
+    );
+
+    print("<p>".referral($_GET["referral_case"], $states)."</p>");
+
+?>
+
 <div class="col-12" id="form-wrapper">
     <form class="col-12" data-parsley-validate action="res/handlers/loginuser.php" method="post">
 

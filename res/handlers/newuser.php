@@ -41,12 +41,7 @@
 
     // Alert user and redirect to login
     if (mysqli_stmt_affected_rows($stmt) == 1) {
-        print("
-            <script>
-                alert('New user created, redirecting to login page.');
-                location = '../../login.php';
-            </script>        
-        ");
+        print("<script>location = '../../login.php?referral_case=newuser';</script>");
     } else {
         print("
             <script>
