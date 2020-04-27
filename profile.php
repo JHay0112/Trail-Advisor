@@ -70,14 +70,25 @@
 
     require_once("res/head.php");
 
-    // Displaying the user's information
-    print("<h3>".$user_type." User</h3>");
-    print("<h3>User ID: ".$user_id."</h3>");
+    // Processing referrall cases
+    require_once("res/referralcase.php");
+
+    $states = array(
+        "login" => "You have successfully been logged in!"
+    );
+
+    if(isset($_GET["referral_case"])) {
+        print("<p>".referral($_GET["referral_case"], $states)."</p>");
+    }
 
     // If the system has generated a message it should be displayed
     if(isset($message)) {
         print("<p>".$message."</p>");
     }
+
+    // Displaying the user's information
+    print("<h3>".$user_type." User</h3>");
+    print("<h3>User ID: ".$user_id."</h3>");
 
     require_once("res/foot.php"); 
     
