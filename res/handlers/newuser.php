@@ -43,12 +43,7 @@
     if (mysqli_stmt_affected_rows($stmt) == 1) {
         print("<script>location = '../../login.php?referral_case=newuser';</script>");
     } else {
-        print("
-            <script>
-                alert('Sign up failed, please try again.');
-                location = '../../signup.php';
-            </script>        
-        ");
+        print("<script>location = '../../signup.php?referral_case=newuserfailed';</script>        ");
     }
 
 ?>

@@ -113,7 +113,13 @@
     // Checking if user has the correct authority level to view this page
     if(!in_array($user_info["user_type"], $page_attr["permitted_users"])) {
         // If user does not have required permissions, alert the user to the issue and redirect to login page. In case that script fails, although I don't think it could, stop all code execution with the exit statement
-        print("<script>alert('You must be logged in to use this page!'); location = '/login.php';</script>");
+        if($logged_in) {
+            // If the user is logged in send them to their profile
+            print("<script>location = '/profile.php?referall_case=useroutofbounds';</script>");
+        } else {
+            // If user is not logged in send them to login
+            print("<script>location = '/login.php?referral_case=useroutofbounds';</script>");
+        }
         exit();
     }
 
@@ -163,7 +169,8 @@
 
                         // If the nav item hyperreference matched the URI of the page mark it as the active page.
                         // This if statement compares if the end of the request URI matches the href of the item to determine whether or not this page is active. It does have an additional edge case programmed in for when index.php is accessed from "/"
-                        if((!substr_compare($_SERVER["REQUEST_URI"], $item["href"], -strlen($item["href"]))) || (($item["href"] == "index.php") &&  (!substr_compare($_SERVER["REQUEST_URI"], "/", -strlen("/"))))) {
+                        // strtok is used to remove the queries from the end of the url
+                        if((!substr_compare(strtok($_SERVER["REQUEST_URI"], "?"), $item["href"], -strlen($item["href"]))) || (($item["href"] == "index.php") &&  (!substr_compare(strtok($_SERVER["REQUEST_URI"], "?"), "/", -strlen("/"))))) {
                             $item["classes"] .= " active";
                         }
 

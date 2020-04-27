@@ -27,6 +27,20 @@
 
 ?>
 
+<h1>Sign Up</h1>
+
+<?php 
+
+    require_once("res/referralcase.php");
+
+    $states = array(
+        "useroutofbounds" => "Creation of a new user failed. Please try again."
+    );
+
+    print("<p>".referral($_GET["referral_case"], $states)."</p>");
+
+?>
+
 <div class="col-12" id="form-wrapper">
     <form class="col-12" data-parsley-validate action="res/handlers/newuser.php" method="post">
 
