@@ -19,7 +19,7 @@
 
     // Page Attributes
     $page_attr = array(
-        "title" => "Panel",
+        "title" => "Management Panel",
         "author" => "Jordan Hay",
         "permitted_users" => array("Admin", "Staff")
     );
