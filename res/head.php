@@ -169,8 +169,8 @@
 
                         // If the nav item hyperreference matched the URI of the page mark it as the active page.
                         // This if statement compares if the end of the request URI matches the href of the item to determine whether or not this page is active. It does have an additional edge case programmed in for when index.php is accessed from "/"
-                        // strtok is used to remove the queries from the end of the url
-                        if((!substr_compare(strtok($_SERVER["REQUEST_URI"], "?"), $item["href"], -strlen($item["href"]))) || (($item["href"] == "index.php") &&  (!substr_compare(strtok($_SERVER["REQUEST_URI"], "?"), "/", -strlen("/"))))) {
+                        // strtok is used to remove the queries from the end of the url and href
+                        if((!substr_compare(strtok($_SERVER["REQUEST_URI"], "?"), strtok($item["href"], "?"), -strlen(strtok($item["href"], "?")))) || (($item["href"] == "index.php") &&  (!substr_compare(strtok($_SERVER["REQUEST_URI"], "?"), "/", -strlen("/"))))) {
                             $item["classes"] .= " active";
                         }
 
