@@ -184,3 +184,5 @@
         <div class="col-2"></div>
 
         <main class="col-8">
+
+            <h1><?php print($page_attr["title"]); ?></h1>

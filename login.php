@@ -24,13 +24,7 @@
     );
 
     require_once("res/head.php");
-
-?>
-
-<h1>Login</h1>
-
-<?php
-
+    
     require_once("res/referralcase.php");
 
     $states = array(

@@ -23,13 +23,7 @@
         "author" => "Jordan Hay"
     );
 
-    require_once("res/head.php");
-
-?>
-
-<h1>Sign Up</h1>
-
-<?php 
+    require_once("res/head.php"); 
 
     require_once("res/referralcase.php");
 
