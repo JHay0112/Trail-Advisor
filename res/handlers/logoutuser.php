@@ -17,8 +17,9 @@
 
     */
 
+    require_once("../initsession.php");
+
     // Remove the session variables, this logs out the user.
-    session_start();
     session_unset();
 
     // Now alert user they have been logged out.

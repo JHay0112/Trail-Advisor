@@ -35,7 +35,7 @@
 
     */
 
-    session_start();
+    require_once("initsession.php");
 
     $def_page_attr = array(
         "title" => "Unknown Page",
@@ -91,15 +91,6 @@
         array_push($page_attr["permitted_users"], "Admin");
     }
 
-    // Checking if users are logged in
-    if(isset($_SESSION["user_info"])) {
-        $user_info = $_SESSION["user_info"];
-        $logged_in = true;
-    } else {
-        $user_info = array("user_type" => "");
-        $logged_in = false;
-    }
-
     // Actions to be taken if user is logged in
     if($logged_in) {
 
@@ -115,7 +106,7 @@
         // Actions for staff higher users
         if(($user_info["user_type"] == "Staff") || ($user_info["user_type"] == "Admin")) {
             // Add the option for the user to navigate to the management page
-            $nav += array("Management" => array("href" => "management/panel.php", "classes" => "right-align"));
+            $nav += array("Management" => array("href" => "panel.php", "classes" => "right-align"));
         }
     }
 
