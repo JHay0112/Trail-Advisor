@@ -23,6 +23,8 @@
         "permitted_users" => array("Admin", "Staff", "Standard")
     );
 
+    $error = false;
+
     require_once("res/initsession.php");
     require_once("res/connect.php");
 
@@ -31,17 +33,18 @@
         $page_attr["permitted_users"] = array("Admin", "Staff");
 
         // Store the user id as an int, if it has been set as a non-int value in the url it will be set to be zero by this code.
-        $user_id = settype($_GET["user_id"], "int");
+        $user_id = (int)$_GET["user_id"];
         
         // If the user id is not zero, as zero means that something has gone wrong
         if($user_id != 0) {
 
-            $stmt = mysqli_prepare($link, "SELECT `username`, `user_type` FROM `users` WHERE `id` = ?;");
+            $stmt = mysqli_prepare($link, "SELECT `username`, `user_type` FROM `users` WHERE `user_id` = ?;");
 
             if($stmt) {
-                mysqli_bind_param($stmt, "i", $user_id);
-                mysqli_execute($stmt);
-                mysqli_bind_result($stmt, $username, $user_type);
+                mysqli_stmt_bind_param($stmt, "i", $user_id);
+                mysqli_stmt_execute($stmt);
+                mysqli_stmt_bind_result($stmt, $username, $user_type);
+                mysqli_stmt_fetch($stmt);
             }
 
             if(!isset($username)) {
@@ -75,7 +78,8 @@
     require_once("res/referralcase.php");
 
     $states = array(
-        "login" => "You have successfully been logged in as ".$username."."
+        "login" => "You have successfully been logged in as ".$username.".",
+        "deleteduser" => "User successfully deleted!"
     );
 
     if(isset($_GET["referral_case"])) {
@@ -91,12 +95,19 @@
     print("<h3>".$user_type." User</h3>");
     print("<h3>User ID: ".$user_id."</h3>");
 
-    // Action section
-    print("<h2>Actions</h2>");
+    // Do not display actions for non-existant users
+    if($user_id != "Invalid") {
+        // Action section
+        print("<h2>Actions</h2>");
 
-    // Actions for if the user is own
-    if((!isset($_GET["user_id"])) || ($_GET["user_id"] == $user_info["user_id"])) {
-        print("<a onclick='confirmAction(\"This will log you out.\", \"res/handlers/logoutuser.php?token=".$token."\");' href='javascript:void(0);'>Log out</a>");
+        // Actions for if the user is own
+        if((!isset($_GET["user_id"])) || ($_GET["user_id"] == $user_info["user_id"])) {
+            print("<a onclick='confirmAction(\"This will log you out.\", \"res/handlers/logoutuser.php?token=".$token."\");' href='javascript:void(0);'>Log out</a>");
+            print("<a onclick='confirmAction(\"This will delete your account.\", \"res/handlers/deleteuser.php?token=".$token."\");' href='javascript:void(0);'>Delete Account</a>");
+        } elseif((isset($_GET["user_id"])) && ($_GET["user_id"] != $user_info["user_id"]) && ($user_info["user_type"] == "Admin")) {
+            // Actions for if user is not own and the logged in user is an admin
+            print("<a onclick='confirmAction(\"This will delete the account of ".$username.".\", \"res/handlers/deleteuser.php?token=".$token."&user_id=".$user_id."\");' href='javascript:void(0);'>Delete Account</a>");
+        }
     }
 
     require_once("res/foot.php"); 
