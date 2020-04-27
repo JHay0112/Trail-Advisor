@@ -56,7 +56,7 @@
             "href" => "index.php",
             "classes" => ""
         ),
-        "Search Trails" => array(
+        "Search" => array(
             "href" => "search.php",
             "classes" => ""
         ),
