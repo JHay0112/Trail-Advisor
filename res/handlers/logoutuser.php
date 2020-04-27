@@ -17,6 +17,7 @@
 
     */
 
+    $token_required = true;
     require_once("../initsession.php");
 
     // Remove the session variables, this logs out the user.

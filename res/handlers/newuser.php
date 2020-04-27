@@ -17,6 +17,8 @@
 
     */
 
+    $token_required = true;
+    require_once("../initsession.php");
     require_once("../connect.php");
 
     $username = strip_tags($_POST["username"]); // Stripping HTML from user name so that it does not cause issues when placed in page.
@@ -43,7 +45,7 @@
     if (mysqli_stmt_affected_rows($stmt) == 1) {
         print("<script>location = '../../login.php?referral_case=newuser';</script>");
     } else {
-        print("<script>location = '../../signup.php?referral_case=newuserfailed';</script>        ");
+        print("<script>location = '../../signup.php?referral_case=newuserfailed';</script>");
     }
 
 ?>

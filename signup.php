@@ -46,6 +46,8 @@
 
         <input type="password" name="password-validation" minlength="6" maxlength="30" class="col-12" placeholder="Password Again" data-parsley-equalto="#password" required />
 
+        <input type="hidden" name="token" value="<?php print($token); ?>" />
+
         <input type="submit" value="Submit" class="col-12" />
 
     </form>

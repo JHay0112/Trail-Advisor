@@ -99,7 +99,7 @@
         // Nor the option to sign up
         unset($nav["Sign Up"]);
         // Add the option for the user to sign out
-        $nav += array("Sign Out" => array("href" => "res/handlers/logoutuser.php", "classes" => "right-align"));
+        $nav += array("Sign Out" => array("href" => "res/handlers/logoutuser.php?token=".$token, "classes" => "right-align"));
         // Add the option for the user to view their own profile
         $nav += array("Profile" => array("href" => "profile.php?user_id=".$user_info["user_id"], "classes" => "right-align"));
 
