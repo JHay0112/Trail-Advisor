@@ -19,7 +19,8 @@
 
     // Page Attributes
     $page_attr = array(
-        "author" => "Jordan Hay"
+        "author" => "Jordan Hay",
+        "permitted_users" => array("Admin", "Staff", "Standard")
     );
 
     require_once("res/initsession.php");
@@ -27,7 +28,7 @@
 
     if((isset($_GET["user_id"])) && ($_GET["user_id"] != $user_info["user_id"])) {
         // If the user accessing this page is not the user this page is about the user must be staff or admin
-        $page_attr += array("permitted_users" => array("Admin", "Staff"));
+        $page_attr["permitted_users"] = array("Admin", "Staff");
 
         // Store the user id as an int, if it has been set as a non-int value in the url it will be set to be zero by this code.
         $user_id = settype($_GET["user_id"], "int");
@@ -89,6 +90,14 @@
     // Displaying the user's information
     print("<h3>".$user_type." User</h3>");
     print("<h3>User ID: ".$user_id."</h3>");
+
+    // Action section
+    print("<h2>Actions</h2>");
+
+    // Actions for if the user is own
+    if((!isset($_GET["user_id"])) || ($_GET["user_id"] == $user_info["user_id"])) {
+        print("<a onclick='confirmAction(\"This will log you out.\", \"res/handlers/logoutuser.php?token=".$token."\");' href='javascript:void(0);'>Log out</a>");
+    }
 
     require_once("res/foot.php"); 
     
