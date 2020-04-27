@@ -47,22 +47,11 @@
             "user_type" => $user_type
         );
 
-        // Redirect to home page
-        print("
-            <script>
-                alert('Logged in! Redirecting to home page.');
-                location = '../../index.php';
-            </script>        
-        ");
+        // Redirect to profile page
+        print("<script>location = '../../profile.php?referral_case=login';</script>");
     } else {
-
         // Redirect back to login
-        print("
-            <script>
-                alert('Login failed. Please try again.');
-                location = '../../login.php';
-            </script>        
-        ");
+        print("<script>location = '../../login.php?referral_case=loginfail';</script>");
     }
 
 ?>
