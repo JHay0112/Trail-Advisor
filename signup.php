@@ -37,7 +37,9 @@
         "newuserfailed" => "Creation of a new user failed. Please try again."
     );
 
-    print("<p>".referral($_GET["referral_case"], $states)."</p>");
+    if(isset($_GET["referral_case"])) {
+        print("<p>".referral($_GET["referral_case"], $states)."</p>");
+    }
 
 ?>
 

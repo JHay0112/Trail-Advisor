@@ -38,7 +38,9 @@
         "useroutofbounds" => "Access to the page you attempted to access is not permitted at all for non-logged in users.<br />You can login using this page if you have an account that has the correct permissions to access that page."
     );
 
-    print("<p>".referral($_GET["referral_case"], $states)."</p>");
+    if(isset($_GET["referral_case"])) {
+        print("<p>".referral($_GET["referral_case"], $states)."</p>");
+    }
 
 ?>
 
