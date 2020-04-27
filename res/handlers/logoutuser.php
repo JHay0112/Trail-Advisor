@@ -23,11 +23,6 @@
     session_unset();
 
     // Now alert user they have been logged out.
-    print("
-        <script>
-            alert('Logged out. Redirecting to home page.');
-            location = '../../index.php';
-        </script>
-    ");
+    print("<script>location = '../../login.php?referral_case=loggedout';</script>");
 
 ?>
