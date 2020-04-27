@@ -74,7 +74,7 @@
     require_once("res/referralcase.php");
 
     $states = array(
-        "login" => "You have successfully been logged in!"
+        "login" => "You have successfully been logged in as ".$username."."
     );
 
     if(isset($_GET["referral_case"])) {
