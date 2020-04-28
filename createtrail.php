@@ -39,25 +39,63 @@
 
 ?>
 
-<div class="col-12" id="form-wrapper">
-    <form class="col-12" data-parsley-validate action="res/handlers/newtrail.php" method="post" enctype="multipart/form-data">
+<form class="col-12 form-wrapper" data-parsley-validate action="res/handlers/newtrail.php" method="post" enctype="multipart/form-data">
 
-        <input type="text" name="name" maxlength="30" class="col-12" placeholder="Trail Name" required />
+    <fieldset class="col-12">
 
-        <input type="textarea" name="description" class="col-12" placeholder="Trail Description" required />
+        <legend>General Trail Information:</legend>
 
-        <input type="number" name="lat" min="0" class="col-12" placeholder="Latitude" required />
+        <div class="row">
 
-        <input type="number" name="lng" min="0" class="col-12" placeholder="Longitude" required />
+            <div class="col-8 form-wrapper">
 
-        <input type="file" name="img" required />
+                <input type="text" name="name" maxlength="30" class="col-12" placeholder="Trail Name" required />
 
-        <input type="hidden" name="token" value="<?php print($token); ?>" />
+                <textarea type="text" name="description" class="col-12" placeholder="Trail Description" required></textarea>
 
-        <input type="submit" value="Create Trail" class="col-12" />
+            </div>
 
-    </form>
-</div>
+            <div class="col-4 form-wrapper">
+
+                <label class="col-12" for="img">Trail Image (PNG or JPG):</label>
+                <input type="file" name="img" class="col-12" required />
+            
+            </div>
+        
+        </div>
+
+    </fieldset>
+
+    <fieldset class="col-12">
+
+        <legend>Trail Location: </legend>
+
+        <div class="row">
+
+            <div class="col-6 form-wrapper">
+
+                <input type="number" name="lat" min="0" class="col-12" placeholder="Latitude" required />
+
+                <input type="number" name="lng" min="0" class="col-12" placeholder="Longitude" required />
+
+            </div>
+
+            <div class="col-6 form-wrapper">
+
+                <!-- Map -->
+            
+            </div>
+        
+        </div>
+
+    </fieldset>
+
+    <input type="submit" value="Create Trail" class="col-12" />
+
+
+    <input type="hidden" name="token" value="<?php print($token); ?>" />
+
+</form>
 
 <?php
 
