@@ -78,6 +78,8 @@
 
             <div id="map" name="map" class="col-12" style="height: 500px;"></div>
 
+            <label for="lat" class="col-6">Latitude:</label>
+            <label for="lng" class="col-6">Longitude:</label>
             <input id="lat" type="number" readonly name="lat" min="-90" max="90" class="col-6" placeholder="Latitude" required />
             <input id="lng" type="number" readonly name="lng" min="-180" max="180" class="col-6" placeholder="Longitude" required />
 
