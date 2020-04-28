@@ -49,8 +49,10 @@
 
             <div class="col-8 form-wrapper">
 
+                <label class="col-12" for="name">Trail Name:</label>
                 <input type="text" name="name" maxlength="30" class="col-12" placeholder="Trail Name" required />
 
+                <label class="col-12" for="description">Trail Description:</label>
                 <textarea type="text" name="description" class="col-12" placeholder="Trail Description" required></textarea>
 
             </div>
@@ -74,14 +76,17 @@
 
             <div class="col-6 form-wrapper">
 
+                <label class="col-12" for="lat">Latitude:</label>
                 <input type="number" name="lat" min="0" class="col-12" placeholder="Latitude" required />
 
+                <label class="col-12" for="lng">Longitude:</label>
                 <input type="number" name="lng" min="0" class="col-12" placeholder="Longitude" required />
 
             </div>
 
             <div class="col-6 form-wrapper">
 
+                <label class="col-12" for="map">Select on map:</label>
                 <!-- Map -->
             
             </div>
@@ -90,10 +95,9 @@
 
     </fieldset>
 
-    <input type="submit" value="Create Trail" class="col-12" />
-
-
     <input type="hidden" name="token" value="<?php print($token); ?>" />
+
+    <input type="submit" value="Create Trail" class="col-12" />
 
 </form>
 
