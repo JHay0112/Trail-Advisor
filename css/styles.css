@@ -30,11 +30,11 @@ body, html {
 
 html {
     scroll-behavior: smooth;
+    margin-bottom: 200px;
 }
 
 body {
     overflow-x: hidden;
-    margin-bottom: 700px;
 }
 
 h1 {
