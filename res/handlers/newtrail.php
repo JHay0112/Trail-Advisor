@@ -30,7 +30,7 @@
     $ext = strtolower(pathinfo($upload["name"], PATHINFO_EXTENSION)); // Get file extension
 
     // Check that it is actually an image and not just a file with .jpg or .png appended
-    if(($image_info["mime"] != "image/jpeg") || ($image_info["mime"] != "image/jpeg")) {
+    if(($image_info["mime"] != "image/jpeg") || ($image_info["mime"] != "image/png")) {
         // Redirect to createtrail
         print("<script>location = '../../createtrail.php?referral_case=invalidext'</script>");
         exit();
