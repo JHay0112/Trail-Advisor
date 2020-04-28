@@ -26,12 +26,11 @@
     $lat = $_POST["lat"];
     $lng = $_POST["lng"];
     $upload = $_FILES["img"];
-
-    $ext = strtolower(pathinfo($upload["name"], PATHINFO_EXTENSION)); // Get file extension
+    $image_type = image_type_to_mime_type(exif_imagetype($upload["tmp_name"]));
+    $allowed_ext = array("image/jpeg", "image/png"); // Array of allowed image extensions
 
     // Check that it is actually an image and not just a file with .jpg or .png appended
-    if(($image_info["mime"] != "image/jpeg") || ($image_info["mime"] != "image/png")) {
-        // Redirect to createtrail
+    if(!in_array($image_type, $allowed_ext)) {
         print("<script>location = '../../createtrail.php?referral_case=invalidext'</script>");
         exit();
     }
@@ -57,16 +56,13 @@
 
         // Creating image
 
-        $image_info = getimagesize($upload["tmp_name"]);
-
-        switch($image_info["mime"]) {
+        switch($image_type) {
             case("image/jpeg"):
                 $img = imagecreatefromjpeg($upload["tmp_name"]);
             case("image/png"):
                 $img = imagecreatefrompng($upload["tmp_name"]);
         }
 
-        // Compressing
         imagejpeg($img, $dest_file, 60);
 
         // Redirect to trail page
