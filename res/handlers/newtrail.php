@@ -63,7 +63,7 @@
                 $img = imagecreatefrompng($upload["tmp_name"]);
         }
 
-        imagejpeg($img, $dest_file, 60);
+        imagejpeg($img, $dest_file, 40);
 
         // Redirect to trail page
         print("<script>location = '../../trail.php?trail=".$trail_id."'</script>");
