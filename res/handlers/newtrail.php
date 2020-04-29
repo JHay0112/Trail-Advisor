@@ -67,6 +67,10 @@
                 $img = imagecreatefrompng($upload["tmp_name"]);
         }
 
+        // Set image to be web standard of 72dpi
+        imageresolution($img, 72);
+
+        // Compress image and save to $dest_file
         imagejpeg($img, $dest_file, 40);
 
         // Redirect to trail page
