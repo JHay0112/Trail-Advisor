@@ -45,13 +45,15 @@
 <div class="col-12" id="form-wrapper">
     <form class="col-12" data-parsley-validate action="res/handlers/loginuser.php" method="post">
 
+        <label for="username" class="col-12">Username:</label>
         <input type="text" name="username" maxlength="30" class="col-12" placeholder="Username" required />
 
+        <label for="password" class="col-12">Password:</label>
         <input id="password" type="password" name="password" minlength="6" maxlength="30" class="col-12" placeholder="Password" required />
 
         <input type="hidden" name="token" value="<?php print($token); ?>" />
 
-        <input type="submit" value="Submit" class="col-12" />
+        <input type="submit" value="Login" class="col-12" />
 
     </form>
 </div>

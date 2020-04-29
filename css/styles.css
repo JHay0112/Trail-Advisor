@@ -217,8 +217,6 @@ input[type=submit] {
     cursor: pointer;
     transition: 0.3s ease;
     background-color: #2f8233;
-    position: relative;
-    left: 2px;
 }
 
 input[type=submit]:hover {
