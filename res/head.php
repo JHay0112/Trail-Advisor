@@ -31,7 +31,8 @@
         favicon: Page favicon
         permitted_users: Types of users who are allowed on the page
         copyright: The copyright statement for the page footer
-        nav: array with page name as key and sub array with file path and classes if applicable
+        class: A class that will be applied to elements throughout the page
+        header_img: Path to image to be displayed as the header img
 
     */
 
@@ -47,7 +48,9 @@
         "scripts" => array("js/lib/jquery.slim.min.js", "js/lib/parsley.min.js", "js/main.js"),
         "favicon" => "img/favicon.png",
         "permitted_users" => array("Admin", "Staff", "Standard", ""),
-        "copyright" => "&copy; Jordan Hay 2020"
+        "copyright" => "&copy; Jordan Hay 2020",
+        "class" => "",
+        "header_img" => "img/header.jpg"
     );
 
     // Default options for the navigation system
@@ -154,7 +157,7 @@
     </head>
     <body>
 
-        <header></header>
+        <header style="background-image: url('<?php print($page_attr["header_img"]); ?>');"></header>
 
         <div class="nav-wrapper">
             <!-- Spacer div -->
@@ -183,4 +186,4 @@
 
         <main class="col-8">
 
-            <h1><?php print($page_attr["title"]); ?></h1>
+            <?php print("<h1 class='".$page_attr["class"]."' id='page-title'>".$page_attr["title"]."</h1>"); ?>
