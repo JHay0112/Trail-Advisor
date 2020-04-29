@@ -29,7 +29,8 @@
 
     $states = array(
         "newuserfailed" => "Creation of a new user failed. Please try again.",
-        "missingfields" => "Not all required fields were filled."
+        "missingfields" => "Not all required fields were filled.",
+        "usernametaken" => "That username has already been taken by another user."
     );
 
     if(isset($_GET["referral_case"])) {
