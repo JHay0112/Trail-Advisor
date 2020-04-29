@@ -44,7 +44,7 @@
 
     // Binding parameters and executing statement, checking if $stmt has formed first
     if($stmt) {
-        mysqli_stmt_bind_param($stmt, "sisii", $name, $user_info["user_id"], $description, $lat, $lng);
+        mysqli_stmt_bind_param($stmt, "sisdd", $name, $user_info["user_id"], $description, $lat, $lng);
         mysqli_stmt_execute($stmt);
     }
 
@@ -60,10 +60,9 @@
 
         // Creating image
 
-        switch($image_type) {
-            case("image/jpeg"):
+        if($image_type == "image/jpeg") {
                 $img = imagecreatefromjpeg($upload["tmp_name"]);
-            case("image/png"):
+        } elseif($image_type == "image/png") {
                 $img = imagecreatefrompng($upload["tmp_name"]);
         }
 
