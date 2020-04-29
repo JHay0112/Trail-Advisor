@@ -32,7 +32,8 @@
         "useroutofbounds" => "Access to the page you attempted to access is not permitted at all for non-logged in users.<br />You can login using this page if you have an account that has the correct permissions to access that page.",
         "loginfail" => "Login Failed. Please try again.",
         "loggedout" => "You have been logged out.",
-        "deleteduser" => "User successfully deleted!"
+        "deleteduser" => "User successfully deleted!",
+        "missingfields" => "Not all required fields were filled."
     );
 
     if(isset($_GET["referral_case"])) {

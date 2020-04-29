@@ -20,6 +20,9 @@
     $token_required = true;
     require_once("../initsession.php");
     require_once("../connect.php");
+    require_once("../checkfields.php");
+
+    check_fields($_POST, array("username", "password"), "../../signup.php");
 
     $username = strip_tags($_POST["username"]); // Stripping HTML from user name so that it does not cause issues when placed in page.
     $password = $_POST["password"];

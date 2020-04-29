@@ -20,6 +20,9 @@
     $token_required = true;
     require_once("../initsession.php"); // For CSRF protection
     require_once("../connect.php");
+    require_once("../checkfields.php");
+
+    check_fields($_POST, array("username", "password"), "../../login.php");
 
     $username = $_POST["username"];
     $password = $_POST["password"];

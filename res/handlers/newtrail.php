@@ -20,6 +20,10 @@
     $token_required = true;
     require_once("../initsession.php");
     require_once("../connect.php");
+    require_once("../checkfields.php");
+
+    check_fields($_POST, array("name", "description", "lat", "lng"), "../../createtrail.php");
+    check_fields($_FILES, array("img"), "../../createtrail.php");
 
     $name = strip_tags($_POST["name"]);
     $description = strip_tags($_POST["description"]);

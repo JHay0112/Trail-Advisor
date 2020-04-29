@@ -32,7 +32,8 @@
 
     $states = array(
         "invalidext" => "Invalid file uploaded, must be a JPG or PNG.",
-        "newtrailfail" => "Failed to create a new trail, please try again."
+        "newtrailfail" => "Failed to create a new trail, please try again.",
+        "missingfields" => "Not all required fields were filled."
     );
 
     if(isset($_GET["referral_case"])) {

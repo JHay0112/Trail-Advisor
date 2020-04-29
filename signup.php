@@ -28,7 +28,8 @@
     require_once("res/referralcase.php");
 
     $states = array(
-        "newuserfailed" => "Creation of a new user failed. Please try again."
+        "newuserfailed" => "Creation of a new user failed. Please try again.",
+        "missingfields" => "Not all required fields were filled."
     );
 
     if(isset($_GET["referral_case"])) {
