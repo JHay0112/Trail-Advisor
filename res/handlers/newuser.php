@@ -28,16 +28,20 @@
     $password = $_POST["password"];
 
     // Check that username is unique here
-    $stmt = mysqli_prepare($link, "SELECT COUNT(`user_id`) FROM `users` WHERE `username` = ?");
+    $stmt = mysqli_prepare($link, "SELECT COUNT(`user_id`) FROM `users` WHERE `username` = ?;");
 
     if($stmt) {
         mysqli_stmt_bind_param($stmt, "s", $username);
         mysqli_stmt_execute($stmt);
+        $count = mysqli_stmt_store_result($stmt);
 
-        if(mysqli_stmt_fetch($stmt) > 0) {
+        // If the count of users is more than zero that username is already taken
+        if($count > 0) {
             print("<script>location = '../../signup.php?referral_case=usernametaken';</script>");
             exit();
         }
+
+        mysqli_stmt_close($stmt);
     }
 
     // Generate salt for user password
