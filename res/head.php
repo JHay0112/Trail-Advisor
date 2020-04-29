@@ -104,7 +104,7 @@
         // Actions for staff higher users
         if(($user_info["user_type"] == "Staff") || ($user_info["user_type"] == "Admin")) {
             // Add the option for the user to navigate to the management page
-            $nav += array("Management" => array("href" => "panel.php", "classes" => "right-align"));
+            $nav += array("Create Trail" => array("href" => "createtrail.php", "classes" => "right-align"));
         }
     }
 
