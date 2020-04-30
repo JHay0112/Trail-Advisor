@@ -87,7 +87,14 @@
 
     $page_attr["title"] = $trail_name; // Get page title to match trail name
     $page_attr["header_img"] = $trail_img;
-    $page_attr["onload"] = "genTrailMap(lat = ".$lat.", lng = ".$lng.", zoom = 15, select = false);";
+    $page_attr["onload"] = "genTrailMap(15, false, ".$lat.", ".$lng.");";
+    // Nav Item
+    $nav = array(
+        $trail_name => array(
+            "href" => "trail.php",
+            "classes" => ""
+        )
+    );
 
     require_once("res/head.php");
 
