@@ -22,7 +22,6 @@
         "title" => "Create Trail",
         "author" => "Jordan Hay",
         "permitted_users" => array("Admin", "Staff"),
-        "stylesheets" => array("css/styles.css", "https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"),
         "onload" => "genCreateTrailMap();"
     );
 

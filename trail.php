@@ -23,7 +23,6 @@
         "author" => "Jordan Hay",
         "class" => "trail",
         "header_img" => "../img/header.jpg",
-        "stylesheets" => array("css/styles.css", "http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css"),
         "onload" => ""
     );
 
