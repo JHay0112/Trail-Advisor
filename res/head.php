@@ -143,14 +143,6 @@
             } 
         ?>
 
-        <!-- Script(s) -->
-        <?php 
-            // For every script in the page attr it will create a new html script tage for it.
-            for($i = 0; $i < sizeof($page_attr["scripts"]); $i++) {
-                print('<script src="'.$page_attr["scripts"][$i].'"></script>');
-            }
-        ?>
-
         <!-- Tab Data -->
         <link rel="icon" href="<?php print($page_attr["favicon"]) ?>" />
         <title><?php print($page_attr["title"]." - ".$page_attr["site_name"]); ?></title>
@@ -159,31 +151,30 @@
 
         <header style="background-image: url('<?php print($page_attr["header_img"]); ?>');"></header>
 
-        <div class="nav-wrapper">
-            <!-- Spacer div -->
-            <div class="col-2"></div>
-            <nav class="col-8">
-                <?php 
+        <nav class="col-12" id="nav">
 
-                    // Iterate through printing nav items
-                    foreach($nav as $name => $item) {
+            <a href="javascript:void(0);" id="nav-responsive-button" onclick="toggleResponsiveNav()"></a>
 
-                        // If the nav item hyperreference matched the URI of the page mark it as the active page.
-                        // This if statement compares if the end of the request URI matches the href of the item to determine whether or not this page is active. It does have an additional edge case programmed in for when index.php is accessed from "/"
-                        // strtok is used to remove the queries from the end of the url and href
-                        if((!substr_compare(strtok($_SERVER["REQUEST_URI"], "?"), strtok($item["href"], "?"), -strlen(strtok($item["href"], "?")))) || (($item["href"] == "index.php") &&  (!substr_compare(strtok($_SERVER["REQUEST_URI"], "?"), "/", -strlen("/"))))) {
-                            $item["classes"] .= " active";
-                        }
+            <?php 
 
-                        print("<a href='".$item["href"]."' class='".$item["classes"]."'>".$name."</a>");
+                // Iterate through printing nav items
+                foreach($nav as $name => $item) {
+
+                    // If the nav item hyperreference matched the URI of the page mark it as the active page.
+                    // This if statement compares if the end of the request URI matches the href of the item to determine whether or not this page is active. It does have an additional edge case programmed in for when index.php is accessed from "/"
+                    // strtok is used to remove the queries from the end of the url and href
+                    if((!substr_compare(strtok($_SERVER["REQUEST_URI"], "?"), strtok($item["href"], "?"), -strlen(strtok($item["href"], "?")))) || (($item["href"] == "index.php") &&  (!substr_compare(strtok($_SERVER["REQUEST_URI"], "?"), "/", -strlen("/"))))) {
+                        $item["classes"] .= " active";
                     }
-                ?>
-            </nav>
-        </div>
+
+                    print("<a href='".$item["href"]."' class='".$item["classes"]." anchor'>".$name."</a>");
+                }
+            ?>
+        </nav>
 
         <!-- Spacer div -->
         <div class="col-2"></div>
 
-        <main class="col-8">
+        <main class="col-8" id="content">
 
             <?php print("<h1 class='".$page_attr["class"]."' id='page-title'>".$page_attr["title"]."</h1>"); ?>

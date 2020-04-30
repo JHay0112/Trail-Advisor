@@ -20,6 +20,14 @@
 
 ?>
 
+            <!-- Script(s) -->
+            <?php 
+                // For every script in the page attr it will create a new html script tage for it.
+                for($i = 0; $i < sizeof($page_attr["scripts"]); $i++) {
+                    print('<script src="'.$page_attr["scripts"][$i].'"></script>');
+                }
+            ?>
+
             <footer>
                 <small><?php print($page_attr["title"]." - ".$page_attr["site_name"]." | ".$page_attr["copyright"]); ?></small>
             </footer>
