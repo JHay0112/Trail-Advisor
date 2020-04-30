@@ -44,8 +44,8 @@
         "author" => "Unknown",
         "desc" => "No Description",
         "keywords" => "Trails, Find, Create, Edit, Make, Like, Tracks, Walks, Hiking",
-        "stylesheets" => array("css/styles.css", "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"),
-        "scripts" => array("js/lib/jquery.slim.min.js", "js/lib/parsley.min.js", "js/main.js"),
+        "stylesheets" => array("css/styles.css"),
+        "scripts" => array("js/lib/jquery.slim.min.js", "js/lib/parsley.min.js", "js/main.js", "https://kit.fontawesome.com/91769ccd18.js"),
         "favicon" => "img/favicon.png",
         "permitted_users" => array("Admin", "Staff", "Standard", ""),
         "copyright" => "&copy; Jordan Hay 2020",
@@ -153,7 +153,7 @@
 
         <nav class="col-12" id="nav">
 
-            <a href="javascript:void(0);" id="nav-responsive-button" onclick="toggleResponsiveNav()"></a>
+            <a href="javascript:void(0);" id="nav-responsive-button" onclick="toggleResponsiveNav()" class="fa fa-bars"></a>
 
             <?php 
 
