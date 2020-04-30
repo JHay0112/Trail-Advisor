@@ -79,9 +79,7 @@ function toggleResponsiveNav() {
 // Leaflet.js
 // Script for leaflet map to update from coords and vice versa on createtrail.php
 // Adapted from: https://gist.github.com/answerquest/03ade545b071b3e5ea4e
-function genTrailMap(lat = document.getElementById('lat').value, lng = document.getElementById('lng').value, zoom, select) {
-
-    if(!lat || !lng) {lat = -43.53; lng = 172.63;}
+function genTrailMap(zoom = 12, select = false, lat = document.getElementById('lat').value, lng = document.getElementById('lng').value) {
 
     var tileLayer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> Contributors'
@@ -93,11 +91,12 @@ function genTrailMap(lat = document.getElementById('lat').value, lng = document.
         'layers': [tileLayer]
     });
 
-    var marker = L.marker([lat, lng],{
+    var marker = L.marker([lat, lng], {
         draggable: select
     }).addTo(map);
 
     if(select == true) {
+
         marker.on('dragend', function (e) {
             document.getElementById('lat').value = marker.getLatLng().lat;
             document.getElementById('lng').value = marker.getLatLng().lng;
