@@ -76,6 +76,67 @@ function toggleResponsiveNav() {
     stickyNav();
 }
 
+// Leaflet.js
+
+var tileLayer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> Contributors'
+});
+
+// Updating coords from lat lng form and reverse
+function updateLatLng(lat, lng, reverse) {
+    if(reverse) {
+        marker.setLatLng([lat,lng]);
+        map.panTo([lat,lng]);
+    } else {
+    document.getElementById('lat').value = marker.getLatLng().lat;
+    document.getElementById('lng').value = marker.getLatLng().lng;
+    map.panTo([lat,lng]);
+    }
+}
+
+// Script for leaflet map to update from coords and vice versa on createtrail.php
+// Adapted from: https://gist.github.com/answerquest/03ade545b071b3e5ea4e
+function genCreateTrailMap() {
+    
+    //remember last position
+    var rememberLat = document.getElementById('lat').value;
+    var rememberLong = document.getElementById('lng').value;
+    if(!rememberLat || !rememberLong) {rememberLat = -43.53; rememberLong = 172.63;}
+
+    var map = new L.Map('createtrail-map', {
+        'center': [rememberLat, rememberLong],
+        'zoom': 12,
+        'layers': [tileLayer]
+    });
+
+    var marker = L.marker([rememberLat, rememberLong],{
+        draggable: true
+    }).addTo(map);
+
+    marker.on('dragend', function (e) {
+        updateLatLng(marker.getLatLng().lat, marker.getLatLng().lng);
+    });
+
+    map.on('click', function (e) {
+        marker.setLatLng(e.latlng);
+        updateLatLng(marker.getLatLng().lat, marker.getLatLng().lng);
+    });
+}
+
+// Generating map for trail.php
+function genTrailMap(lat, lng) {
+
+    var map = new L.Map('trail-map', {
+        'center': [lat, lng],
+        'zoom': 15,
+        'layers': [tileLayer]
+    });
+
+    var marker = L.marker([lat, lng], {
+        draggable: false
+    }).addTo(map);
+}
+
 // Event listeners
 
 // When the user scrolls the page, execute stickyNav function

@@ -33,7 +33,7 @@
         copyright: The copyright statement for the page footer
         class: A class that will be applied to elements throughout the page
         header_img: Path to image to be displayed as the header img
-
+        onload: JS functions to run on page load
     */
 
     require_once("initsession.php");
@@ -45,12 +45,13 @@
         "desc" => "No Description",
         "keywords" => "Trails, Find, Create, Edit, Make, Like, Tracks, Walks, Hiking",
         "stylesheets" => array("css/styles.css"),
-        "scripts" => array("js/lib/jquery.slim.min.js", "js/lib/parsley.min.js", "js/main.js", "https://kit.fontawesome.com/91769ccd18.js"),
+        "scripts" => array("js/lib/jquery.slim.min.js", "js/lib/parsley.min.js", "http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js", "js/main.js", "https://kit.fontawesome.com/91769ccd18.js"),
         "favicon" => "img/favicon.png",
         "permitted_users" => array("Admin", "Staff", "Standard", ""),
         "copyright" => "&copy; Jordan Hay 2020",
         "class" => "",
-        "header_img" => "img/header.jpg"
+        "header_img" => "img/header.jpg",
+        "onload" => ""
     );
 
     // Default options for the navigation system
@@ -147,7 +148,7 @@
         <link rel="icon" href="<?php print($page_attr["favicon"]) ?>" />
         <title><?php print($page_attr["title"]." - ".$page_attr["site_name"]); ?></title>
     </head>
-    <body>
+    <body onload="<?php print($page_attr["onload"]); ?>">
 
         <header style="background-image: url('<?php print($page_attr["header_img"]); ?>');"></header>
 

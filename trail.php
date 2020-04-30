@@ -23,8 +23,8 @@
         "author" => "Jordan Hay",
         "class" => "trail",
         "header_img" => "../img/header.jpg",
-        "stylesheets" => array("css/styles.css", "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css", "http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css"),
-        "scripts" => array("js/lib/jquery.slim.min.js", "js/lib/parsley.min.js", "js/main.js", "http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js")
+        "stylesheets" => array("css/styles.css", "http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css"),
+        "onload" => ""
     );
 
     require_once("res/initsession.php");
@@ -88,6 +88,7 @@
 
     $page_attr["title"] = $trail_name; // Get page title to match trail name
     $page_attr["header_img"] = $trail_img;
+    $page_attr["onload"] = "genTrailMap(".$lat.", ".$lng.");";
 
     require_once("res/head.php");
 
@@ -115,26 +116,6 @@
 
 </div>
 
-<div id="map" name="map" class="col-12" style="height: 500px;"></div>
-
-<script>
-
-    // Map script
-
-    var tileLayer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> Contributors'
-    });
-
-    var map = new L.Map('map', {
-        'center': [<?php print($lat.", ".$lng); ?>],
-        'zoom': 15,
-        'layers': [tileLayer]
-    });
-
-    var marker = L.marker([<?php print($lat.", ".$lng); ?>], {
-        draggable: false
-    }).addTo(map);
-
-</script>
+<div id="trail-map" name="map" class="col-12" style="height: 500px;"></div>
 
 <?php require_once("res/foot.php"); ?>
