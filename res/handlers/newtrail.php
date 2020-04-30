@@ -27,8 +27,8 @@
 
     $name = strip_tags($_POST["name"]);
     $description = strip_tags($_POST["description"]);
-    $lat = $_POST["lat"];
-    $lng = $_POST["lng"];
+    $lat = (double)$_POST["lat"];
+    $lng = (double)$_POST["lng"];
     $upload = $_FILES["img"];
     $image_type = image_type_to_mime_type(exif_imagetype($upload["tmp_name"]));
     $allowed_ext = array("image/jpeg", "image/png"); // Array of allowed image extensions
