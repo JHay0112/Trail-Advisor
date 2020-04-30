@@ -22,7 +22,7 @@
         "title" => "Create Trail",
         "author" => "Jordan Hay",
         "permitted_users" => array("Admin", "Staff"),
-        "onload" => "genCreateTrailMap();"
+        "onload" => "genTrailMap(zoom = 12, select = true);"
     );
 
     require_once("res/head.php");
@@ -76,7 +76,7 @@
 
         <div class="col-12">
 
-            <div id="createtrail-map" name="map" class="col-12" style="height: 500px;"></div>
+            <div id="trail-map" name="map" class="col-12" style="height: 500px;"></div>
 
             <div class="col-6 form-wrapper">
                 <label for="lat" class="col-12">Latitude:</label>
