@@ -30,7 +30,8 @@
     $states = array(
         "newuserfailed" => "Creation of a new user failed. Please try again.",
         "missingfields" => "Not all required fields were filled.",
-        "usernametaken" => "That username has already been taken by another user."
+        "usernametaken" => "That username has already been taken by another user.",
+        "invalidusername" => "Username must be alphanumeric (only english letters and numbers), and be between 5 and 30 characters long."
     );
 
     if(isset($_GET["referral_case"])) {
@@ -43,7 +44,7 @@
     <form class="col-12" data-parsley-validate action="res/handlers/newuser.php" method="post">
 
         <label for="username" class="col-12">Username:</label>
-        <input type="text" name="username" maxlength="30" class="col-12" placeholder="Username" required />
+        <input type="text" name="username" minlength="5" data-parsley-type="alphanum" maxlength="30" class="col-12" placeholder="Username" required />
 
         <label for="password" class="col-12">Password:</label>
         <input id="password" type="password" name="password" minlength="6" maxlength="30" class="col-12" placeholder="Password" required />

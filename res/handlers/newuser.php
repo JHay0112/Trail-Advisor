@@ -27,6 +27,11 @@
     $username = strip_tags($_POST["username"]); // Stripping HTML from user name so that it does not cause issues when placed in page.
     $password = $_POST["password"];
 
+    // If username is not alphanumeric and between 5 and 30 characters then redirect back to signup
+    if(!preg_match('/^[a-zA-Z0-9]{5, 30}$/', $username)) {
+        print("<script>location = '../../signup.php?referral_case=invalidusername';</script>");
+    }
+
     // Check that username is unique here
     $stmt = mysqli_prepare($link, "SELECT COUNT(`user_id`) FROM `users` WHERE `username` = ?;");
 
