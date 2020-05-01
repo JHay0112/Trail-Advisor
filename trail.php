@@ -150,4 +150,17 @@
 
 <div id="trail-map" name="map" class="col-12" style="height: 500px;"></div>
 
-<?php require_once("res/foot.php"); ?>
+<?php 
+
+    if(in_array($user_info["user_type"], array("Admin", "Staff"))) {
+        // If the user is staff or admin give them the option to edit or delete the trail
+        print("<section class='col-12'>");
+        print("<h2>Actions</h2>");
+        print("<a href='edittrail.php?trail=".$trail_id."'>Edit Trail</a>");
+        print("<a onclick='confirmAction(\"This will delete this trail.\", \"res/handlers/deletetrail.php?trail=".$trail_id."&token=".$token."\");' href='javascript:void(0);'>Delete Trail</a>");
+        print("</section>");
+    }
+
+    require_once("res/foot.php"); 
+    
+?>
