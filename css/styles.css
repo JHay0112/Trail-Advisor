@@ -420,6 +420,7 @@ input.parsley-error, select.parsley-error, textarea.parsley-error {
 
 footer {
     width: 100%;
+    z-index: 9999; /* This was the only way I could get the nav to appear above the map controls*/
     text-align: center;
     position: fixed;
     bottom: 0;
