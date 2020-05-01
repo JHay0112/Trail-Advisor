@@ -38,6 +38,10 @@
     if($stmt) {
         mysqli_stmt_bind_param($stmt, "i", $trail_id);
         mysqli_stmt_execute($stmt);
+
+        // Delete image from directory
+        $image = "../../img/trails/".$trail_id.".jpg";
+        unlink($image);
     } else {
         // Now alert user the trail has failed to be deleted
         print("<script>location = '../../trail.php?referral_case=traildeletefail';</script>");
