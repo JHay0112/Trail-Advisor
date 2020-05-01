@@ -44,7 +44,7 @@
         "keywords" => "Trails, Find, Create, Edit, Make, Like, Tracks, Walks, Hiking",
         "stylesheets" => array("css/styles.css", "https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"),
         "scripts" => array("js/lib/jquery.slim.min.js", "js/lib/parsley.min.js", "http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js", "js/main.js", "https://kit.fontawesome.com/91769ccd18.js"),
-        "favicon" => "img/favicon.png",
+        "favicon" => "img/logo.png",
         "permitted_users" => array("Admin", "Staff", "Standard", ""),
         "copyright" => "&copy; TrailAdvisor 2020",
         "class" => "",
@@ -139,7 +139,10 @@
     </head>
     <body onload="<?php print($page_attr["onload"]); ?>">
 
-        <header style="background-image: url('<?php print($page_attr["header_img"]); ?>');"></header>
+        <header style="background-image: url('<?php print($page_attr["header_img"]); ?>');">
+            <img src="img/logo.png" />
+            <h1><?php print($page_attr["site_name"]); ?></h1>
+        </header>
 
         <nav class="col-12" id="nav">
 
