@@ -236,6 +236,7 @@ nav.stick {
 
 .button:hover {
     opacity: 0.8;
+    cursor: pointer;
 }
 
 /* Tables */
@@ -371,6 +372,10 @@ input.parsley-error, select.parsley-error, textarea.parsley-error {
 
 #page-title.trail {
     display: none;
+}
+
+#trail-img {
+    background-size: cover;
 }
 
 /* Footer */

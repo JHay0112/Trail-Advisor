@@ -164,7 +164,7 @@
                     print("<a href='res/handlers/togglelike.php?trail=".$trail_id."&token=".$token."' class='button'><span class='fas fa-thumbs-up'></span> ".$likes." Likes</a>");
                 }
             } elseif(!$error) {
-                print("<p>".$likes." Likes</p>");
+                print("<a class='button' href='res/handlers/togglelike.php?trail=".$trail_id."&token=".$token."'><span class='far fa-thumbs-up'></span> ".$likes." Likes</a>");
             }
 
         ?>
@@ -173,7 +173,7 @@
 
     </section>
 
-    <aside class="col-4" style="background-image: url('<?php print($trail_img); ?>');"></aside>
+    <aside id="trail-img" class="col-4" style="background-image: url('<?php print($trail_img); ?>');"></aside>
 
 </div>
 
