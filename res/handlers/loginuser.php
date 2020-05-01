@@ -47,7 +47,6 @@
     if(hash_equals($hash, $input_hash)) {
 
         // Insert user info into session
-        session_start();
         $_SESSION["user_info"] = array(
             "user_id" => $user_id,
             "username" => $username,
@@ -55,7 +54,7 @@
         );
 
         // Redirect to profile page
-        print("<script>location = '../../profile.php?referral_case=login';</script>");
+        //print("<script>location = '../../profile.php?referral_case=login';</script>");
     } else {
         // Redirect back to login
         print("<script>location = '../../login.php?referral_case=loginfail';</script>");
