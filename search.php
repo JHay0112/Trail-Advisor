@@ -67,22 +67,20 @@
         <label for="map">Select location on map to find nearby trails:</label>
         <div id="trail-map" name="map" class="col-12" style="height: 500px;"></div>
 
-        <div class="col-4 form-wrapper">
+        <div class="col-6 form-wrapper">
             <label for="lat" class="col-12">Latitude:</label>
             <input id="lat" type="number" name="lat" min="-90" max="90" step="any" class="col-12" placeholder="Latitude" value="<?php print($lat) ?>" required readonly />
-        </div>
-
-        <div class="col-4 form-wrapper">
             <label for="lng" class="col-12">Longitude:</label>
             <input id="lng" type="number" name="lng" min="-180" max="180" step="any" class="col-12" placeholder="Longitude" value="<?php print($lng) ?>" required readonly />
         </div>
 
-        <div class="col-4 form-wrapper">
+        <div class="col-6 form-wrapper">
             <label for="trails_to_load" class="col-12">Trails per page:</label>
             <input id="trails_to_load" type="number" name="rows_to_load" min="20" max="100" step="1" class="col-12" placeholder="Trails To Load" value="<?php print($rows_to_load) ?>" required />
-        </div>
 
-        <input type="submit" value="Search" class="col-12" />
+            <label for="submit">&nbsp;</label> <!-- Using this to get spacing correct -->
+            <input name="submit" type="submit" value="Search" class="col-12" />
+        </div>
 
     </form>
 </div>

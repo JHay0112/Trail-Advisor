@@ -138,7 +138,7 @@ header {
 nav {
     border-bottom: 3px solid #2f8233;
     background-color: white;
-    z-index: 5;
+    z-index: 9999; /* This was the only way I could get the nav to appear above the map controls*/
     height: 60px;
     display: inline-block;
     transition: 0.3s ease all;
@@ -273,6 +273,12 @@ td:first-child {
     text-align: left;
 }
 
+/* Trail Maps */
+
+#trail-map {
+    margin: 20px 0px;
+}
+
 /* Forms */
 
 fieldset, .form-wrapper {
@@ -292,8 +298,12 @@ label:not(:first-child) {
     margin-top: 10px;
 }
 
+form {
+    margin-bottom: 30px;
+}
+
 input, textarea[type=text] {
-    padding: 12px 20px;
+    padding: 14px 20px;
     margin: 8px 0;
     display: inline-block;
     border: 1px solid lightgray;
@@ -309,7 +319,7 @@ input[type=submit] {
     color: white;
     padding: 14px 20px;
     width: 100%;
-    margin-top: 10px;
+    margin-top: 19px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
