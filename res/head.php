@@ -62,12 +62,12 @@
             "href" => "search.php",
             "classes" => ""
         ),
-        "Sign Up" => array(
-            "href" => "signup.php",
-            "classes" => "right-align"
-        ),
         "Login" => array(
             "href" => "login.php",
+            "classes" => "right-align"
+        ),
+        "Sign Up" => array(
+            "href" => "signup.php",
             "classes" => "right-align"
         )
     );
