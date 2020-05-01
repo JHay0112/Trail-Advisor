@@ -78,8 +78,8 @@
             <label for="trails_to_load" class="col-12">Trails per page:</label>
             <input id="trails_to_load" type="number" name="rows_to_load" min="20" max="100" step="1" class="col-12" placeholder="Trails To Load" value="<?php print($rows_to_load) ?>" required />
 
-            <label for="submit">&nbsp;</label> <!-- Using this to get spacing correct -->
-            <input name="submit" type="submit" value="Search" class="col-12" />
+            <label>&nbsp;</label> <!-- Using this to get spacing correct -->
+            <button type="submit" class="col-12"><span class="fas fa-search fa-flip-horizontal"></span> Search</button>
         </div>
 
     </form>
