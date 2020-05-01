@@ -76,8 +76,9 @@
 
     // If an error has occured then we must fill the variables
     if($error) {
-        $trail_id = "Invalid";
+        $trail_id = 0;
         $trail_name = "Unknown Trail";
+        $creator_id = 0;
         $creator = "Unknown";
         $trail_description = "This trail does not exist in our database.";
         $lat = 0;
@@ -121,22 +122,24 @@
         <?php 
 
             // If no one has edited the page then do not show that anyone has
-            if(mysqli_num_rows($editors) != 0) {
+            if(isset($editors)) {
+                if(mysqli_num_rows($editors) != 0) {
 
-                print("<h4>Trail edited by: ");
-        
-                foreach($editors as $editor) {
-                    if(in_array($user_info["user_type"], array("Admin", "Staff"))) {
-                        // If staff member is accessing page then give the staff links to user profiles
-                        print("<a href='profile.php?user_id=".$editor["user_id"]."'>".$editor["username"]."</a> ");
-                    } else {
-                        // Print username without links
-                        print($editor["username"]." ");
+                    print("<h4>Trail edited by: ");
+            
+                    foreach($editors as $editor) {
+                        if(in_array($user_info["user_type"], array("Admin", "Staff"))) {
+                            // If staff member is accessing page then give the staff links to user profiles
+                            print("<a href='profile.php?user_id=".$editor["user_id"]."'>".$editor["username"]."</a> ");
+                        } else {
+                            // Print username without links
+                            print($editor["username"]." ");
+                        }
                     }
+
+                    print("</h4>");
+
                 }
-
-                print("</h4>");
-
             }
         ?>
 

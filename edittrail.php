@@ -45,7 +45,7 @@
        $error = true;
     }
 
-    if($trail_name == "") {
+    if(isset($trail_name)) {
         $error = true;
     }
 
