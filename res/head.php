@@ -46,7 +46,7 @@
         "scripts" => array("js/lib/jquery.slim.min.js", "js/lib/parsley.min.js", "http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js", "js/main.js", "https://kit.fontawesome.com/91769ccd18.js"),
         "favicon" => "img/favicon.png",
         "permitted_users" => array("Admin", "Staff", "Standard", ""),
-        "copyright" => "&copy; Jordan Hay 2020",
+        "copyright" => "&copy; TrailAdvisor 2020",
         "class" => "",
         "header_img" => "img/header.jpg",
         "onload" => ""
