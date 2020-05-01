@@ -220,6 +220,24 @@ nav.stick {
     transition: 0.3s ease all;
 }
 
+/* Buttons */
+
+.button {
+    color: white;
+    background-color: #2f8233;
+    border: 4px solid white;
+    border-left: none;
+    padding: 10px;
+    text-decoration: none;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    transition: 0.3s ease all;
+}
+
+.button:hover {
+    opacity: 0.8;
+}
+
 /* Forms */
 
 fieldset, .form-wrapper {

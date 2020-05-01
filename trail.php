@@ -159,9 +159,9 @@
 
                 // If user has not liked this trail, give them the oppurtunity to like it
                 if(mysqli_stmt_num_rows($stmt) == 0) {
-                    print("<a href='res/handlers/liketrail.php?trail=".$trail_id."&token=".$token."'><span class='far fa-thumbs-up'></span> ".$likes." Likes (Click to like)</a>");
+                    print("<a href='res/handlers/togglelike.php?trail=".$trail_id."&token=".$token."' class='button'><span class='far fa-thumbs-up'></span> ".$likes." Likes</a>");
                 } else {
-                    print("<a href='res/handlers/unliketrail.php?trail=".$trail_id."&token=".$token."'><span class='fas fa-thumbs-up'></span> ".$likes." Likes (You like this)</a>");
+                    print("<a href='res/handlers/togglelike.php?trail=".$trail_id."&token=".$token."' class='button'><span class='fas fa-thumbs-up'></span> ".$likes." Likes</a>");
                 }
             } elseif(!$error) {
                 print("<p>".$likes." Likes</p>");
@@ -185,8 +185,8 @@
         // If the user is staff or admin give them the option to edit or delete the trail
         print("<section class='col-12'>");
         print("<h2>Actions</h2>");
-        print("<a href='edittrail.php?trail=".$trail_id."'>Edit Trail</a>");
-        print("<a onclick='confirmAction(\"This will delete this trail.\", \"res/handlers/deletetrail.php?trail=".$trail_id."&token=".$token."\");' href='javascript:void(0);'>Delete Trail</a>");
+        print("<a href='edittrail.php?trail=".$trail_id."' class='button'>Edit Trail</a>");
+        print("<a onclick='confirmAction(\"This will delete this trail.\", \"res/handlers/deletetrail.php?trail=".$trail_id."&token=".$token."\");' href='javascript:void(0);' class='button'>Delete Trail</a>");
         print("</section>");
     }
 
