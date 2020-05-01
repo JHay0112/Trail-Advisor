@@ -36,8 +36,6 @@
         onload: JS functions to run on page load
     */
 
-    require_once("initsession.php");
-
     $def_page_attr = array(
         "title" => "Unknown Page",
         "site_name" => "TrailAdvisor",
@@ -95,6 +93,9 @@
         array_push($page_attr["permitted_users"], "Admin");
     }
 
+    $permitted_users = $page_attr["permitted_users"];
+    require_once("initsession.php");
+
     // Actions to be taken if user is logged in
     if($logged_in) {
 
@@ -111,19 +112,6 @@
 
         // Add the option for the user to view their own profile
         $nav += array("Profile" => array("href" => "profile.php?user_id=".$user_info["user_id"], "classes" => "right-align"));
-    }
-
-    // Checking if user has the correct authority level to view this page
-    if(!in_array($user_info["user_type"], $page_attr["permitted_users"])) {
-        // If user does not have required permissions, alert the user to the issue and redirect to login page. In case that script fails, although I don't think it could, stop all code execution with the exit statement
-        if($logged_in) {
-            // If the user is logged in send them to their profile
-            print("<script>location = 'profile.php?referall_case=useroutofbounds';</script>");
-        } else {
-            // If user is not logged in send them to login
-            print("<script>location = 'login.php?referral_case=useroutofbounds';</script>");
-        }
-        exit();
     }
 
 ?>

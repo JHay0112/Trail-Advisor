@@ -19,6 +19,7 @@
 
     // Token verification
     $token_required = true;
+    $permitted_users = array("Admin", "Staff");
     require_once("../initsession.php");
     require_once("../connect.php");
 
