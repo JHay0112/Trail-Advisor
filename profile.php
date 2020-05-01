@@ -25,6 +25,8 @@
 
     $error = false;
 
+    // Have to explicitly set this early
+    $permitted_users = $page_attr["permitted_users"];
     require_once("res/initsession.php");
     require_once("res/connect.php");
 
@@ -79,7 +81,10 @@
 
     $states = array(
         "login" => "You have successfully been logged in as ".$username.".",
-        "deleteduser" => "User successfully deleted!"
+        "deleteduser" => "User successfully deleted!",
+        "userpromoted" => "User has been promoted to Staff User.",
+        "userdemoted" => "User has been demoted to Standard User.",
+        "useroutofbounds" => "You do not have the required authority to view that page."
     );
 
     if(isset($_GET["referral_case"])) {
@@ -104,9 +109,20 @@
         if((!isset($_GET["user_id"])) || ($_GET["user_id"] == $user_info["user_id"])) {
             print("<a onclick='confirmAction(\"This will log you out.\", \"res/handlers/logoutuser.php?token=".$token."\");' href='javascript:void(0);'>Log out</a>");
             print("<a onclick='confirmAction(\"This will delete your account.\", \"res/handlers/deleteuser.php?token=".$token."\");' href='javascript:void(0);'>Delete Account</a>");
-        } elseif((isset($_GET["user_id"])) && ($_GET["user_id"] != $user_info["user_id"]) && ($user_info["user_type"] == "Admin")) {
+        } elseif((isset($_GET["user_id"])) && ($_GET["user_id"] != $user_info["user_id"]) && ($user_info["user_type"] == "Admin") && ($user_type != "Admin")) {
             // Actions for if user is not own and the logged in user is an admin
             print("<a onclick='confirmAction(\"This will delete the account of ".$username.".\", \"res/handlers/deleteuser.php?token=".$token."&user_id=".$user_id."\");' href='javascript:void(0);'>Delete Account</a>");
+
+            if($user_info["user_type"] == "Admin") {
+                // Admin only options
+                switch($user_type) {
+                    case("Standard"):
+                        print("<a href='res/handlers/promoteuser.php?user=".$user_id."'>Promote User</a>");
+                    case("Staff"):
+                        print("<a href='res/handlers/demoteuser.php?user=".$user_id."'>Demote User</a>");
+                }
+
+            }
         }
     }
 

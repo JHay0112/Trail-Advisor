@@ -26,7 +26,6 @@
         "onload" => ""
     );
 
-    require_once("res/initsession.php");
     require_once("res/connect.php");
 
     $error = false;

@@ -17,7 +17,6 @@
 
     */
 
-    require_once("res/initsession.php");
     require_once("res/connect.php");
     require_once("res/checkfields.php");
 
@@ -45,7 +44,7 @@
        $error = true;
     }
 
-    if(isset($trail_name)) {
+    if(!isset($trail_name)) {
         $error = true;
     }
 

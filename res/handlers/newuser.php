@@ -18,6 +18,7 @@
     */
 
     $token_required = true;
+    $permitted_users = array("Admin", "Staff", "Standard", "");
     require_once("../initsession.php");
     require_once("../connect.php");
     require_once("../checkfields.php");
