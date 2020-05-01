@@ -114,13 +114,13 @@
 
         print("<table class='col-12'>");
 
-        print("<tr><th>Trail Name</th><th>Creator</th><th>Likes</th></tr>");
+        print("<tr class='row-s'><th class='col-s-6'>Trail Name</th><th class='col-s-4'>Creator</th><th class='col-s-2 fas fa-thumbs-up'></th></tr>");
 
         foreach($rows as $row) {
-            print("<tr onclick='window.location=\"trail.php?trail=".$row["trail_id"]."\"'>");
-            print("<td>".$row["trail_name"]."</td>");
-            print("<td>".$row["creator"]."</td>");
-            print("<td>".$row["likes"]."</td>");
+            print("<tr class='row-s' onclick='window.location=\"trail.php?trail=".$row["trail_id"]."\"'>");
+            print("<td class='col-s-6'>".$row["trail_name"]."</td>");
+            print("<td class='col-s-4'>".$row["creator"]."</td>");
+            print("<td class='col-s-2'>".$row["likes"]."</td>");
             print("</tr>");
         }
 

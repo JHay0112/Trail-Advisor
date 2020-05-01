@@ -238,6 +238,41 @@ nav.stick {
     opacity: 0.8;
 }
 
+/* Tables */
+
+table, th, td {
+    border-collapse: collapse;
+}
+
+tr {
+    transition: 0.3s ease all;
+}
+
+tr:nth-child(odd) {
+    background-color: RGBA(0, 0, 0, 0.05);
+}
+
+tr:hover {
+    background-color: RGBA(0, 0, 0, 0.07);
+    cursor: pointer;
+}
+
+/* Table headers and data */
+th, td {
+    padding: 10px;
+    text-align: center;
+}
+
+th {
+    color: white;
+    background-color: #2f8233;
+    font-weight: 100;
+}
+
+td:first-child {
+    text-align: left;
+}
+
 /* Forms */
 
 fieldset, .form-wrapper {
