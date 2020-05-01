@@ -133,12 +133,12 @@
 
     // If the page is greater than zero allow to navigate back
     if($page > 0) {
-        print("<a class=\"navigate-result-buttons\" id=\"previous-page-button\" href=\"search.php?page=".($page - 1)."&load=".$rows_to_load."&lat=".$lat."&lng=".$lng."#search-results\"><span class=\"fa fa-arrow-left\"></span> Previous Page</a>");
+        print("<a class=\"navigate-result button\" href=\"search.php?page=".($page - 1)."&load=".$rows_to_load."&lat=".$lat."&lng=".$lng."#search-controls\"><span class=\"fa fa-arrow-left\"></span> Previous Page</a>");
     }
 
     // If the amount of rows to load on the next page does not exceed the total rows in the trail then allow the user to access the next page
     if((($rows_to_load * ($page + 1)) < $total_rows)) {
-        print("<a class=\"navigate-result-buttons\" id=\"next-page-button\" href=\"search.php?page=".($page + 1)."&load=".$rows_to_load."&lat=".$lat."&lng=".$lng."#search-results\">NextPage <span class=\"fa fa-arrow-right\"></span></a>");
+        print("<a class=\"navigate-result button float-right\" href=\"search.php?page=".($page + 1)."&load=".$rows_to_load."&lat=".$lat."&lng=".$lng."#search-controls\">NextPage <span class=\"fa fa-arrow-right\"></span></a>");
     }
 
     print("</div>");
