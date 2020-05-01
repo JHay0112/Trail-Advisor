@@ -107,45 +107,9 @@
     <section class="col-8">
 
         <h1><?php print($trail_name); ?></h1>
-        <h4>Trail documented by: 
-        <?php 
-        
-            if(in_array($user_info["user_type"], array("Admin", "Staff"))) {
-                // If staff member is accessing page then give the staff links to user profiles
-                print("<a href='profile.php?user_id=".$creator_id."'>".$creator."</a>");
-            } else {
-                // Print username without links for normal members
-                print($creator);
-            }
-            
-        ?>
-        </h4>
         <?php 
 
-            // If no one has edited the page then do not show that anyone has
-            if(isset($editors)) {
-                if(mysqli_num_rows($editors) != 0) {
-
-                    print("<h4>Trail edited by: ");
-            
-                    foreach($editors as $editor) {
-                        if(in_array($user_info["user_type"], array("Admin", "Staff"))) {
-                            // If staff member is accessing page then give the staff links to user profiles
-                            print("<a href='profile.php?user_id=".$editor["user_id"]."'>".$editor["username"]."</a> ");
-                        } else {
-                            // Print username without links
-                            print($editor["username"]." ");
-                        }
-                    }
-
-                    print("</h4>");
-
-                }
-            }
-        ?>
-
-        <?php
-        
+            // Likes button
             if(($logged_in) && (!$error)) {
                 // Check if user has liked this trail
 
@@ -166,6 +130,43 @@
                 }
             } elseif(!$error) {
                 print("<a class='button' href='login.php?referral_case=logintolike'><span class='far fa-thumbs-up'></span> ".$likes." Likes</a>");
+            }
+ 
+        ?>
+        <h4>Trail documented by: 
+        <?php
+        
+            if(in_array($user_info["user_type"], array("Admin", "Staff"))) {
+                // If staff member is accessing page then give the staff links to user profiles
+                print("<a href='profile.php?user_id=".$creator_id."'>".$creator."</a>");
+            } else {
+                // Print username without links for normal members
+                print($creator);
+            }
+            
+        ?>
+        </h4>
+        <?php
+
+            // If no one has edited the page then do not show that anyone has
+            if(isset($editors)) {
+                if(mysqli_num_rows($editors) != 0) {
+
+                    print("<h4>Trail edited by: ");
+            
+                    foreach($editors as $editor) {
+                        if(in_array($user_info["user_type"], array("Admin", "Staff"))) {
+                            // If staff member is accessing page then give the staff links to user profiles
+                            print("<a href='profile.php?user_id=".$editor["user_id"]."'>".$editor["username"]."</a> ");
+                        } else {
+                            // Print username without links
+                            print($editor["username"]." ");
+                        }
+                    }
+
+                    print("</h4>");
+
+                }
             }
 
         ?>
