@@ -2,14 +2,14 @@
 
     /*
 
-        res/handlers/unliketrail.php
+        res/handlers/togglelike.php
         
         Author: Jordan Hay
         Version: 1.0
 
         Description:
-            
-            Removes like from trail.
+
+            Toggles whether the user likes or dislikes the trail.
 
         Other Notes:
 
@@ -43,8 +43,20 @@
         mysqli_stmt_store_result($stmt);
     }
 
-    // If user has liked this trail, remove the like
-    if(!mysqli_stmt_num_rows($stmt) == 0) {
+    // If user has not liked this trail, add the like
+    if(mysqli_stmt_num_rows($stmt) == 0) {
+        mysqli_stmt_close($stmt);
+
+        $stmt = mysqli_prepare($link, "INSERT INTO trail_likes (trail_id, user_id) VALUES (?, ?)");
+
+        // Binding parameters and executing statement, checking if $stmt has formed first
+        if($stmt) {
+            mysqli_stmt_bind_param($stmt, "ii", $trail_id, $user_info["user_id"]);
+            mysqli_stmt_execute($stmt);
+        }
+    } else {
+        // else remove the like
+
         mysqli_stmt_close($stmt);
 
         $stmt = mysqli_prepare($link, "DELETE FROM trail_likes WHERE trail_id = ? AND user_id = ?");
