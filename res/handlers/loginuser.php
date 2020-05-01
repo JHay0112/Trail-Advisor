@@ -54,7 +54,7 @@
         );
 
         // Redirect to profile page
-        //print("<script>location = '../../profile.php?referral_case=login';</script>");
+        print("<script>location = '../../profile.php?referral_case=login';</script>");
     } else {
         // Redirect back to login
         print("<script>location = '../../login.php?referral_case=loginfail';</script>");
