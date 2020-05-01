@@ -120,6 +120,7 @@
         </h4>
         <?php 
 
+            // If no one has edited the page then do not show that anyone has
             if(mysqli_num_rows($editors) != 0) {
 
                 print("<h4>Trail edited by: ");
