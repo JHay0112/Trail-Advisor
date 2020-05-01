@@ -164,7 +164,7 @@
                     print("<a href='res/handlers/togglelike.php?trail=".$trail_id."&token=".$token."' class='button'><span class='fas fa-thumbs-up'></span> ".$likes." Likes</a>");
                 }
             } elseif(!$error) {
-                print("<a class='button' href='res/handlers/togglelike.php?trail=".$trail_id."&token=".$token."'><span class='far fa-thumbs-up'></span> ".$likes." Likes</a>");
+                print("<a class='button' href='login.php?referral_case=logintolike'><span class='far fa-thumbs-up'></span> ".$likes." Likes</a>");
             }
 
         ?>

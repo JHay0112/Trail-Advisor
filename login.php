@@ -33,7 +33,8 @@
         "loginfail" => "Login Failed. Please try again.",
         "loggedout" => "You have been logged out.",
         "deleteduser" => "User successfully deleted!",
-        "missingfields" => "Not all required fields were filled."
+        "missingfields" => "Not all required fields were filled.",
+        "logintolike" => "You must login or sign up if you would like to like trails."
     );
 
     if(isset($_GET["referral_case"])) {
