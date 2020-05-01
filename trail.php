@@ -38,13 +38,13 @@
         if($trail_id != 0) {
 
             // Getting trail details
-            $stmt = mysqli_prepare($link, "SELECT trails.name, users.user_id, users.username, trails.description, trails.lat, trails.lng FROM trails INNER JOIN users ON trails.creator = users.user_id WHERE trails.trail_id = ?;");
+            $stmt = mysqli_prepare($link, "SELECT trails.name, users.user_id, users.username, trails.description, trails.lat, trails.lng, COUNT(trail_likes.trail_id) FROM trails INNER JOIN users ON trails.creator = users.user_id LEFT JOIN trail_likes ON trails.trail_id = trail_likes.trail_id WHERE trails.trail_id = ?;");
 
             // Check stmt is not malformed
             if($stmt) {
                 mysqli_stmt_bind_param($stmt, "i", $trail_id);
                 mysqli_stmt_execute($stmt);
-                mysqli_stmt_bind_result($stmt, $trail_name, $creator_id, $creator, $trail_description, $lat, $lng);
+                mysqli_stmt_bind_result($stmt, $trail_name, $creator_id, $creator, $trail_description, $lat, $lng, $likes);
                 mysqli_stmt_fetch($stmt);
                 mysqli_stmt_close($stmt);
             }
@@ -82,6 +82,7 @@
         $trail_description = "This trail does not exist in our database.";
         $lat = 0;
         $lng = 0;
+        $likes = 0;
         $trail_img = "img/header.jpg";
     }
 
@@ -140,6 +141,32 @@
 
                 }
             }
+        ?>
+
+        <?php
+        
+            if(($logged_in) && (!$error)) {
+                // Check if user has liked this trail
+
+                $stmt = mysqli_prepare($link, "SELECT trail_id FROM trail_likes WHERE trail_id = ? AND user_id = ?");
+
+                // Binding parameters and executing statement, checking if $stmt has formed first
+                if($stmt) {
+                    mysqli_stmt_bind_param($stmt, "ii", $trail_id, $user_info["user_id"]);
+                    mysqli_stmt_execute($stmt);
+                    mysqli_stmt_store_result($stmt);
+                }
+
+                // If user has not liked this trail, give them the oppurtunity to like it
+                if(mysqli_stmt_num_rows($stmt) == 0) {
+                    print("<a href='res/handlers/liketrail.php?trail=".$trail_id."&token=".$token."'><span class='far fa-thumbs-up'></span> ".$likes." Likes (Click to like)</a>");
+                } else {
+                    print("<a href='res/handlers/unliketrail.php?trail=".$trail_id."&token=".$token."'><span class='fas fa-thumbs-up'></span> ".$likes." Likes (You like this)</a>");
+                }
+            } elseif(!$error) {
+                print("<p>".$likes." Likes</p>");
+            }
+
         ?>
 
         <p><?php print($trail_description); ?></p>
