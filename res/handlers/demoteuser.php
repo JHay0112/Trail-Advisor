@@ -18,6 +18,7 @@
     */
 
     $token_required = true;
+    $referral_path = "../../";
     $permitted_users = array("Admin");
     require_once("../initsession.php");
     require_once("../connect.php");

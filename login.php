@@ -29,7 +29,7 @@
 
     $states = array(
         "newuser" => "New user created! Please sign in with the credentials you created.",
-        "useroutofbounds" => "Access to the page you attempted to access is not permitted at all for non-logged in users.<br />You can login using this page if you have an account that has the correct permissions to access that page.",
+        "useroutofbounds" => "The action you attempted to take is restricted to logged-in users, please login or sign up and retry.",
         "loginfail" => "Login Failed. Please try again.",
         "loggedout" => "You have been logged out.",
         "deleteduser" => "User successfully deleted!",
