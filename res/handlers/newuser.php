@@ -30,20 +30,20 @@
     $password = $_POST["password"];
 
     // If username is not alphanumeric and between 5 and 30 characters then redirect back to signup
-    if(!preg_match('/^[a-zA-Z0-9]{5, 30}$/', $username)) {
+    if(!ctype_alnum($username)) {
         print("<script>location = '../../signup.php?referral_case=invalidusername';</script>");
     }
 
     // Check that username is unique here
-    $stmt = mysqli_prepare($link, "SELECT COUNT(`user_id`) FROM `users` WHERE `username` = ?;");
+    $stmt = mysqli_prepare($link, "SELECT user_id FROM users WHERE username = ?;");
 
     if($stmt) {
         mysqli_stmt_bind_param($stmt, "s", $username);
         mysqli_stmt_execute($stmt);
-        $count = mysqli_stmt_store_result($stmt);
+        mysqli_stmt_store_result($stmt);
 
         // If the count of users is more than zero that username is already taken
-        if($count > 0) {
+        if(mysqli_stmt_num_rows($stmt) != 0) {
             print("<script>location = '../../signup.php?referral_case=usernametaken';</script>");
             exit();
         }
