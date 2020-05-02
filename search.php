@@ -58,6 +58,8 @@
         $rows_to_load = 20;
     }
 
+    $rows_to_load = 2;
+
 ?>
 
 <!-- Search form -->
@@ -90,18 +92,17 @@
 <?php
 
     // Generating bounds for query
-    $lower_limit = $page * $rows_to_load;
-    $upper_limit = ($page + 1) * $rows_to_load;
+    $offset = $page * $rows_to_load;
     // Getting the total amount of trails in trails table, used for arrows at page bottom
     $total_rows = mysqli_fetch_assoc(mysqli_query($link, "SELECT COUNT(trail_id) AS count FROM trails"))["count"];
         
     // This is one hell of a prepared statment to try and explain
-    $stmt = mysqli_prepare($link, "SELECT trails.trail_id, trails.name AS trail_name, users.username AS creator, COUNT(trail_likes.trail_id) AS likes FROM trails INNER JOIN users ON trails.creator = users.user_id LEFT JOIN trail_likes ON trails.trail_id = trail_likes.trail_id GROUP BY trails.trail_id ORDER BY (ABS(trails.lat - ?) + ABS(trails.lng - ?)) ASC LIMIT ?, ?");
+    $stmt = mysqli_prepare($link, "SELECT trails.trail_id, trails.name AS trail_name, users.username AS creator, COUNT(trail_likes.trail_id) AS likes FROM trails INNER JOIN users ON trails.creator = users.user_id LEFT JOIN trail_likes ON trails.trail_id = trail_likes.trail_id GROUP BY trails.trail_id ORDER BY (ABS(trails.lat - ?) + ABS(trails.lng - ?)) ASC LIMIT ? OFFSET ?");
 
     // Check statement formed correctly
     if($stmt) {
 
-        mysqli_stmt_bind_param($stmt, "ddii", $lat, $lng, $lower_limit, $upper_limit);
+        mysqli_stmt_bind_param($stmt, "ddii", $lat, $lng, $rows_to_load, $offset);
         mysqli_stmt_execute($stmt);
         $rows = mysqli_stmt_get_result($stmt);
 
