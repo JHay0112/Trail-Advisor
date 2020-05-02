@@ -58,8 +58,6 @@
         $rows_to_load = 20;
     }
 
-    $rows_to_load = 2;
-
 ?>
 
 <!-- Search form -->
