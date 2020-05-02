@@ -290,6 +290,10 @@ tr:last-child td:last-child {
     border-bottom-right-radius: 4px;
 }
 
+tr {
+    background-color: RGBA(0, 0, 0, 0.01);
+}
+
 tr:nth-child(odd) {
     background-color: RGBA(0, 0, 0, 0.05);
 }
