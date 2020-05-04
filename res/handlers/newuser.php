@@ -32,6 +32,7 @@
     // If username is not alphanumeric and between 5 and 30 characters then redirect back to signup
     if(!ctype_alnum($username)) {
         print("<script>location = '../../signup.php?referral_case=invalidusername';</script>");
+        exit();
     }
 
     // Check that username is unique here
