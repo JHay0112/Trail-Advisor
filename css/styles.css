@@ -28,10 +28,6 @@ body, html {
     padding: 0;
 }
 
-html {
-    margin-bottom: 200px;
-}
-
 body {
     overflow-x: hidden;
 }
@@ -198,6 +194,7 @@ nav a.active:hover {
 nav.stick {
     position: fixed;
     top: 0;
+    left: 0;
 }
 
 #nav-responsive-button {
@@ -241,6 +238,7 @@ nav.stick {
 #content {
     padding: 10px;
     transition: 0.3s ease all;
+    margin-bottom: 200px;
 }
 
 /* Buttons */
