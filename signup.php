@@ -40,6 +40,14 @@
 
 ?>
 
+<p>Requirements:</p>
+
+<ul>
+    <li>Username must be between 5 and 30 characters long.</li>
+    <li>Username must be alphanumeric (consiting of only english letters and numbers).</li>
+    <li>Password must be between 6 and 128 characters long.</li>
+</ul>
+
 <div class="col-12" id="form-wrapper">
     <form class="col-12" data-parsley-validate action="res/handlers/newuser.php" method="post">
 
@@ -47,10 +55,10 @@
         <input type="text" name="username" minlength="5" data-parsley-type="alphanum" maxlength="30" class="col-12" placeholder="Username" required />
 
         <label for="password" class="col-12">Password:</label>
-        <input id="password" type="password" name="password" minlength="6" maxlength="30" class="col-12" placeholder="Password" required />
+        <input id="password" type="password" name="password" minlength="6" maxlength="128" class="col-12" placeholder="Password" required />
 
         <label for="password-validation" class="col-12">Repeat Password:</label>
-        <input type="password" name="password-validation" minlength="6" maxlength="30" class="col-12" placeholder="Repeat Password" data-parsley-equalto="#password" required />
+        <input type="password" name="password-validation" minlength="6" maxlength="128" class="col-12" placeholder="Repeat Password" data-parsley-equalto="#password" required />
 
         <input type="hidden" name="token" value="<?php print($token); ?>" />
 
