@@ -100,7 +100,7 @@
         $def_nav += array("Create Trail" => array("href" => "createtrail.php", "classes" => ""));
 
         // Add the option for the user to view their own profile
-        $def_nav += array("Profile" => array("href" => "profile.php?user_id=".$user_info["user_id"], "classes" => ""));
+        $def_nav += array("Profile" => array("href" => "profile.php", "classes" => ""));
     }
 
     // Only attempt array merge if nav exists
