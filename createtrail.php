@@ -21,7 +21,7 @@
     $page_attr = array(
         "title" => "Create Trail",
         "author" => "Jordan Hay",
-        "permitted_users" => array("Admin", "Staff"),
+        "permitted_users" => array("Admin", "Staff", "Standard"),
         "onload" => "genTrailMap(zoom = 12, select = true);"
     );
 

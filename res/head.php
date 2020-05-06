@@ -104,14 +104,11 @@
         // Nor the option to sign up
         unset($nav["Sign Up"]);
 
-        // Actions for staff higher users
-        if(($user_info["user_type"] == "Staff") || ($user_info["user_type"] == "Admin")) {
-            // Add the option for the user to navigate to the management page
-            $nav += array("Create Trail" => array("href" => "createtrail.php", "classes" => "right-align"));
-        }
+        // Add the option for the user to navigate to the create trail page
+        $nav += array("Create Trail" => array("href" => "createtrail.php", "classes" => ""));
 
         // Add the option for the user to view their own profile
-        $nav += array("Profile" => array("href" => "profile.php?user_id=".$user_info["user_id"], "classes" => "right-align"));
+        $nav += array("Profile" => array("href" => "profile.php?user_id=".$user_info["user_id"], "classes" => ""));
     }
 
 ?>
