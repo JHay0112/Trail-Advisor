@@ -415,6 +415,16 @@ input.parsley-error, select.parsley-error, textarea.parsley-error {
 
 /* Search Style */
 
+#search-anchor {
+    height: 0;
+    width: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    position: relative;
+    top: -20vh;
+}
+
 .navigate-result {
     position: relative;
     top: 30px;

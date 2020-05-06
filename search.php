@@ -62,7 +62,7 @@
 
 <!-- Search form -->
 <div class="col-12" id="form-wrapper">
-    <form class="col-12" action="search.php#search-results" method="get">
+    <form class="col-12" action="search.php#search-anchor" method="get">
 
         <label for="map">Select location on map to find nearby trails:</label>
         <div id="trail-map" name="map" class="col-12" style="height: 500px;"></div>
@@ -86,6 +86,7 @@
 </div>
 
 <h2 id="search-results">Search Results</h2>
+<div id="search-anchor"></div>
 
 <?php
 
@@ -132,12 +133,12 @@
 
     // If the page is greater than zero allow to navigate back
     if($page > 0) {
-        print("<a class=\"navigate-result button\" href=\"search.php?page=".($page - 1)."&load=".$rows_to_load."&lat=".$lat."&lng=".$lng."#search-controls\"><span class=\"fa fa-arrow-left\"></span> Previous Page</a>");
+        print("<a class=\"navigate-result button\" href=\"search.php?page=".($page - 1)."&load=".$rows_to_load."&lat=".$lat."&lng=".$lng."#search-anchor\"><span class=\"fa fa-arrow-left\"></span> Previous Page</a>");
     }
 
     // If the amount of rows to load on the next page does not exceed the total rows in the trail then allow the user to access the next page
     if((($rows_to_load * ($page + 1)) < $total_rows)) {
-        print("<a class=\"navigate-result button float-right\" href=\"search.php?page=".($page + 1)."&load=".$rows_to_load."&lat=".$lat."&lng=".$lng."#search-controls\">NextPage <span class=\"fa fa-arrow-right\"></span></a>");
+        print("<a class=\"navigate-result button float-right\" href=\"search.php?page=".($page + 1)."&load=".$rows_to_load."&lat=".$lat."&lng=".$lng."#search-anchor\">NextPage <span class=\"fa fa-arrow-right\"></span></a>");
     }
 
     print("</div>");
