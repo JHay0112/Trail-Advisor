@@ -80,14 +80,6 @@
         $page_attr = $def_page_attr;
     }
 
-    // Only attempt array merge if nav exists
-    if(isset($nav)) {
-        $nav = array_merge($def_nav, $nav); // Fill nav with default values if they have not been set in nav
-    } else {
-        // If not set just set these as equal
-        $nav = $def_nav;
-    }
-
     // Check that admin is a permitted user, if not add it before something goes wrong
     if(!in_array("Admin", $page_attr["permitted_users"])) {
         array_push($page_attr["permitted_users"], "Admin");
@@ -100,15 +92,23 @@
     if($logged_in) {
 
         // User is logged in, do not display the option to login
-        unset($nav["Login"]);
+        unset($def_nav["Login"]);
         // Nor the option to sign up
-        unset($nav["Sign Up"]);
+        unset($def_nav["Sign Up"]);
 
         // Add the option for the user to navigate to the create trail page
-        $nav += array("Create Trail" => array("href" => "createtrail.php", "classes" => ""));
+        $def_nav += array("Create Trail" => array("href" => "createtrail.php", "classes" => ""));
 
         // Add the option for the user to view their own profile
-        $nav += array("Profile" => array("href" => "profile.php?user_id=".$user_info["user_id"], "classes" => ""));
+        $def_nav += array("Profile" => array("href" => "profile.php?user_id=".$user_info["user_id"], "classes" => ""));
+    }
+
+    // Only attempt array merge if nav exists
+    if(isset($nav)) {
+        $nav = array_merge($def_nav, $nav); // Fill nav with default values if they have not been set in nav
+    } else {
+        // If not set just set these as equal
+        $nav = $def_nav;
     }
 
 ?>
