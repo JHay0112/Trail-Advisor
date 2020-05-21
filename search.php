@@ -96,14 +96,30 @@
     $total_rows = mysqli_fetch_assoc(mysqli_query($link, "SELECT COUNT(trail_id) AS count FROM trails"))["count"];
         
     // This is one hell of a prepared statment to try and explain
-    $stmt = mysqli_prepare($link, "SELECT trails.trail_id, trails.name AS trail_name, users.username AS creator, COUNT(trail_likes.trail_id) AS likes FROM trails INNER JOIN users ON trails.creator = users.user_id LEFT JOIN trail_likes ON trails.trail_id = trail_likes.trail_id GROUP BY trails.trail_id ORDER BY (ABS(trails.lat - ?) + ABS(trails.lng - ?)) ASC LIMIT ? OFFSET ?");
+    $stmt = mysqli_prepare($link, "SELECT trails.trail_id, trails.name, users.username, COUNT(trail_likes.trail_id) FROM trails INNER JOIN users ON trails.creator = users.user_id LEFT JOIN trail_likes ON trails.trail_id = trail_likes.trail_id GROUP BY trails.trail_id ORDER BY (ABS(trails.lat - ?) + ABS(trails.lng - ?)) ASC LIMIT ? OFFSET ?");
 
     // Check statement formed correctly
     if($stmt) {
 
         mysqli_stmt_bind_param($stmt, "ddii", $lat, $lng, $rows_to_load, $offset);
         mysqli_stmt_execute($stmt);
-        $rows = mysqli_stmt_get_result($stmt);
+
+        // The following code could have been done with mysqli_stmt_get_result()
+        // HOWEVER: get result only works when you have mysqlnd installed, because the school computers DO NOT have mysqlnd we cannot use these convenient functions, thus the following code is a little bit convoluted to get the result I want without using get result
+        // What the below code effectively does is create an array of sub-arrays, each sub-array is a row that has been returned by the query, the rows then are composed of an associative array with the column name as the key, the result is no different than if I had used get result, unfortunate that such limitations lead to such inelegant code but it is important that this code can work whether mysqlnd is installed or not
+
+        mysqli_stmt_bind_result($stmt, $id, $name, $creator, $likes);
+        
+        $rows = array();
+
+        while(mysqli_stmt_fetch($stmt)) {
+            array_push($rows, array(
+                "trail_id" => $id,
+                "trail_name" => $name,
+                "creator" => $creator,
+                "likes" => $likes
+            ));
+        }
 
     }
 
