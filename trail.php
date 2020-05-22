@@ -59,7 +59,19 @@
             if($stmt) {
                 mysqli_stmt_bind_param($stmt, "i", $trail_id);
                 mysqli_stmt_execute($stmt);
-                $editors = mysqli_stmt_get_result($stmt); // Store result in associative array
+                
+                // Below code is used to simulate a get result which is not supported without mysqlnd
+               
+                mysqli_stmt_bind_result($stmt, $id, $name);
+        
+                $editors = array();
+
+                while(mysqli_stmt_fetch($stmt)) {
+                    array_push($editors, array(
+                        "trail_id" => $id,
+                        "trail_name" => $name
+                    ));
+                }
             }
 
             mysqli_stmt_close($stmt);
