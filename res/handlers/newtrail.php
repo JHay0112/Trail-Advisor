@@ -17,7 +17,7 @@
 
     */
 
-    $token_required = true;
+    // $token_required = true;
     $referral_path = "../../";
     $permitted_users = array("Admin", "Staff", "Standard");
     require_once("../initsession.php");
@@ -50,7 +50,7 @@
         mysqli_stmt_execute($stmt);
     }
 
-    // If stmt executed properly
+    // If stmt executed properly it will affect 1 row
     if(mysqli_stmt_affected_rows($stmt) == 1) {
 
         $trail_id = mysqli_insert_id($link); // Gets ID of last inserted row
@@ -63,12 +63,13 @@
         // Creating image
 
         if($image_type == "image/jpeg") {
-                $img = imagecreatefromjpeg($upload["tmp_name"]);
+            $img = imagecreatefromjpeg($upload["tmp_name"]);
         } elseif($image_type == "image/png") {
-                $img = imagecreatefrompng($upload["tmp_name"]);
+            $img = imagecreatefrompng($upload["tmp_name"]);
         }
 
         // Set image to be web standard of 72dpi
+        // REQUIRES PHP 7 >= 7.2.0
         imageresolution($img, 72);
 
         // Compress image and save to $dest_file
@@ -77,8 +78,9 @@
         // Redirect to trail page
         print("<script>location = '../../trail.php?trail=".$trail_id."'</script>");
         exit();
+    } else {
+        // No rows affected so return to create trail with fail referral case
+        print("<script>location = '../../createtrail.php?referral_case=newtrailfail'</script>");
     }
-
-    print("<script>location = '../../createtrail.php?referral_case=newtrailfail'</script>");
 
 ?>
