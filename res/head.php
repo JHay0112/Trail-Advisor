@@ -43,7 +43,7 @@
         "desc" => "No Description",
         "keywords" => "Trails, Find, Create, Edit, Make, Like, Tracks, Walks, Hiking",
         "stylesheets" => array("css/styles.css", "https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"),
-        "scripts" => array("js/lib/jquery.slim.min.js", "js/lib/parsley.min.js", "http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js", "js/main.js", "https://kit.fontawesome.com/91769ccd18.js"),
+        "scripts" => array("js/lib/jquery.slim.min.js", "js/lib/parsley.min.js", "js/lib/leaflet.js", "js/main.js", "https://kit.fontawesome.com/91769ccd18.js"),
         "favicon" => "img/logo.png",
         "permitted_users" => array("Admin", "Staff", "Standard", ""),
         "copyright" => "&copy; TrailAdvisor 2020",
