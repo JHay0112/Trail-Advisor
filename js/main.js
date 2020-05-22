@@ -92,7 +92,8 @@ function genTrailMap(zoom = 12, select = false, lat = document.getElementById('l
     });
 
     var marker = L.marker([lat, lng], {
-        draggable: select
+        draggable: select,
+        zIndexOffset: 100000 // Had to make this value very high to stop the marker occasionally dissapearing ever
     }).addTo(map);
 
     if(select == true) {
