@@ -99,15 +99,15 @@ function genTrailMap(zoom = 12, select = false, lat = document.getElementById('l
     if(select == true) {
 
         marker.on('dragend', function (e) {
-            document.getElementById('lat').value = marker.getLatLng().lat;
-            document.getElementById('lng').value = marker.getLatLng().lng;
+            document.getElementById('lat').value = marker.getLatLng().wrap().lat;
+            document.getElementById('lng').value = marker.getLatLng().wrap().lng;
             map.panTo([marker.getLatLng().lat, marker.getLatLng().lng]);
         });
 
         map.on('click', function (e) {
             marker.setLatLng(e.latlng);
-            document.getElementById('lat').value = marker.getLatLng().lat;
-            document.getElementById('lng').value = marker.getLatLng().lng;
+            document.getElementById('lat').value = marker.getLatLng().wrap().lat;
+            document.getElementById('lng').value = marker.getLatLng().wrap().lng;
             map.panTo([marker.getLatLng().lat, marker.getLatLng().lng]);
         });
     }
