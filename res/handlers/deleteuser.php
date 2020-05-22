@@ -25,7 +25,7 @@
     require_once("../connect.php");
 
     // Preparing statement
-    $stmt = mysqli_prepare($link, "DELETE FROM `users` WHERE `user_id` = ?;");
+    $stmt = mysqli_prepare($link, "DELETE users, trails, trail_editors, trail_likes FROM users LEFT JOIN trails ON users.user_id = trails.creator LEFT JOIN trail_editors ON users.user_id = trail_editors.user_id LEFT JOIN trail_likes ON users.user_id = trail_likes.user_id WHERE users.user_id = ?;");
 
     // User ID can only be specified as different to own if the user is an admin
     if((isset($_GET["user_id"])) && ($user_info["user_type"] == "Admin")) {
