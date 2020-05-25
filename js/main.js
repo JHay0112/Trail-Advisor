@@ -79,19 +79,22 @@ function toggleResponsiveNav() {
 // Leaflet.js
 // Script for leaflet map to update from coords and vice versa on createtrail.php
 // Adapted from: https://gist.github.com/answerquest/03ade545b071b3e5ea4e
-function genTrailMap(zoom = 12, select = false, lat = document.getElementById('lat').value, lng = document.getElementById('lng').value) {
+function genTrailMap(zoom = 12, select = false, lat_id = "lat", lng_id = "lng") {
+    
+    lat = document.getElementById(lat_id);
+    lng = document.getElementById(lng_id);
 
     var tileLayer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> Contributors'
     });
 
     var map = new L.Map('trail-map', {
-        'center': [lat, lng],
+        'center': [lat.value, lng.value],
         'zoom': zoom,
         'layers': [tileLayer]
     });
 
-    var marker = L.marker([lat, lng], {
+    var marker = L.marker([lat.value, lng.value], {
         draggable: select,
         zIndexOffset: 100000 // Had to make this value very high to stop the marker occasionally dissapearing ever
     }).addTo(map);
@@ -99,15 +102,15 @@ function genTrailMap(zoom = 12, select = false, lat = document.getElementById('l
     if(select == true) {
 
         marker.on('dragend', function (e) {
-            document.getElementById('lat').value = marker.getLatLng().wrap().lat;
-            document.getElementById('lng').value = marker.getLatLng().wrap().lng;
+            lat.value = marker.getLatLng().wrap().lat;
+            lng.value = marker.getLatLng().wrap().lng;
             map.panTo([marker.getLatLng().lat, marker.getLatLng().lng]);
         });
 
         map.on('click', function (e) {
             marker.setLatLng(e.latlng);
-            document.getElementById('lat').value = marker.getLatLng().wrap().lat;
-            document.getElementById('lng').value = marker.getLatLng().wrap().lng;
+            lat.value = marker.getLatLng().wrap().lat;
+            lng.value = marker.getLatLng().wrap().lng;
             map.panTo([marker.getLatLng().lat, marker.getLatLng().lng]);
         });
     }
