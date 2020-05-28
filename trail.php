@@ -101,7 +101,7 @@
     $page_attr["title"] = $trail_name; // Get page title to match trail name
     $page_attr["header_img"] = $trail_img;
     $page_attr["copyright"] = "Trail details supplied by ".$creator.", Site: &copy; TrailAdvisor 2020";
-    $page_attr["onload"] = "genTrailMap(15, false, ".$lat.", ".$lng.");";
+    $page_attr["onload"] = "genTrailMap(15);";
     // Nav Item
     $nav = array(
         $trail_name => array(
@@ -189,6 +189,19 @@
 </div>
 
 <div id="trail-map" name="map" class="col-12" style="height: 500px;"></div>
+
+<div class="col-6 form-wrapper">
+    <label for="lat" class="col-12">Latitude:</label>
+
+    <input id="lat" type="number" name="lat" min="-90" max="90" step="any" class="col-12" placeholder="Latitude" value="<?php print($lat) ?>" readonly />
+</div>
+
+<div class="col-6 form-wrapper">
+    <label for="lng" class="col-12">Longitude:</label>
+
+    <input id="lng" type="number" name="lat" min="-90" max="90" step="any" class="col-12" placeholder="Longitude" value="<?php print($lng) ?>" readonly />
+</div>
+
 
 <?php 
 

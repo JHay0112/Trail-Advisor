@@ -81,8 +81,8 @@ function toggleResponsiveNav() {
 // Adapted from: https://gist.github.com/answerquest/03ade545b071b3e5ea4e
 function genTrailMap(zoom = 12, select = false, lat_id = "lat", lng_id = "lng", map_id = "trail-map") {
     
-    lat = document.getElementById(lat_id);
-    lng = document.getElementById(lng_id);
+    var lat = document.getElementById(lat_id);
+    var lng = document.getElementById(lng_id);
 
     var tileLayer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> Contributors'
@@ -99,20 +99,30 @@ function genTrailMap(zoom = 12, select = false, lat_id = "lat", lng_id = "lng", 
         zIndexOffset: 100000 // Had to make this value very high to stop the marker occasionally dissapearing ever
     }).addTo(map);
 
-    if(select == true) {
+    if(select) {
+
+        function updateLatLng(reverse = false) {
+            if(!reverse) {
+                marker.setLatLng([lat.value, lng.value]);
+                map.panTo([lat.value, lng.value]);
+            } else {
+                lat.value = marker.getLatLng().wrap().lat;
+                lng.value = marker.getLatLng().wrap().lng;
+                map.panTo([marker.getLatLng().lat, marker.getLatLng().lng]);
+            }
+        }
 
         marker.on('dragend', function (e) {
-            lat.value = marker.getLatLng().wrap().lat;
-            lng.value = marker.getLatLng().wrap().lng;
-            map.panTo([marker.getLatLng().lat, marker.getLatLng().lng]);
+            updateLatLng(true);
         });
 
         map.on('click', function (e) {
             marker.setLatLng(e.latlng);
-            lat.value = marker.getLatLng().wrap().lat;
-            lng.value = marker.getLatLng().wrap().lng;
-            map.panTo([marker.getLatLng().lat, marker.getLatLng().lng]);
+            updateLatLng(true);
         });
+
+        lat.addEventListener("change", updateLatLng);
+        lng.addEventListener("change", updateLatLng);
     }
 
 }
