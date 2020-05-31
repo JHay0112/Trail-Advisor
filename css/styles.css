@@ -413,6 +413,12 @@ input.parsley-error, select.parsley-error, textarea.parsley-error {
 
 /* Specific page styles */
 
+/* Index style */
+
+h1.home {
+    display: none;
+}
+
 /* Search Style */
 
 #search-anchor {
