@@ -22,7 +22,7 @@
         "title" => "Trail Name",
         "author" => "Jordan Hay",
         "class" => "trail",
-        "header_img" => "../img/header.jpg",
+        "header_img" => "img/header.jpg",
         "onload" => ""
     );
 
@@ -38,7 +38,8 @@
         if($trail_id != 0) {
 
             // Getting trail details
-            $stmt = mysqli_prepare($link, "SELECT trails.name, users.user_id, users.username, trails.description, trails.lat, trails.lng, COUNT(trail_likes.trail_id) FROM trails INNER JOIN users ON trails.creator = users.user_id LEFT JOIN trail_likes ON trails.trail_id = trail_likes.trail_id WHERE trails.trail_id = ?;");
+            // GROUP BY added 2/06/2020
+            $stmt = mysqli_prepare($link, "SELECT trails.name, users.user_id, users.username, trails.description, trails.lat, trails.lng, COUNT(trail_likes.trail_id) FROM trails INNER JOIN users ON trails.creator = users.user_id LEFT JOIN trail_likes ON trails.trail_id = trail_likes.trail_id WHERE trails.trail_id = ? GROUP BY trails.trail_id");
 
             // Check stmt is not malformed
             if($stmt) {
@@ -53,7 +54,7 @@
             $trail_img = "img/trails/".$trail_id.".jpg";
 
             // Getting trail editor details, having a seperate query saves the database returning the same trail details multiple times
-            $stmt = mysqli_prepare($link, "SELECT users.user_id, users.username FROM trail_editors INNER JOIN users ON trail_editors.user_id = users.user_id WHERE trail_editors.trail_id = ?;");
+            $stmt = mysqli_prepare($link, "SELECT users.user_id, users.username FROM trail_editors INNER JOIN users ON trail_editors.user_id = users.user_id WHERE trail_editors.trail_id = ?");
 
             // Check stmt is not malformed
             if($stmt) {
