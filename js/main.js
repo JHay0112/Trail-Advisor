@@ -50,10 +50,12 @@ function stickyNav() {
             content.style.top = nav.scrollHeight + "px";
         } else {
             content.style.top = "60px";
+            content.style.paddingBottom = "60px";
         }
     } else {
         nav.classList.remove("stick");
         content.style.top = "";
+        content.style.paddingBottom = "";
     }
 }
 
