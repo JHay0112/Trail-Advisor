@@ -64,7 +64,7 @@ function stickyNav() {
 // Toggle between adding and removing the "responsive" class to topnav when the user clicks on the icon
 function toggleResponsiveNav() {
 
-    navAnchors = document.querySelectorAll(".anchor");
+    var navAnchors = document.querySelectorAll(".anchor");
 
     if (!nav.classList.contains("responsive")) {
         nav.classList.add("responsive");
@@ -103,28 +103,30 @@ function genTrailMap(zoom = 12, select = false, lat_id = "lat", lng_id = "lng", 
 
     if(select) {
 
-        function updateLatLng(reverse = false) {
-            if(!reverse) {
-                marker.setLatLng([lat.value, lng.value]);
-                map.panTo([lat.value, lng.value]);
-            } else {
-                lat.value = marker.getLatLng().wrap().lat;
-                lng.value = marker.getLatLng().wrap().lng;
-                map.panTo([marker.getLatLng().lat, marker.getLatLng().lng]);
-            }
+        // Update map from form lat/lng
+        function updateFromLatLng() {
+            marker.setLatLng([lat.value, lng.value]);
+            map.panTo([lat.value, lng.value]);
         }
 
         marker.on('dragend', function (e) {
-            updateLatLng(true);
+            // Update map from marker lat/lng
+            lat.value = marker.getLatLng().wrap().lat;
+            lng.value = marker.getLatLng().wrap().lng;
+            map.panTo([marker.getLatLng().lat, marker.getLatLng().lng]);
         });
 
         map.on('click', function (e) {
+            // Update map from marker lat/lng
             marker.setLatLng(e.latlng);
-            updateLatLng(true);
+            lat.value = marker.getLatLng().wrap().lat;
+            lng.value = marker.getLatLng().wrap().lng;
+            map.panTo([marker.getLatLng().lat, marker.getLatLng().lng]);
         });
 
-        lat.addEventListener("change", updateLatLng);
-        lng.addEventListener("change", updateLatLng);
+        // Listen to form elements for changes
+        lat.addEventListener("change", updateFromLatLng);
+        lng.addEventListener("change", updateFromLatLng);
     }
 
 }
