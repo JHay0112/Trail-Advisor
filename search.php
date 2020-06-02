@@ -25,9 +25,8 @@
     );
 
     require_once("res/connect.php");
-    require_once("res/head.php");
 
-    // Checking and setting longitude, latititude, page, and rows to load
+     // Checking and setting longitude, latititude, page, and rows to load
 
     if(isset($_GET["lng"])) {
         $lng = (double)$_GET["lng"];
@@ -57,39 +56,6 @@
     } else {
         $rows_to_load = 20;
     }
-
-?>
-
-<!-- Search form -->
-<div class="col-12" id="form-wrapper">
-    <form class="col-12" action="search.php#search-anchor" method="get">
-
-        <label for="map">Select location on map to find nearby trails:</label>
-        <div id="trail-map" name="map" class="col-12" style="height: 500px;"></div>
-
-        <div class="col-6 form-wrapper">
-            <label for="lat" class="col-12">Latitude:</label>
-            <input id="lat" type="number" name="lat" min="-90" max="90" step="any" class="col-12" placeholder="Latitude" value="<?php print($lat) ?>" required />
-
-            <label for="lng" class="col-12">Longitude:</label>
-            <input id="lng" type="number" name="lng" min="-180" max="180" step="any" class="col-12" placeholder="Longitude" value="<?php print($lng) ?>" required />
-        </div>
-
-        <div class="col-6 form-wrapper">
-            <label for="trails_to_load" class="col-12">Trails per page:</label>
-            <input id="trails_to_load" type="number" name="rows_to_load" min="20" max="100" step="1" class="col-12" placeholder="Trails To Load" value="<?php print($rows_to_load) ?>" required />
-
-            <label>&nbsp;</label> <!-- Using this to get spacing correct -->
-            <button type="submit" class="col-12"><span class="fas fa-search fa-flip-horizontal"></span> Search</button>
-        </div>
-
-    </form>
-</div>
-
-<h2 id="search-results">Search Results</h2>
-<div id="search-anchor"></div>
-
-<?php
 
     // Generating bounds for query
     $offset = $page * $rows_to_load;
@@ -123,6 +89,47 @@
         }
 
     }
+
+    
+
+    // Check that rows have been filled
+    if(isset($rows)) {   
+    }
+
+    require_once("res/head.php");
+
+?>
+
+<!-- Search form -->
+<div class="col-12" id="form-wrapper">
+    <form class="col-12" action="search.php#search-anchor" method="get">
+
+        <label for="map">Select location on map to find nearby trails:</label>
+        <div id="trail-map" name="map" class="col-12" style="height: 500px;"></div>
+
+        <div class="col-6 form-wrapper">
+            <label for="lat" class="col-12">Latitude:</label>
+            <input id="lat" type="number" name="lat" min="-90" max="90" step="any" class="col-12" placeholder="Latitude" value="<?php print($lat) ?>" required />
+
+            <label for="lng" class="col-12">Longitude:</label>
+            <input id="lng" type="number" name="lng" min="-180" max="180" step="any" class="col-12" placeholder="Longitude" value="<?php print($lng) ?>" required />
+        </div>
+
+        <div class="col-6 form-wrapper">
+            <label for="trails_to_load" class="col-12">Trails per page:</label>
+            <input id="trails_to_load" type="number" name="rows_to_load" min="20" max="100" step="1" class="col-12" placeholder="Trails To Load" value="<?php print($rows_to_load) ?>" required />
+
+            <label>&nbsp;</label> <!-- Using this to get spacing correct -->
+            <button type="submit" class="col-12"><span class="fas fa-search fa-flip-horizontal"></span> Search</button>
+        </div>
+
+    </form>
+</div>
+
+<h2 id="search-results">Search Results</h2>
+<div id="search-anchor"></div>
+
+<?php
 
     // Check that rows have been filled
     if(isset($rows)) {
