@@ -41,7 +41,7 @@ function confirmAction(confirmMessage, redirect) {
 //
 function stickyNav() {
 
-    content = document.getElementById("content");
+    var content = document.getElementById("content");
     content.style.position = "relative";
 
     if (window.pageYOffset >= navOffset) {
