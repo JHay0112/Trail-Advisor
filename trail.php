@@ -184,8 +184,12 @@
         <p><?php print($trail_description); ?></p>
 
     </section>
-
-    <aside id="trail-img" class="col-4" style="background-image: url('<?php print($trail_img); ?>');"></aside>
+    
+    <!-- Mobile Image -->
+    <aside class="col-12 trail-img mobile-only" style="background-image: url('<?php print($trail_img); ?>');"></aside>
+    
+    <!-- Desktop Image -->
+    <aside class="col-4 trail-img desktop-only" style="background-image: url('<?php print($trail_img); ?>');"></aside>
 
 </div>
 

@@ -447,8 +447,13 @@ h1.home {
     display: none;
 }
 
-#trail-img {
+.trail-img {
     background-size: cover;
+    background-position: center center;
+}
+
+.trail-img.mobile-only {
+    height: 50vh;
 }
 
 /* /Specific page styles */
