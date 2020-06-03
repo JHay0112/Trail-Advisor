@@ -20,8 +20,7 @@
     // Page Attributes
     $page_attr = array(
         "title" => "Search",
-        "author" => "Jordan Hay",
-        "onload" => "genTrailMap(zoom = 12, select = true);"
+        "author" => "Jordan Hay"
     );
 
     require_once("res/connect.php");
@@ -63,7 +62,7 @@
     $total_rows = mysqli_fetch_assoc(mysqli_query($link, "SELECT COUNT(trail_id) AS count FROM trails"))["count"];
         
     // This is one hell of a prepared statment to try and explain
-    $stmt = mysqli_prepare($link, "SELECT trails.trail_id, trails.name, users.username, COUNT(trail_likes.trail_id) FROM trails INNER JOIN users ON trails.creator = users.user_id LEFT JOIN trail_likes ON trails.trail_id = trail_likes.trail_id GROUP BY trails.trail_id ORDER BY (ABS(trails.lat - ?) + ABS(trails.lng - ?)) ASC LIMIT ? OFFSET ?");
+    $stmt = mysqli_prepare($link, "SELECT trails.trail_id, trails.name, users.username, trails.lat, trails.lng, COUNT(trail_likes.trail_id) FROM trails INNER JOIN users ON trails.creator = users.user_id LEFT JOIN trail_likes ON trails.trail_id = trail_likes.trail_id GROUP BY trails.trail_id ORDER BY (ABS(trails.lat - ?) + ABS(trails.lng - ?)) ASC LIMIT ? OFFSET ?");
 
     // Check statement formed correctly
     if($stmt) {
@@ -75,7 +74,7 @@
         // HOWEVER: get result only works when you have mysqlnd installed, because the school computers DO NOT have mysqlnd we cannot use these convenient functions, thus the following code is a little bit convoluted to get the result I want without using get result
         // What the below code effectively does is create an array of sub-arrays, each sub-array is a row that has been returned by the query, the rows then are composed of an associative array with the column name as the key, the result is no different than if I had used get result, unfortunate that such limitations lead to such inelegant code but it is important that this code can work whether mysqlnd is installed or not
 
-        mysqli_stmt_bind_result($stmt, $id, $name, $creator, $likes);
+        mysqli_stmt_bind_result($stmt, $id, $name, $creator, $trail_lat, $trail_lng, $likes);
         
         $rows = array();
 
@@ -84,17 +83,42 @@
                 "trail_id" => $id,
                 "trail_name" => $name,
                 "creator" => $creator,
+                "lat" => $trail_lat,
+                "lng" => $trail_lng,
                 "likes" => $likes
             ));
         }
 
     }
 
-    
+    $additional_markers = "[";
 
     // Check that rows have been filled
     if(isset($rows)) {   
+        // For every row create new row in the additional trails
+        $i = 0; // Counting iterations
+        $rows_loaded = count($rows);
+        foreach($rows as $row) {
+            
+            $additional_markers .= "[";
+            
+            $additional_markers .= "'".$row["trail_name"]."', ";
+            $additional_markers .= $row["lat"].", ";
+            $additional_markers .= $row["lng"];
+            
+            if($i == ($rows_loaded - 1)) {
+                $additional_markers .= "]";
+            } else {
+                $additional_markers .= "], ";
+            }
+            
+            $i++; // Increase iteration count by one
+        }
     }
+
+    $additional_markers .= "]";
+
+    $page_attr["onload"] = "genTrailMap(zoom = 12, select = true, additional_markers = ".$additional_markers.");";
 
     require_once("res/head.php");
 
