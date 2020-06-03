@@ -85,6 +85,22 @@ function genTrailMap(zoom = 12, select = false, additional_markers = [], lat_id 
     
     var lat = document.getElementById(lat_id);
     var lng = document.getElementById(lng_id);
+    
+    const locationIcon = L.divIcon({
+        className: "",
+        iconAnchor: [0, 24],
+        labelAnchor: [-6, 0],
+        popupAnchor: [0, -36],
+        html: "<span class='location-icon'></span>"
+    });
+    
+    const trailIcon = L.divIcon({
+        className: "",
+        iconAnchor: [0, 24],
+        labelAnchor: [-6, 0],
+        popupAnchor: [0, -36],
+        html: "<span class='trail-icon'></span>"
+    });
 
     var tileLayer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> Contributors'
@@ -98,7 +114,7 @@ function genTrailMap(zoom = 12, select = false, additional_markers = [], lat_id 
 
     var marker = L.marker([lat.value, lng.value], {
         draggable: select,
-        riseOnHover: true,
+        icon: locationIcon,
         title: "Location",
         zIndexOffset: 100000 // Had to make this value very high to stop the marker occasionally dissapearing ever
     }).addTo(map);
@@ -107,7 +123,7 @@ function genTrailMap(zoom = 12, select = false, additional_markers = [], lat_id 
         var newmarker = additional_markers[i];
         
         L.marker([newmarker[1], newmarker[2]], {
-            riseOnHover: true,
+            icon: trailIcon,
             zIndexOffset: 100000,
             title: newmarker[0]
         }).addTo(map);

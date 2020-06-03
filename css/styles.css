@@ -168,6 +168,7 @@ nav a {
     text-decoration: none;
     color: black;
     padding: 20px;
+    font-size: 12pt;
     transition: 0.3s ease all;
     position: relative;
     top: 20px;
@@ -321,6 +322,28 @@ td:first-child {
 #trail-map {
     margin: 20px 0px;
     border-radius: 4px;
+}
+
+.location-icon, .trail-icon {
+  width: 30px;
+  height: 30px;
+  display: block;
+  left: -15px;
+  top: -15px;
+  position: relative;
+  border-radius: 15px 15px 0;
+  transform: rotate(45deg);
+}
+
+.trail-icon {
+    background-color: #003500;
+    transform: scale(0.6) rotate(45deg);
+    border: 2px solid white;
+}
+
+.location-icon {
+    background-color: white;
+    border: 3px solid #003500;
 }
 
 /* Forms */
