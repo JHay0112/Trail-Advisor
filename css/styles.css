@@ -349,6 +349,8 @@ td:first-child {
 .location-icon.key, .trail-icon.key {
     left: 0;
     top: 7px;
+    margin-right: 7px;
+    transform: scale(0.9) rotate(45deg);
 }
 
 h2.key {

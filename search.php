@@ -133,8 +133,8 @@
         <section class="col-12">
             <h2 class="key">Key</h2>
             <div class="col-6">
-                <p><span class="location-icon key"></span> : Selected Location</p>
-                <p><span class="trail-icon key"></span> : Location of a nearby trail</p>
+                <p><span class="location-icon key"></span>Selected Location</p>
+                <p><span class="trail-icon key"></span>Location of a nearby trail</p>
             </div>
         </section>
 
