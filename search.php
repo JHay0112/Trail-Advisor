@@ -128,7 +128,16 @@
 <div class="col-12" id="form-wrapper">
     <form class="col-12" action="search.php#search-anchor" method="get">
 
-        <label for="map">Select location on map to find nearby trails:</label>
+        <label for="map" class="col-12">Select a location on map to find nearby trails.</label>
+
+        <section class="col-12">
+            <h2 class="key">Key</h2>
+            <div class="col-6">
+                <p><span class="location-icon key"></span> : Selected Location</p>
+                <p><span class="trail-icon key"></span> : Location of a nearby trail</p>
+            </div>
+        </section>
+
         <div id="trail-map" name="map" class="col-12" style="height: 500px;"></div>
 
         <div class="col-6 form-wrapper">

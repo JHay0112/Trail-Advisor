@@ -327,7 +327,7 @@ td:first-child {
 .location-icon, .trail-icon {
   width: 30px;
   height: 30px;
-  display: block;
+  display: inline-block;
   left: -15px;
   top: -15px;
   position: relative;
@@ -344,6 +344,15 @@ td:first-child {
 .location-icon {
     background-color: white;
     border: 3px solid #003500;
+}
+
+.location-icon.key, .trail-icon.key {
+    left: 0;
+    top: 7px;
+}
+
+h2.key {
+    margin-bottom: 0;
 }
 
 /* Forms */
