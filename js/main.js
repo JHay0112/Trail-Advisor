@@ -83,9 +83,11 @@ function toggleResponsiveNav() {
 // Adapted from: https://gist.github.com/answerquest/03ade545b071b3e5ea4e
 function genTrailMap(zoom = 12, select = false, additional_markers = [], lat_id = "lat", lng_id = "lng", map_id = "trail-map") {
     
+    // Find lat and long elements
     var lat = document.getElementById(lat_id);
     var lng = document.getElementById(lng_id);
     
+    // Attributes of location icons
     const locationIcon = L.divIcon({
         className: "",
         iconAnchor: [0, 24],
@@ -94,6 +96,7 @@ function genTrailMap(zoom = 12, select = false, additional_markers = [], lat_id 
         html: "<span class='location-icon'></span>"
     });
     
+    // Attributes of trail icons
     const trailIcon = L.divIcon({
         className: "",
         iconAnchor: [0, 24],
@@ -102,33 +105,38 @@ function genTrailMap(zoom = 12, select = false, additional_markers = [], lat_id 
         html: "<span class='trail-icon'></span>"
     });
 
+    // Tile layer, supplied by OSM
     var tileLayer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> Contributors'
     });
 
+    // Initialize maps
     var map = new L.Map(map_id, {
-        'center': [lat.value, lng.value],
-        'zoom': zoom,
-        'layers': [tileLayer]
+        'center': [lat.value, lng.value], // Center on values of lat and long elements
+        'zoom': zoom, // Define zoom as per defined attributes 
+        'layers': [tileLayer] // Add tile layer
     });
 
     var marker = L.marker([lat.value, lng.value], {
-        draggable: select,
-        icon: locationIcon,
+        draggable: select, // Allow marker to be dragable if it must be
+        icon: locationIcon, // Get location icon attributes
         title: "Location",
         zIndexOffset: 100000 // Had to make this value very high to stop the marker occasionally dissapearing ever
     }).addTo(map);
     
+    // Generate new markers as per additional markers dictionary
     for(var i = 0; i < additional_markers.length; i++) {
         var newmarker = additional_markers[i];
         
+        // Insert marker
         L.marker([newmarker[1], newmarker[2]], {
-            icon: trailIcon,
+            icon: trailIcon, // Get trail icon attributes
             zIndexOffset: 100000,
-            title: newmarker[0]
+            title: newmarker[0] // Set title
         }).addTo(map);
     }
 
+    // If trail must be selectable then we have to add some more things
     if(select) {
 
         // Update map from form lat/lng
@@ -137,6 +145,7 @@ function genTrailMap(zoom = 12, select = false, additional_markers = [], lat_id 
             map.panTo([lat.value, lng.value]);
         }
 
+        // Update lat long when marker is dragged
         marker.on('dragend', function (e) {
             // Update map from marker lat/lng
             lat.value = marker.getLatLng().wrap().lat;
@@ -144,6 +153,7 @@ function genTrailMap(zoom = 12, select = false, additional_markers = [], lat_id 
             map.panTo([marker.getLatLng().lat, marker.getLatLng().lng]);
         });
 
+        // Update lat long and marker when map is clicked
         map.on('click', function (e) {
             // Update map from marker lat/lng
             marker.setLatLng(e.latlng);
