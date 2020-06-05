@@ -101,7 +101,7 @@
 
     $page_attr["title"] = $trail_name; // Get page title to match trail name
     $page_attr["header_img"] = $trail_img;
-    $page_attr["copyright"] = "Trail details supplied by ".$creator.", Site: &copy; TrailAdvisor 2020";
+    $page_attr["copyright"] = "Trail details and image supplied by ".$creator.", Site: &copy; TrailAdvisor 2020";
     $page_attr["onload"] = "genTrailMap(15);";
     // Nav Item
     $nav = array(

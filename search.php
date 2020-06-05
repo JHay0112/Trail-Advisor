@@ -28,13 +28,13 @@
      // Checking and setting longitude, latititude, page, and rows to load
 
     if(isset($_GET["lng"])) {
-        $lng = (double)$_GET["lng"];
+        $lng = (float)$_GET["lng"];
     } else {
         $lng = 172.63;
     }
 
     if(isset($_GET["lat"])) {
-        $lat = (double)$_GET["lat"];
+        $lat = (float)$_GET["lat"];
     } else {
         $lat = -43.53;
     }

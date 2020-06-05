@@ -30,8 +30,8 @@
     $trail_id = (int)$_POST["trail_id"];
     $name = strip_tags($_POST["name"]);
     $description = strip_tags($_POST["description"]);
-    $lat = (double)$_POST["lat"];
-    $lng = (double)$_POST["lng"];
+    $lat = (float)$_POST["lat"];
+    $lng = (float)$_POST["lng"];
 
     // If trail id is invalid send them back to edit dialogue
     if($trail_id == 0) {
