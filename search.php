@@ -48,11 +48,12 @@
     if(isset($_GET["rows_to_load"])) {
         $rows_to_load = (int)$_GET["rows_to_load"];
 
-        // Rows to load cannot be less than 20
-        if($rows_to_load < 20) {
+        // Rows to load cannot be less than 5, set to default of 20
+        if($rows_to_load < 5) {
             $rows_to_load = 20;
         }
     } else {
+        // Rows is not set, set to default of 20
         $rows_to_load = 20;
     }
 
@@ -150,7 +151,7 @@
 
         <div class="col-6 form-wrapper">
             <label for="trails_to_load" class="col-12">Trails per page:</label>
-            <input id="trails_to_load" type="number" name="rows_to_load" min="20" max="100" step="1" class="col-12" placeholder="Trails To Load" value="<?php print($rows_to_load) ?>" required />
+            <input id="trails_to_load" type="number" name="rows_to_load" min="5" max="1000" step="1" class="col-12" placeholder="Trails To Load" value="<?php print($rows_to_load) ?>" required />
 
             <label>&nbsp;</label> <!-- Using this to get spacing correct -->
             <button type="submit" class="col-12"><span class="fas fa-search fa-flip-horizontal"></span> Search</button>
@@ -190,12 +191,12 @@
 
     // If the page is greater than zero allow to navigate back
     if($page > 0) {
-        print("<a class=\"navigate-result button\" href=\"search.php?page=".($page - 1)."&load=".$rows_to_load."&lat=".$lat."&lng=".$lng."#search-anchor\"><span class=\"fa fa-arrow-left\"></span> Previous Page</a>");
+        print("<a class=\"navigate-result button\" href=\"search.php?page=".($page - 1)."&rows_to_load=".$rows_to_load."&lat=".$lat."&lng=".$lng."#search-anchor\"><span class=\"fa fa-arrow-left\"></span> Previous Page</a>");
     }
 
     // If the amount of rows to load on the next page does not exceed the total rows in the trail then allow the user to access the next page
     if((($rows_to_load * ($page + 1)) < $total_rows)) {
-        print("<a class=\"navigate-result button float-right\" href=\"search.php?page=".($page + 1)."&load=".$rows_to_load."&lat=".$lat."&lng=".$lng."#search-anchor\">NextPage <span class=\"fa fa-arrow-right\"></span></a>");
+        print("<a class=\"navigate-result button float-right\" href=\"search.php?page=".($page + 1)."&&rows_to_load=".$rows_to_load."&lat=".$lat."&lng=".$lng."#search-anchor\">Next Page <span class=\"fa fa-arrow-right\"></span></a>");
     }
 
     print("</div>");
