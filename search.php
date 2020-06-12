@@ -143,10 +143,10 @@
 
         <div class="col-6 form-wrapper">
             <label for="lat" class="col-12">Latitude:</label>
-            <input id="lat" type="number" name="lat" min="-90" max="90" step="any" class="col-12" placeholder="Latitude" value="<?php print($lat) ?>" required />
+            <input id="lat" type="number" name="lat" min="-90" max="90" step="any" class="col-12" placeholder="Latitude" value="<?php print($lat) ?>" data-parsley-trigger="keyup" data-parsley-type="number" required />
 
             <label for="lng" class="col-12">Longitude:</label>
-            <input id="lng" type="number" name="lng" min="-180" max="180" step="any" class="col-12" placeholder="Longitude" value="<?php print($lng) ?>" required />
+            <input id="lng" type="number" name="lng" min="-180" max="180" step="any" class="col-12" placeholder="Longitude" value="<?php print($lng) ?>" data-parsley-trigger="keyup" data-parsley-type="number" required />
         </div>
 
         <div class="col-6 form-wrapper">
