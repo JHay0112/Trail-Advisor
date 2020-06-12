@@ -17,7 +17,7 @@
 
     */
 
-    require_once("cred.php");
+    require("cred.php");
 
     $link = mysqli_connect($host, $username, $password, $db) or die("Couldn't connect to DB server.");
 

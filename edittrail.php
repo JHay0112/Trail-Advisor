@@ -17,8 +17,8 @@
 
     */
 
-    require_once("res/connect.php");
-    require_once("res/checkfields.php");
+    require("res/connect.php");
+    require("res/checkfields.php");
 
     // If these fields aren't there send back to search page
     check_fields($_GET, array("trail"), "../../search.php");
@@ -67,9 +67,9 @@
     // Add page to nav
     $nav = array($page_attr["title"] => array("href" => "edittrail.php?trail=".$trail_id, "classes" => ""));
 
-    require_once("res/head.php");
+    require("res/head.php");
 
-    require_once("res/referralcase.php");
+    require("res/referralcase.php");
 
     $states = array(
         "edittrailfail" => "Failed to edit trail, please try again.",
@@ -125,4 +125,4 @@
 
 </form>
 
-<?php require_once("res/foot.php"); ?>
+<?php require("res/foot.php"); ?>

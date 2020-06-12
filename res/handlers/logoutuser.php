@@ -20,7 +20,7 @@
     $token_required = true;
     $referral_path = "../../";
     $permitted_users = array("Admin", "Staff", "Standard");
-    require_once("../initsession.php");
+    require("../initsession.php");
 
     // Remove the session variables, this logs out the user.
     session_unset();

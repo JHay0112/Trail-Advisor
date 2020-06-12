@@ -73,7 +73,7 @@
         // If user does not have required permissions, alert the user to the issue and redirect to login page. In case that script fails, although I don't think it could, stop all code execution with the exit statement
         if($logged_in) {
             // If the user is logged in send them to their profile
-            print("<script>location = '".$referral_path."profile.php?referall_case=useroutofbounds';</script>");
+            print("<script>location = '".$referral_path."profile.php?referral_case=useroutofbounds';</script>");
         } else {
             // If user is not logged in send them to login
             print("<script>location = '".$referral_path."login.php?referral_case=useroutofbounds';</script>");

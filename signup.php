@@ -23,9 +23,9 @@
         "author" => "Jordan Hay"
     );
 
-    require_once("res/head.php"); 
+    require("res/head.php"); 
 
-    require_once("res/referralcase.php");
+    require("res/referralcase.php");
 
     $states = array(
         "newuserfailed" => "Creation of a new user failed. Please try again.",
@@ -67,4 +67,4 @@
     </form>
 </div>
 
-<?php require_once("res/foot.php"); ?>
+<?php require("res/foot.php"); ?>

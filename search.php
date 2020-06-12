@@ -23,7 +23,7 @@
         "author" => "Jordan Hay"
     );
 
-    require_once("res/connect.php");
+    require("res/connect.php");
 
      // Checking and setting longitude, latititude, page, and rows to load
 
@@ -121,7 +121,7 @@
 
     $page_attr["onload"] = "genTrailMap(zoom = 12, select = true, additional_markers = ".$additional_markers.");";
 
-    require_once("res/head.php");
+    require("res/head.php");
 
 ?>
 
@@ -201,6 +201,6 @@
 
     print("</div>");
 
-    require_once("res/foot.php");
+    require("res/foot.php");
 
 ?>

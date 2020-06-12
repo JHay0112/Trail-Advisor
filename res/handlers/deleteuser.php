@@ -21,8 +21,8 @@
     $token_required = true;
     $referral_path = "../../";
     $permitted_users = array("Admin", "Staff", "Standard");
-    require_once("../initsession.php");
-    require_once("../connect.php");
+    require("../initsession.php");
+    require("../connect.php");
 
     // Preparing statement
     $stmt = mysqli_prepare($link, "DELETE users, trails, trail_editors, trail_likes FROM users LEFT JOIN trails ON users.user_id = trails.creator LEFT JOIN trail_editors ON users.user_id = trail_editors.user_id LEFT JOIN trail_likes ON users.user_id = trail_likes.user_id WHERE users.user_id = ?;");

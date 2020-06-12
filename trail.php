@@ -26,7 +26,7 @@
         "onload" => ""
     );
 
-    require_once("res/connect.php");
+    require("res/connect.php");
 
     $error = false;
 
@@ -111,7 +111,7 @@
         )
     );
 
-    require_once("res/head.php");
+    require("res/head.php");
 
 ?>
 
@@ -219,6 +219,6 @@
         print("</section>");
     }
 
-    require_once("res/foot.php"); 
+    require("res/foot.php"); 
     
 ?>

@@ -27,8 +27,8 @@
 
     // Have to explicitly set this early
     $permitted_users = $page_attr["permitted_users"];
-    require_once("res/initsession.php");
-    require_once("res/connect.php");
+    require("res/initsession.php");
+    require("res/connect.php");
 
     if((isset($_GET["user_id"])) && ($_GET["user_id"] != $user_info["user_id"])) {
         // If the user accessing this page is not the user this page is about the user must be staff or admin
@@ -74,10 +74,10 @@
 
     $page_attr += array("title" => "Profile of ".$username);
 
-    require_once("res/head.php");
+    require("res/head.php");
 
     // Processing referrall cases
-    require_once("res/referralcase.php");
+    require("res/referralcase.php");
 
     $states = array(
         "login" => "You have successfully been logged in as ".$username.".",
@@ -90,11 +90,6 @@
 
     if(isset($_GET["referral_case"])) {
         print("<p>".referral($_GET["referral_case"], $states)."</p>");
-    }
-
-    // If the system has generated a message it should be displayed
-    if(isset($message)) {
-        print("<p>".$message."</p>");
     }
 
     // Displaying the user's information
@@ -129,6 +124,6 @@
         }
     }
 
-    require_once("res/foot.php"); 
+    require("res/foot.php"); 
     
 ?>

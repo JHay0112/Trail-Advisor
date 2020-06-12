@@ -20,9 +20,9 @@
     // $token_required = true;
     $referral_path = "../../";
     $permitted_users = array("Admin", "Staff", "Standard");
-    require_once("../initsession.php");
-    require_once("../connect.php");
-    require_once("../checkfields.php");
+    require("../initsession.php");
+    require("../connect.php");
+    require("../checkfields.php");
 
     check_fields($_POST, array("name", "description", "lat", "lng"), "../../createtrail.php");
     check_fields($_FILES, array("img"), "../../createtrail.php");

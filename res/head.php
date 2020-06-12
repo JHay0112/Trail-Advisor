@@ -86,7 +86,7 @@
     }
 
     $permitted_users = $page_attr["permitted_users"];
-    require_once("initsession.php");
+    require("initsession.php"); // Init session should be re-run even it has been run before.
 
     // Actions to be taken if user is logged in
     if($logged_in) {

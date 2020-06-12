@@ -21,8 +21,8 @@
     $token_required = true;
     $referral_path = "../../";
     $permitted_users = array("Admin", "Staff");
-    require_once("../initsession.php");
-    require_once("../connect.php");
+    require("../initsession.php");
+    require("../connect.php");
 
     // Cast ID to int
     $trail_id = (int)$_GET["trail"];

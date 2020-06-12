@@ -25,9 +25,9 @@
         "onload" => "genTrailMap(zoom = 12, select = true);"
     );
 
-    require_once("res/head.php");
+    require("res/head.php");
 
-    require_once("res/referralcase.php");
+    require("res/referralcase.php");
 
     $states = array(
         "invalidext" => "Invalid file uploaded, must be a JPG or PNG.",
@@ -101,6 +101,6 @@
 
 <?php
 
-    require_once("res/foot.php");
+    require("res/foot.php");
 
 ?>

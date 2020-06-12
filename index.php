@@ -24,7 +24,7 @@
         "class" => "home"
     );
 
-    require_once("res/head.php");
+    require("res/head.php");
 
 ?>
 
@@ -42,4 +42,4 @@
 
 <p>Interested in contributing to our ever-growing database of trails? Just sign up <a href="signup.php">here</a>.</p>
 
-<?php require_once("res/foot.php"); ?>
+<?php require("res/foot.php"); ?>
