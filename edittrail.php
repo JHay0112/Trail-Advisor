@@ -29,13 +29,13 @@
     $trail_id = (int)$_GET["trail"];
 
     if($trail_id != 0) {
-        $stmt = mysqli_prepare($link, "SELECT name, description, lat, lng FROM trails WHERE trail_id = ?");
+        $stmt = mysqli_prepare($link, "SELECT name, creator, description, lat, lng FROM trails WHERE trail_id = ? GROUP BY trail_id");
 
         // Check stmt formed
         if($stmt) {
             mysqli_stmt_bind_param($stmt, "i", $trail_id);
             mysqli_stmt_execute($stmt);
-            mysqli_stmt_bind_result($stmt, $trail_name, $trail_description, $lat, $lng);
+            mysqli_stmt_bind_result($stmt, $trail_name, $creator_id, $trail_description, $lat, $lng);
             mysqli_stmt_fetch($stmt);
         } else {
             $error = true;
@@ -46,12 +46,13 @@
 
     if(!isset($trail_name)) {
         $error = true;
-    }
+    } 
 
     // Error handling 
     if($error) {
         $trail_name = "Unknown Trail";
         $trail_description = "This trail does not exist!";
+        $creator_id = 0;
         $lat = 0;
         $lng = 0;
     }
@@ -60,7 +61,7 @@
     $page_attr = array(
         "title" => "Edit Trail",
         "author" => "Jordan Hay",
-        "permitted_users" => array("Admin", "Staff"),
+        "permitted_users" => array("Admin", "Staff", "Standard"),
         "onload" => "genTrailMap(zoom = 12, select = true);"
     );
 
@@ -68,6 +69,13 @@
     $nav = array($page_attr["title"] => array("href" => "edittrail.php?trail=".$trail_id, "classes" => ""));
 
     require("res/head.php");
+
+    // Check if the user is the trail creator or a staff member
+    if(($user_info["user_id"] != $creator_id) && (!in_array($user_info["user_type"], array("Admin", "Staff")))) {
+        // If not then redirect them
+        print("<script>location = '".$referral_path."profile.php?referral_case=useroutofbounds';</script>");
+        exit();
+    }
 
     require("res/referralcase.php");
 

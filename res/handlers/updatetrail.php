@@ -19,7 +19,7 @@
 
     $token_required = true;
     $referral_path = "../../";
-    $permitted_users = array("Admin", "Staff");
+    $permitted_users = array("Admin", "Staff", "Standard");
     require("../initsession.php");
     require("../connect.php");
     require("../checkfields.php");
@@ -36,6 +36,25 @@
     // If trail id is invalid send them back to edit dialogue
     if($trail_id == 0) {
         print("<script> location = '../../editrail.php?trail=".$trail_id."'</script>");
+    }
+
+    // Getting the trail creator id
+    $stmt = mysqli_prepare($link, "SELECT creator FROM trails WHERE trail_id = ? GROUP BY trail_id");
+
+    // Check the stmt is properly formed
+    if($stmt) {
+        mysqli_stmt_bind_param($stmt, "i", $trail_id);
+        mysqli_stmt_execute($stmt);
+        mysqli_stmt_bind_result($stmt, $creator_id);
+        mysqli_stmt_fetch($stmt);
+        mysqli_stmt_close($stmt);
+    }
+
+    // Check if the user is the trail creator or a staff member
+    if(($user_info["user_id"] != $creator_id) && (!in_array($user_info["user_type"], array("Admin", "Staff")))) {
+        // If not then redirect them
+        print("<script>location = '".$referral_path."profile.php?referral_case=useroutofbounds';</script>");
+        exit();
     }
 
     // Prepare statment
