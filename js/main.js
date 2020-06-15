@@ -83,6 +83,26 @@ function toggleResponsiveNav() {
 // Adapted from: https://gist.github.com/answerquest/03ade545b071b3e5ea4e
 function genTrailMap(zoom = 12, select = false, additional_markers = [], lat_id = "lat", lng_id = "lng", map_id = "trail-map") {
     
+    // Update map from form lat/lng
+    function updateFromLatLng() {
+        // This bounds the lng value to somewhere within -180 to +180 degrees
+        lng.value = L.latLng(lat.value, lng.value).wrap().lng;
+        
+        // Check if the lat value is within the bounds of -90 to +90
+        if(lat.value < -90) {
+            // If less than -90 then set to -90
+            lat.value = -90;
+        } else if(lat.value > 90) {
+            // If greater than 90 then set to 90
+            lat.value = 90;
+        }
+        
+        // Set marker position
+        marker.setLatLng([lat.value, lng.value]);
+        // Pan to it
+        map.panTo([lat.value, lng.value]);
+    }
+    
     // Find lat and long elements
     var lat = document.getElementById(lat_id);
     var lng = document.getElementById(lng_id);
@@ -139,18 +159,13 @@ function genTrailMap(zoom = 12, select = false, additional_markers = [], lat_id 
     // If trail must be selectable then we have to add some more things
     if(select) {
 
-        // Update map from form lat/lng
-        function updateFromLatLng() {
-            marker.setLatLng([lat.value, lng.value]);
-            map.panTo([lat.value, lng.value]);
-        }
-
         // Update lat long when marker is dragged
         marker.on('dragend', function (e) {
             // Update map from marker lat/lng
             lat.value = marker.getLatLng().wrap().lat;
             lng.value = marker.getLatLng().wrap().lng;
-            map.panTo([marker.getLatLng().lat, marker.getLatLng().lng]);
+            marker.setLatLng([lat.value, lng.value]); // This moves the marker back to the normal map
+            map.panTo([lat.value, lng.value]);
         });
 
         // Update lat long and marker when map is clicked
@@ -159,7 +174,8 @@ function genTrailMap(zoom = 12, select = false, additional_markers = [], lat_id 
             marker.setLatLng(e.latlng);
             lat.value = marker.getLatLng().wrap().lat;
             lng.value = marker.getLatLng().wrap().lng;
-            map.panTo([marker.getLatLng().lat, marker.getLatLng().lng]);
+            marker.setLatLng([lat.value, lng.value]); // This moves the marker back to the normal map
+            map.panTo([lat.value, lng.value]);
         });
 
         // Listen to form elements for changes
