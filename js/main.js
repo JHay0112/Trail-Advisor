@@ -127,7 +127,8 @@ function genTrailMap(zoom = 12, select = false, additional_markers = [], lat_id 
 
     // Tile layer, supplied by OSM
     var tileLayer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> Contributors'
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> Contributors',
+        noWrap: true
     });
 
     // Initialize maps
