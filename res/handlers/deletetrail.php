@@ -54,7 +54,7 @@
         }
 
         // Preparing statement
-        $stmt = mysqli_prepare($link, "DELETE FROM trails WHERE trail_id = ?");
+        $stmt = mysqli_prepare($link, "DELETE trails, trail_editors, trail_likes FROM trails LEFT JOIN trail_editors ON trails.trail_id = trail_editors.trail_id LEFT JOIN trail_likes ON trails.trail_id = trail_likes.trail_id WHERE trails.trail_id = ?");
 
         // Binding parameters and executing statement, checking if $stmt has formed first
         if($stmt) {
