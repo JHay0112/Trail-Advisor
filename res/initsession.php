@@ -17,8 +17,10 @@
 
     */
 
-    // Start session
-    session_start();
+    // Start session if session has not already started
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
 
     // Check if referral_path has been set
     // Used to offset path for handlers etc
