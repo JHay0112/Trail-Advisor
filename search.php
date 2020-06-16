@@ -105,7 +105,8 @@
             
             $additional_markers .= "'".$row["trail_name"]."', ";
             $additional_markers .= $row["lat"].", ";
-            $additional_markers .= $row["lng"];
+            $additional_markers .= $row["lng"].", ";
+            $additional_markers .= $row["trail_id"];
             
             if($i == ($rows_loaded - 1)) {
                 $additional_markers .= "]";

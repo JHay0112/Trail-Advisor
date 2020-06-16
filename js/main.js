@@ -117,7 +117,7 @@ function genTrailMap(zoom = 12, select = false, additional_markers = [], lat_id 
     });
     
     // Attributes of trail icons
-    const trailIcon = L.divIcon({
+    var trailIcon = L.divIcon({
         className: "",
         iconAnchor: [0, 24],
         labelAnchor: [-6, 0],
@@ -147,7 +147,17 @@ function genTrailMap(zoom = 12, select = false, additional_markers = [], lat_id 
     
     // Generate new markers as per additional markers dictionary
     for(var i = 0; i < additional_markers.length; i++) {
+        
         var newmarker = additional_markers[i];
+        
+        // Modify trail icon attributes to include a link to the trail page
+        trailIcon = L.divIcon({
+            className: "",
+            iconAnchor: [0, 24],
+            labelAnchor: [-6, 0],
+            popupAnchor: [0, -36],
+            html: "<span class='trail-icon' onclick='window.location = \"trail.php?trail=\" + " + newmarker[3] + ";'></span>"
+        });
         
         // Insert marker
         L.marker([newmarker[1], newmarker[2]], {
