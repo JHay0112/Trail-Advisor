@@ -82,10 +82,9 @@ function toggleResponsiveNav() {
 // Script for leaflet map to update from coords and vice versa on createtrail.php
 // Adapted from: https://gist.github.com/answerquest/03ade545b071b3e5ea4e
 function genTrailMap(zoom = 12, select = false, additional_markers = [], lat_id = "lat", lng_id = "lng", map_id = "trail-map") {
-    
-    // Update map from form lat/lng
-    function updateFromLatLng() {
-        
+
+    // Check that the lat and lng are within acceptable bounds
+    function checkLatLng() {
         // Check if the lng value is within the bounds of -180 to +180
         if(lng.value < -180) {
             // If less than -180 then set to -180
@@ -103,11 +102,28 @@ function genTrailMap(zoom = 12, select = false, additional_markers = [], lat_id 
             // If greater than 90 then set to 90
             lat.value = 90;
         }
-        
+    }
+    
+    // Update map from form lat/lng
+    function updateFromLatLng() {
+
+        checkLatLng();
         // Set marker position
         marker.setLatLng([lat.value, lng.value]);
         // Pan to it
         map.panTo([lat.value, lng.value]);
+    }
+
+    // Update form lat/lng from map/marker
+    function updateFromMarker() {
+
+        checkLatLng();
+
+        lat.value = marker.getLatLng().wrap().lat;
+        lng.value = marker.getLatLng().wrap().lng;
+        marker.setLatLng([lat.value, lng.value]); // This moves the marker back to the normal map
+        map.panTo([lat.value, lng.value]);
+
     }
     
     // Find lat and long elements
@@ -180,20 +196,14 @@ function genTrailMap(zoom = 12, select = false, additional_markers = [], lat_id 
         // Update lat long when marker is dragged
         marker.on('dragend', function (e) {
             // Update map from marker lat/lng
-            lat.value = marker.getLatLng().wrap().lat;
-            lng.value = marker.getLatLng().wrap().lng;
-            marker.setLatLng([lat.value, lng.value]); // This moves the marker back to the normal map
-            map.panTo([lat.value, lng.value]);
+            updateFromMarker();
         });
 
         // Update lat long and marker when map is clicked
         map.on('click', function (e) {
             // Update map from marker lat/lng
             marker.setLatLng(e.latlng);
-            lat.value = marker.getLatLng().wrap().lat;
-            lng.value = marker.getLatLng().wrap().lng;
-            marker.setLatLng([lat.value, lng.value]); // This moves the marker back to the normal map
-            map.panTo([lat.value, lng.value]);
+            updateFromMarker();
         });
 
         // Listen to form elements for changes
