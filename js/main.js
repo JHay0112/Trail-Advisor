@@ -207,8 +207,8 @@ function genTrailMap(zoom = 12, select = false, additional_markers = [], lat_id 
         });
 
         // Listen to form elements for changes
-        lat.addEventListener("change", updateFromLatLng);
-        lng.addEventListener("change", updateFromLatLng);
+        lat.addEventListener("keyup", updateFromLatLng);
+        lng.addEventListener("keyup", updateFromLatLng);
     }
 
 }
