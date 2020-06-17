@@ -106,7 +106,7 @@
     // Nav Item
     $nav = array(
         $trail_name => array(
-            "href" => "trail.php",
+            "href" => "trail.php?trail=".$trail_id,
             "classes" => ""
         )
     );
