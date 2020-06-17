@@ -85,8 +85,15 @@ function genTrailMap(zoom = 12, select = false, additional_markers = [], lat_id 
     
     // Update map from form lat/lng
     function updateFromLatLng() {
-        // This bounds the lng value to somewhere within -180 to +180 degrees
-        lng.value = L.latLng(lat.value, lng.value).wrap().lng;
+        
+        // Check if the lng value is within the bounds of -180 to +180
+        if(lng.value < -180) {
+            // If less than -180 then set to -180
+            lng.value = -180;
+        } else if(lng.value > 180) {
+            // If greater than 180 then set to 180
+            lng.value = 180;
+        }
         
         // Check if the lat value is within the bounds of -90 to +90
         if(lat.value < -90) {
