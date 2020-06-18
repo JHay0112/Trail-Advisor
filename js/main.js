@@ -81,7 +81,7 @@ function toggleResponsiveNav() {
 // Leaflet.js
 // Script for leaflet map to update from coords and vice versa on createtrail.php
 // Adapted from: https://gist.github.com/answerquest/03ade545b071b3e5ea4e
-function genTrailMap(zoom = 12, select = false, additional_markers = [], lat_id = "lat", lng_id = "lng", map_id = "trail-map") {
+function genTrailMap(zoom = 12, select = false, additional_markers = [], geolocation = false, lat_id = "lat", lng_id = "lng", map_id = "trail-map") {
 
     // Check that the lat and lng are within acceptable bounds
     function checkLatLng() {
@@ -188,6 +188,28 @@ function genTrailMap(zoom = 12, select = false, additional_markers = [], lat_id 
             zIndexOffset: 100000,
             title: newmarker[0] // Set title
         }).addTo(map);
+    }
+
+    // If trail is meant to ask for geolocation
+    if(geolocation) {
+
+        // Ask the user if we can access their geo location
+        if(navigator.geolocation) {
+            // If so then update the map with their location
+            navigator.geolocation.getCurrentPosition(function(position) {
+                lat.value = position.coords.latitude;
+                lng.value = position.coords.longitude;
+                
+                // If on the search page then redo the search with the geolocation in mind
+                if(document.URL.includes("search.php")) {
+                    window.location = "search.php?lat=" + position.coords.latitude + "&lng=" + position.coords.longitude;
+                } else {
+                    // Otherwise just update the map from the form values
+                    updateFromLatLng();
+                }
+
+            });
+        }
     }
 
     // If trail must be selectable then we have to add some more things

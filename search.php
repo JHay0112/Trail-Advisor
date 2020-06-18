@@ -23,20 +23,25 @@
         "author" => "Jordan Hay"
     );
 
+    // Flag to check if the lat and lng were set
+    $lat_lng_set = false;
+
     require("res/connect.php");
 
      // Checking and setting longitude, latititude, page, and rows to load
 
     if(isset($_GET["lng"])) {
         $lng = (float)$_GET["lng"];
+        $lat_lng_set = true;
     } else {
-        $lng = 172.63;
+        $lng = 0;
     }
 
     if(isset($_GET["lat"])) {
         $lat = (float)$_GET["lat"];
+        $lat_lng_set = true;
     } else {
-        $lat = -43.53;
+        $lat = 0;
     }
 
     if(isset($_GET["page"])) {
@@ -120,7 +125,13 @@
 
     $additional_markers .= "]";
 
-    $page_attr["onload"] = "genTrailMap(zoom = 12, select = true, additional_markers = ".$additional_markers.");";
+    if($lat_lng_set) {
+        // If the lat and lng were set then do not update map from geolocation
+        $page_attr["onload"] = "genTrailMap(zoom = 12, select = true, additional_markers = ".$additional_markers.");";
+    } else {
+        // If not set then attempt to
+        $page_attr["onload"] = "genTrailMap(zoom = 12, select = true, additional_markers = ".$additional_markers.", geolocation = true);";
+    }
 
     require("res/head.php");
 
@@ -155,7 +166,7 @@
             <input id="trails_to_load" type="number" name="rows_to_load" min="5" max="1000" step="1" class="col-12" placeholder="Trails To Load" value="<?php print($rows_to_load) ?>" required />
 
             <label>&nbsp;</label> <!-- Using this to get spacing correct -->
-            <button type="submit" class="col-12"><span class="fas fa-search fa-flip-horizontal"></span> Search</button>
+            <button type="submit" id="search-submit" class="col-12"><span class="fas fa-search fa-flip-horizontal"></span> Search</button>
         </div>
 
     </form>

@@ -22,7 +22,7 @@
         "title" => "Create Trail",
         "author" => "Jordan Hay",
         "permitted_users" => array("Admin", "Staff", "Standard"),
-        "onload" => "genTrailMap(zoom = 12, select = true);"
+        "onload" => "genTrailMap(zoom = 12, select = true, additional_markers = [], geolocation = true);"
     );
 
     require("res/head.php");
@@ -81,12 +81,12 @@
 
             <div class="col-6 form-wrapper">
                 <label for="lat" class="col-12">Latitude:</label>
-                <input id="lat" type="number" name="lat" min="-90" max="90" step="any" class="col-12" placeholder="Latitude" data-parsley-trigger="keyup" data-parsley-type="number" value="-43.53" required />
+                <input id="lat" type="number" name="lat" min="-90" max="90" step="any" class="col-12" placeholder="Latitude" data-parsley-trigger="keyup" data-parsley-type="number" value="0" required />
             </div>
 
             <div class="col-6 form-wrapper">
                 <label for="lng" class="col-12">Longitude:</label>
-                <input id="lng" type="number" name="lng" min="-180" max="180" step="any" class="col-12" placeholder="Longitude" value="172.63" data-parsley-trigger="keyup" data-parsley-type="number" required />
+                <input id="lng" type="number" name="lng" min="-180" max="180" step="any" class="col-12" placeholder="Longitude" value="0" data-parsley-trigger="keyup" data-parsley-type="number" required />
             </div>
         
         </div>
