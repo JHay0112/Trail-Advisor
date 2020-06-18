@@ -212,7 +212,7 @@
 <?php 
 
     // User must be a staff member or the trail creator to access these options
-    if((in_array($user_info["user_type"], array("Admin", "Staff"))) || ($user_info["user_id"] == $creator_id)) {
+    if(((in_array($user_info["user_type"], array("Admin", "Staff"))) || ($user_info["user_id"] == $creator_id)) && !$error) {
         // If the user is staff or admin give them the option to edit or delete the trail
         print("<section class='col-12'>");
         print("<h2>Actions</h2>");
