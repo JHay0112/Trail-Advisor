@@ -66,7 +66,10 @@
         $user_info = $_SESSION["user_info"];
         $logged_in = true;
     } else {
-        $user_info = array("user_type" => "");
+        $user_info = array(
+            "user_id" => 0,
+            "username" => "",
+            "user_type" => "");
         $logged_in = false;
     }
     
