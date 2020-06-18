@@ -92,6 +92,7 @@
         $trail_name = "Unknown Trail";
         $creator_id = 0;
         $creator = "Unknown";
+        $editors = array();
         $trail_description = "This trail does not exist in our database.";
         $lat = 0;
         $lng = 0;
