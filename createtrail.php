@@ -77,7 +77,10 @@
 
         <div class="col-12">
 
-            <div id="trail-map" name="map" class="col-12" style="height: 500px;"></div>
+            <div class="col-12" class="map-wrapper">
+                <a id="map-geolocation" class="button" href="#updatelocation">Find My Location</a>
+                <div id="trail-map" name="map" class="col-12" style="height: 500px;"></div>
+            </div>
 
             <div class="col-6 form-wrapper">
                 <label for="lat" class="col-12">Latitude:</label>

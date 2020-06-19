@@ -23,25 +23,20 @@
         "author" => "Jordan Hay"
     );
 
-    // Flag to check if the lat and lng were set
-    $lat_lng_set = false;
-
     require("res/connect.php");
 
      // Checking and setting longitude, latititude, page, and rows to load
 
     if(isset($_GET["lng"])) {
         $lng = (float)$_GET["lng"];
-        $lat_lng_set = true;
     } else {
-        $lng = 0;
+        $lng = 172.6;
     }
 
     if(isset($_GET["lat"])) {
         $lat = (float)$_GET["lat"];
-        $lat_lng_set = true;
     } else {
-        $lat = 0;
+        $lat = -43.5;
     }
 
     if(isset($_GET["page"])) {
@@ -125,13 +120,7 @@
 
     $additional_markers .= "]";
 
-    if($lat_lng_set) {
-        // If the lat and lng were set then do not update map from geolocation
-        $page_attr["onload"] = "genTrailMap(zoom = 12, select = true, additional_markers = ".$additional_markers.");";
-    } else {
-        // If not set then attempt to
-        $page_attr["onload"] = "genTrailMap(zoom = 12, select = true, additional_markers = ".$additional_markers.", geolocation = true);";
-    }
+    $page_attr["onload"] = "genTrailMap(zoom = 12, select = true, additional_markers = ".$additional_markers.", geolocation = true);";
 
     require("res/head.php");
 
@@ -139,11 +128,11 @@
 
 <!-- Search form -->
 <div class="col-12" id="form-wrapper">
-    <form class="col-12" action="search.php#search-anchor" method="get">
+    <form class="col-12" action="search.php#trail-map" method="get">
 
         <label for="map" class="col-12">Select a location on map to find nearby trails.</label>
 
-        <section class="col-12">
+        <section class="col-12" id="key">
             <h2 class="key">Key</h2>
             <div class="col-6">
                 <p><span class="location-icon key"></span>Selected Location</p>
@@ -151,7 +140,10 @@
             </div>
         </section>
 
-        <div id="trail-map" name="map" class="col-12" style="height: 500px;"></div>
+        <div class="col-12" class="map-wrapper">
+            <a id="map-geolocation" class="button" href="#key">Find My Location</a>
+            <div id="trail-map" name="map" class="col-12" style="height: 500px;"></div>
+        </div>
 
         <div class="col-6 form-wrapper">
             <label for="lat" class="col-12">Latitude:</label>

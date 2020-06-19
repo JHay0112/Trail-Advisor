@@ -126,6 +126,27 @@ function genTrailMap(zoom = 12, select = false, additional_markers = [], geoloca
 
     }
     
+    // Move the map to the user's location
+    function goToUserLocation() {
+        // Ask the user if we can access their geo location
+        if(navigator.geolocation) {
+            // If so then update the map with their location
+            navigator.geolocation.getCurrentPosition(function(position) {
+                lat.value = position.coords.latitude;
+                lng.value = position.coords.longitude;
+                
+                // If on the search page then redo the search with the geolocation in mind
+                if(document.URL.includes("search.php")) {
+                    window.location = "search.php?lat=" + position.coords.latitude + "&lng=" + position.coords.longitude + "#key";
+                } else {
+                    // Otherwise just update the map from the form values
+                    updateFromLatLng();
+                }
+
+            });
+        }
+    }
+    
     // Find lat and long elements
     var lat = document.getElementById(lat_id);
     var lng = document.getElementById(lng_id);
@@ -192,23 +213,15 @@ function genTrailMap(zoom = 12, select = false, additional_markers = [], geoloca
 
     // If trail is meant to ask for geolocation
     if(geolocation) {
-
+        var geoloc_button = document.getElementById("map-geolocation"); // Find the geoloc button
+        
         // Ask the user if we can access their geo location
-        if(navigator.geolocation) {
-            // If so then update the map with their location
-            navigator.geolocation.getCurrentPosition(function(position) {
-                lat.value = position.coords.latitude;
-                lng.value = position.coords.longitude;
-                
-                // If on the search page then redo the search with the geolocation in mind
-                if(document.URL.includes("search.php")) {
-                    window.location = "search.php?lat=" + position.coords.latitude + "&lng=" + position.coords.longitude;
-                } else {
-                    // Otherwise just update the map from the form values
-                    updateFromLatLng();
-                }
-
-            });
+        if(navigator.geolocation) { 
+            // if so then add an event listener to the navigation button
+            geoloc_button.addEventListener("click", goToUserLocation);
+        } else {
+            // Else don't give the user the option
+            geoloc_button.style.display = "none";
         }
     }
 

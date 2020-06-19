@@ -352,6 +352,15 @@ td:first-child {
     border-radius: 4px;
 }
 
+#map-geolocation {
+    position: relative;
+    float: right;
+    top: 110px;
+    right: 0px;
+    z-index: 1000;
+    margin-top: -80px;
+}
+
 .location-icon, .trail-icon {
   width: 30px;
   height: 30px;
