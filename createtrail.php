@@ -84,12 +84,12 @@
 
             <div class="col-6 form-wrapper">
                 <label for="lat" class="col-12">Latitude:</label>
-                <input id="lat" type="number" name="lat" min="-90" max="90" step="any" class="col-12" placeholder="Latitude" data-parsley-trigger="keyup" data-parsley-type="number" value="0" required />
+                <input id="lat" type="number" name="lat" min="-90" max="90" step="any" class="col-12" placeholder="Latitude" data-parsley-trigger="keyup" data-parsley-type="number" value="-43.534" required />
             </div>
 
             <div class="col-6 form-wrapper">
                 <label for="lng" class="col-12">Longitude:</label>
-                <input id="lng" type="number" name="lng" min="-180" max="180" step="any" class="col-12" placeholder="Longitude" value="0" data-parsley-trigger="keyup" data-parsley-type="number" required />
+                <input id="lng" type="number" name="lng" min="-180" max="180" step="any" class="col-12" placeholder="Longitude" value="172.63" data-parsley-trigger="keyup" data-parsley-type="number" required />
             </div>
         
         </div>

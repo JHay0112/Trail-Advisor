@@ -30,13 +30,13 @@
     if(isset($_GET["lng"])) {
         $lng = (float)$_GET["lng"];
     } else {
-        $lng = 172.6;
+        $lng = 172.63;
     }
 
     if(isset($_GET["lat"])) {
         $lat = (float)$_GET["lat"];
     } else {
-        $lat = -43.5;
+        $lat = -43.534;
     }
 
     if(isset($_GET["page"])) {
