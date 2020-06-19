@@ -126,6 +126,11 @@ function genTrailMap(zoom = 12, select = false, additional_markers = [], geoloca
 
     }
     
+    // Hide geolocation, used when geolocation is not avaliable
+    function hideGeolocationButton() {
+        geoloc_button.style.display = "none"; // If no geolocation then do not show the button
+    }
+    
     // Move the map to the user's location
     function goToUserLocation() {
         // Ask the user if we can access their geo location
@@ -143,7 +148,7 @@ function genTrailMap(zoom = 12, select = false, additional_markers = [], geoloca
                     updateFromLatLng();
                 }
 
-            });
+            }, hideGeolocationButton);
         }
     }
     
@@ -219,7 +224,7 @@ function genTrailMap(zoom = 12, select = false, additional_markers = [], geoloca
         if(navigator.geolocation) { 
             // if so then add an event listener to the navigation button
             geoloc_button.addEventListener("click", goToUserLocation);
-            navigator.geolocation.getCurrentPosition(function() {/* Do nothing */}, function() {geoloc_button.style.display = "none" /* If no geolocation then do not show the button */});
+            navigator.geolocation.getCurrentPosition(function() {/* Do nothing */}, hideGeolocationButton);
         } else {
             // Else don't give the user the option
             geoloc_button.style.display = "none";
