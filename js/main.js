@@ -219,6 +219,7 @@ function genTrailMap(zoom = 12, select = false, additional_markers = [], geoloca
         if(navigator.geolocation) { 
             // if so then add an event listener to the navigation button
             geoloc_button.addEventListener("click", goToUserLocation);
+            navigator.geolocation.getCurrentPosition(function() {/* Do nothing */}, function() {geoloc_button.style.display = "none" /* If no geolocation then do not show the button */});
         } else {
             // Else don't give the user the option
             geoloc_button.style.display = "none";
