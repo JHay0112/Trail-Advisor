@@ -141,7 +141,7 @@
         </section>
 
         <div class="col-12" class="map-wrapper">
-            <a id="map-geolocation" class="button" href="#key">Find My Location</a>
+            <a id="map-geolocation" class="button" href="#key">Find My Location&nbsp;&nbsp;<span class="fa fa-dot-circle-o"></span></a>
             <div id="trail-map" name="map" class="col-12" style="height: 500px;"></div>
         </div>
 
