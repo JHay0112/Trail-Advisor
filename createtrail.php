@@ -78,7 +78,7 @@
         <div class="col-12">
 
             <div class="col-12" class="map-wrapper">
-                <a id="map-geolocation" class="button" href="#updatelocation">Find My Location&nbsp;&nbsp;<span class="fa fa-dot-circle-o"></a>
+                <a id="map-geolocation" class="button" href="#updatelocation">Find My Location&nbsp;&nbsp;<span class="fa fa-crosshairs"></a>
                 <div id="trail-map" name="map" class="col-12" style="height: 500px;"></div>
             </div>
 
