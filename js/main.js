@@ -133,23 +133,20 @@ function genTrailMap(zoom = 12, select = false, additional_markers = [], geoloca
     
     // Move the map to the user's location
     function goToUserLocation() {
-        // Ask the user if we can access their geo location
-        if(navigator.geolocation) {
-            // If so then update the map with their location
-            navigator.geolocation.getCurrentPosition(function(position) {
-                lat.value = position.coords.latitude;
-                lng.value = position.coords.longitude;
-                
-                // If on the search page then redo the search with the geolocation in mind
-                if(document.URL.includes("search.php")) {
-                    window.location = "search.php?lat=" + position.coords.latitude + "&lng=" + position.coords.longitude + "#key";
-                } else {
-                    // Otherwise just update the map from the form values
-                    updateFromLatLng();
-                }
+        // If so then update the map with their location
+        navigator.geolocation.getCurrentPosition(function(position) {
+            lat.value = position.coords.latitude;
+            lng.value = position.coords.longitude;
 
-            }, hideGeolocationButton);
-        }
+            // If on the search page then redo the search with the geolocation in mind
+            if(document.URL.includes("search.php")) {
+                window.location = "search.php?lat=" + position.coords.latitude + "&lng=" + position.coords.longitude + "#key";
+            }
+            
+            // Otherwise just update the map from the form values
+            updateFromLatLng();
+
+        }, hideGeolocationButton);
     }
     
     // Find lat and long elements
