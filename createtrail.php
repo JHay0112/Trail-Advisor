@@ -53,17 +53,17 @@
             <div class="col-8 form-wrapper">
 
                 <label class="col-12" for="name">Trail Name:</label>
-                <input type="text" name="name" maxlength="30" class="col-12" placeholder="Trail Name" required />
+                <input type="text" id="name" name="name" maxlength="30" class="col-12" placeholder="Trail Name" required />
 
                 <label class="col-12" for="description">Trail Description:</label>
-                <textarea type="text" name="description" class="col-12" placeholder="Trail Description" required></textarea>
+                <textarea id="description" name="description" class="col-12" placeholder="Trail Description" required></textarea>
 
             </div>
 
             <div class="col-4 form-wrapper">
 
                 <label class="col-12" for="img">Trail Image (PNG or JPG):</label>
-                <input type="file" name="img" class="col-12" required />
+                <input id="img" type="file" name="img" class="col-12" required />
             
             </div>
         
@@ -79,7 +79,7 @@
 
             <div class="col-12" class="map-wrapper">
                 <a id="map-geolocation" class="button" href="#updatelocation">Find My Location&nbsp;&nbsp;<span class="fa fa-crosshairs"></a>
-                <div id="trail-map" name="map" class="col-12" style="height: 500px;"></div>
+                <div id="trail-map"  class="col-12" ></div>
             </div>
 
             <div class="col-6 form-wrapper">

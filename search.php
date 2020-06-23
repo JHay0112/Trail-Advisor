@@ -130,7 +130,7 @@
 <div class="col-12" id="form-wrapper">
     <form class="col-12" action="search.php#trail-map" method="get">
 
-        <label for="map" class="col-12">Select a location on map to find nearby trails.</label>
+        <label class="col-12">Select a location on map to find nearby trails.</label>
 
         <section class="col-12" id="key">
             <h2 class="key">Key</h2>
@@ -142,7 +142,7 @@
 
         <div class="col-12" class="map-wrapper">
             <a id="map-geolocation" class="button" href="#key">Find My Location&nbsp;&nbsp;<span class="fa fa-crosshairs"></span></a>
-            <div id="trail-map" name="map" class="col-12" style="height: 500px;"></div>
+            <div id="trail-map" class="col-12"></div>
         </div>
 
         <div class="col-6 form-wrapper">

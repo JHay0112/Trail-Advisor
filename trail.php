@@ -194,7 +194,7 @@
 
 </div>
 
-<div id="trail-map" name="map" class="col-12" style="height: 500px;"></div>
+<div id="trail-map"  class="col-12" ></div>
 
 <div class="col-6 form-wrapper">
     <label for="lat" class="col-12">Latitude:</label>

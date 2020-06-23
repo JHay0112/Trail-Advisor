@@ -350,6 +350,7 @@ td:first-child {
 #trail-map {
     margin: 20px 0px;
     border-radius: 4px;
+    height: 500px;
 }
 
 #map-geolocation {
@@ -423,7 +424,7 @@ form {
     margin-bottom: 30px;
 }
 
-input, textarea[type=text] {
+input, textarea {
     padding: 14px 20px;
     margin: 8px 0;
     display: inline-block;

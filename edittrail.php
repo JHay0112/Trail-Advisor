@@ -97,10 +97,10 @@
         <legend>Edit General Trail Information:</legend>
 
         <label class="col-12" for="name">Trail Name:</label>
-        <input type="text" name="name" maxlength="30" class="col-12" placeholder="Trail Name" value="<?php print($trail_name); ?>" required />
+        <input type="text" id="name" name="name" maxlength="30" class="col-12" placeholder="Trail Name" value="<?php print($trail_name); ?>" required />
 
         <label class="col-12" for="description">Trail Description:</label>
-        <textarea type="text" name="description" class="col-12" placeholder="Trail Description" required><?php print($trail_description); ?></textarea>
+        <textarea id="description" name="description" class="col-12" placeholder="Trail Description" required><?php print($trail_description); ?></textarea>
 
     </fieldset>
 
@@ -110,7 +110,7 @@
 
         <div class="col-12">
 
-            <div id="trail-map" name="map" class="col-12" style="height: 500px;"></div>
+            <div id="trail-map"  class="col-12" ></div>
 
             <div class="col-6 form-wrapper">
                 <label for="lat" class="col-12">Latitude:</label>

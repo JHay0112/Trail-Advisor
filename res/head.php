@@ -137,7 +137,7 @@
     <body onload="<?php print($page_attr["onload"]); ?>">
 
         <header style="background-image: url('<?php print($page_attr["header_img"]); ?>');">
-            <img src="img/logo.png" />
+            <img src="img/logo.png" alt="TrailAdvisor Logo" />
             <h1><?php print($page_attr["site_name"]); ?></h1>
         </header>
 
