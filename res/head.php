@@ -143,7 +143,7 @@
 
         <nav class="col-12" id="nav">
 
-            <a href="javascript:void(0);" id="nav-responsive-button" onclick="toggleResponsiveNav()" class="fa fa-bars"></a>
+            <a href="javascript:void(0);" id="nav-responsive-button" onclick="toggleResponsiveNav()" class="fas fa-bars"></a>
 
             <?php 
 
