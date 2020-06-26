@@ -27,8 +27,8 @@
     check_fields($_POST, array("name", "description", "lat", "lng"), "../../createtrail.php");
     check_fields($_FILES, array("img"), "../../createtrail.php");
 
-    $name = addslashes(strip_tags($_POST["name"]));
-    $description = addslashes(strip_tags($_POST["description"]));
+    $name = strip_tags($_POST["name"]);
+    $description = strip_tags($_POST["description"]);
     $lat = (float)$_POST["lat"];
     $lng = (float)$_POST["lng"];
     $upload = $_FILES["img"];

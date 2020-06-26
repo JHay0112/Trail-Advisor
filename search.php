@@ -103,7 +103,7 @@
             
             $additional_markers .= "[";
             
-            $additional_markers .= "'".$row["trail_name"]."', ";
+            $additional_markers .= "'".addslashes($row["trail_name"])."', ";
             $additional_markers .= $row["lat"].", ";
             $additional_markers .= $row["lng"].", ";
             $additional_markers .= $row["trail_id"];
