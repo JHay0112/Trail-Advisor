@@ -103,7 +103,7 @@
             
             $additional_markers .= "[";
             
-            $additional_markers .= "'".$row["trail_name"]."', ";
+            $additional_markers .= "'".addslashes($row["trail_name"])."', "; // Fix for broken map issue
             $additional_markers .= $row["lat"].", ";
             $additional_markers .= $row["lng"].", ";
             $additional_markers .= $row["trail_id"];
@@ -120,7 +120,7 @@
 
     $additional_markers .= "]";
 
-    $page_attr["onload"] = "genTrailMap(zoom = 12, select = true, additional_markers = ".$additional_markers.", geolocation = true);";
+    $page_attr["onload"] = "genTrailMap(12, true, ".$additional_markers.", true);";
 
     require("res/head.php");
 
@@ -140,7 +140,7 @@
             </div>
         </section>
 
-        <div class="col-12" class="map-wrapper">
+        <div class="col-12 map-wrapper">
             <a id="map-geolocation" class="button" href="#key">Find My Location&nbsp;&nbsp;<span class="fas fa-crosshairs"></span></a>
             <div id="trail-map" class="col-12"></div>
         </div>
