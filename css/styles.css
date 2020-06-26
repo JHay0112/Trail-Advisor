@@ -529,8 +529,11 @@ h1.home {
 }
 
 .trail-img {
-    background-size: cover;
-    background-position: center center;
+    object-fit: cover;
+}
+
+.trail-img.desktop-only {
+    padding-left: 20px; /* Add some padding to the side of trail images on desktop */
 }
 
 .trail-img.mobile-only {

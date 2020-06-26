@@ -187,10 +187,10 @@
     </section>
     
     <!-- Mobile Image -->
-    <aside class="col-12 trail-img mobile-only" style="background-image: url('<?php print($trail_img); ?>');"></aside>
+    <img class="col-12 trail-img mobile-only" src="<?php print($trail_img); ?>" alt="<?php print($trail_name); ?>" />
     
     <!-- Desktop Image -->
-    <aside class="col-4 trail-img desktop-only" style="background-image: url('<?php print($trail_img); ?>');"></aside>
+    <img class="col-4 trail-img desktop-only" src="<?php print($trail_img); ?>" alt="<?php print($trail_name); ?>" />
 
 </div>
 
