@@ -26,7 +26,7 @@
 
     check_fields($_POST, array("username", "password"), "../../signup.php");
 
-    $username = strip_tags($_POST["username"]); // Stripping HTML from user name so that it does not cause issues when placed in page.
+    $username = addslashes(strip_tags($_POST["username"])); // Stripping HTML from user name so that it does not cause issues when placed in page.
     $password = $_POST["password"];
 
     // If username is not alphanumeric and between 5 and 30 characters then redirect back to signup
