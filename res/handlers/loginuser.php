@@ -37,11 +37,12 @@
         mysqli_stmt_bind_param($stmt, "s", $username);
         mysqli_stmt_execute($stmt);
         mysqli_stmt_bind_result($stmt, $user_id, $username, $hash, $salt, $user_type);
+        mysqli_stmt_store_result($stmt);
         mysqli_stmt_fetch($stmt);
     } 
 
-    // Check if the statment returned anything
-    if(mysqli_stmt_fetch($stmt)) {
+    // Check if the statment returned only one row
+    if(mysqli_stmt_num_rows($stmt) == 1) {
         // If so it is safe to run the hash
         $input_hash = hash("sha256", $password.$salt);
     } else {
