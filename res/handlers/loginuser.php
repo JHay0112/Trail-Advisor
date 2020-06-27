@@ -37,10 +37,17 @@
         mysqli_stmt_bind_param($stmt, "s", $username);
         mysqli_stmt_execute($stmt);
         mysqli_stmt_bind_result($stmt, $user_id, $username, $hash, $salt, $user_type);
+        mysqli_stmt_fetch($stmt);
     } 
 
-    while(mysqli_stmt_fetch($stmt)) {
+    // Check if the statment returned anything
+    if(mysqli_stmt_fetch($stmt)) {
+        // If so it is safe to run the hash
         $input_hash = hash("sha256", $password.$salt);
+    } else {
+        // Else the login has failed
+        print("<script>location = '../../login.php?referral_case=loginfail';</script>");
+        exit();
     }
 
     // If the hash's are equal then tell the user it's valid
