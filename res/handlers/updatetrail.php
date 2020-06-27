@@ -28,8 +28,8 @@
     check_fields($_POST, array("trail_id", "name", "description", "lat", "lng"), "../../edittrail.php");
 
     $trail_id = (int)$_POST["trail_id"];
-    $name = strip_tags($_POST["name"]);
-    $description = strip_tags($_POST["description"]);
+    $name = htmlspecialchars($_POST["name"]);
+    $description = htmlspecialchars($_POST["description"]);
     $lat = (float)$_POST["lat"];
     $lng = (float)$_POST["lng"];
 
