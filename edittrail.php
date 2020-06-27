@@ -99,7 +99,7 @@
         <legend>Edit General Trail Information:</legend>
 
         <label class="col-12" for="name">Trail Name:</label>
-        <input type="text" id="name" name="name" maxlength="30" class="col-12" placeholder="Trail Name" value="<?php print($trail_name); ?>" required data-parsley-pattern="^[a-zA-Z0-9 ]*$" />
+        <input type="text" id="name" name="name" maxlength="30" class="col-12" placeholder="Trail Name" value="<?php print($trail_name); ?>" />
 
         <label class="col-12" for="description">Trail Description:</label>
         <textarea id="description" name="description" class="col-12" placeholder="Trail Description" required><?php print($trail_description); ?></textarea>

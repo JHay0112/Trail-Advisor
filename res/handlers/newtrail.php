@@ -42,9 +42,10 @@
     }
 
     // Check the name is only english letters, numbers, and spaces.
-    if(!preg_match("^[a-zA-Z0-9 ]*$", $name)) {
+    if(!preg_match("/^[a-zA-Z0-9 ]*$/", $name)) {
         // If not then return to trail edit page.
         print("<script> location = '../../createtrail.php?referral_case=invalidname'</script>");
+        exit();
     }
 
     // Prepare statment

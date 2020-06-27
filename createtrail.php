@@ -54,7 +54,7 @@
             <div class="col-8 form-wrapper">
 
                 <label class="col-12" for="name">Trail Name:</label>
-                <input type="text" id="name" name="name" maxlength="30" class="col-12" placeholder="Trail Name" required data-parsley-pattern="^[a-zA-Z0-9 ]*$" />
+                <input type="text" id="name" name="name" maxlength="30" class="col-12" placeholder="Trail Name" required />
 
                 <label class="col-12" for="description">Trail Description:</label>
                 <textarea id="description" name="description" class="col-12" placeholder="Trail Description" required></textarea>
