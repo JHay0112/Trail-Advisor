@@ -35,14 +35,14 @@
 
     // If trail id is invalid send them back to edit dialogue
     if($trail_id == 0) {
-        print("<script> location = '../../editrail.php?trail=".$trail_id."&referral_case=invalidtrail'</script>");
+        print("<script> location = '../../edittrail.php?trail=".$trail_id."&referral_case=invalidtrail'</script>");
         exit();
     }
 
     // Check the name is only english letters, numbers, and spaces.
-    if(!preg_match("/^[a-zA-Z0-9 ]*$/", $name)) {
+    if(!preg_match("/^[a-zA-Z0-9' ]*$/", $name)) {
         // If not then return to trail edit page.
-        print("<script> location = '../../editrail.php?trail=".$trail_id."&referral_case=invalidname'</script>");
+        print("<script> location = '../../edittrail.php?trail=".$trail_id."&referral_case=invalidname'</script>");
         exit();
     }
 

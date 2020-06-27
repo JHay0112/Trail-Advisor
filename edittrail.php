@@ -82,7 +82,7 @@
     $states = array(
         "edittrailfail" => "Failed to edit trail, please try again.",
         "missingfields" => "Not all required fields were filled.",
-        "invalidname" => "Trail name contains values that are not english letters, numbers, or spaces.",
+        "invalidname" => "Trail name contains values that are not english letters, numbers, apostrophes, or spaces.",
         "invalidtrail" => "The trail you tried to edit was invalid."
     );
 

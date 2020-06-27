@@ -34,7 +34,7 @@
         "newtrailfail" => "Failed to create a new trail, please try again.",
         "missingfields" => "Not all required fields were filled.",
         "traildeleted" => "Trail has been deleted.",
-        "invalidname" => "Trail name contains values that are not english letters, numbers, or spaces."
+        "invalidname" => "Trail name contains values that are not english letters, numbers, apostrophes, or spaces."
     );
 
     if(isset($_GET["referral_case"])) {
