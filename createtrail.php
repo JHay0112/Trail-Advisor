@@ -33,7 +33,8 @@
         "invalidext" => "Invalid file uploaded, must be a JPG or PNG.",
         "newtrailfail" => "Failed to create a new trail, please try again.",
         "missingfields" => "Not all required fields were filled.",
-        "traildeleted" => "Trail has been deleted."
+        "traildeleted" => "Trail has been deleted.",
+        "invalidname" => "Trail name contains values that are not english letters, numbers, or spaces."
     );
 
     if(isset($_GET["referral_case"])) {
@@ -53,7 +54,7 @@
             <div class="col-8 form-wrapper">
 
                 <label class="col-12" for="name">Trail Name:</label>
-                <input type="text" id="name" name="name" maxlength="30" class="col-12" placeholder="Trail Name" required />
+                <input type="text" id="name" name="name" maxlength="30" class="col-12" placeholder="Trail Name" required data-parsley-pattern="^[a-zA-Z0-9 ]*$" />
 
                 <label class="col-12" for="description">Trail Description:</label>
                 <textarea id="description" name="description" class="col-12" placeholder="Trail Description" required></textarea>

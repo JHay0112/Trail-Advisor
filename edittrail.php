@@ -81,7 +81,9 @@
 
     $states = array(
         "edittrailfail" => "Failed to edit trail, please try again.",
-        "missingfields" => "Not all required fields were filled."
+        "missingfields" => "Not all required fields were filled.",
+        "invalidname" => "Trail name contains values that are not english letters, numbers, or spaces.",
+        "invalidtrail" => "The trail you tried to edit was invalid."
     );
 
     if(isset($_GET["referral_case"])) {
@@ -97,7 +99,7 @@
         <legend>Edit General Trail Information:</legend>
 
         <label class="col-12" for="name">Trail Name:</label>
-        <input type="text" id="name" name="name" maxlength="30" class="col-12" placeholder="Trail Name" value="<?php print($trail_name); ?>" required />
+        <input type="text" id="name" name="name" maxlength="30" class="col-12" placeholder="Trail Name" value="<?php print($trail_name); ?>" required data-parsley-pattern="^[a-zA-Z0-9 ]*$" />
 
         <label class="col-12" for="description">Trail Description:</label>
         <textarea id="description" name="description" class="col-12" placeholder="Trail Description" required><?php print($trail_description); ?></textarea>
