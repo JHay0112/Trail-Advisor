@@ -53,7 +53,7 @@
 
             <div class="col-8 form-wrapper">
 
-                <label class="col-12" for="name">Trail Name:</label>
+                <label class="col-12" for="name">Trail Name (Must be only english letters, numbers, apostrophes, or spaces):</label>
                 <input type="text" id="name" name="name" maxlength="30" class="col-12" placeholder="Trail Name" required />
 
                 <label class="col-12" for="description">Trail Description:</label>
