@@ -32,7 +32,7 @@
 
 <hr />
 
-<p><?php print($page_attr["site_name"]); ?> is a website dedicated to the creation and sharing of trails for all people of all abilities. Whether you're a sunday stroller or a dedicated hiker, <?php print($page_attr["site_name"]); ?> has trails for you to discover and enjoy. </p>
+<p><?php print($page_attr["site_name"]); ?> is a website dedicated to the creation and sharing of trails for all people of all abilities. Whether you're a Sunday stroller or a dedicated hiker, <?php print($page_attr["site_name"]); ?> has trails for you to discover and enjoy. </p>
 
 <p>Ready to get walking? You can search our database of trails <a href="search.php">here</a>.</p>
 
