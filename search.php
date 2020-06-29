@@ -95,7 +95,7 @@
     $additional_markers = "[";
 
     // Check that rows have been filled
-    if(isset($rows)) {   
+    if((isset($rows)) && (count($rows) > 0)) {   
         // For every row create new row in the additional trails
         $i = 0; // Counting iterations
         $rows_loaded = count($rows);
